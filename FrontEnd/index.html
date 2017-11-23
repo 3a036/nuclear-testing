@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <style type="text/css">
+        #container{
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            /*border-style:solid;
+            border-width: 1px;
+            border-color: black;*/
+        }
+    </style>
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+</head>
+<body>
+    <div id='container'></div>
+    
+</body>
+<script type="text/javascript">
+    // Generate the world map from topojson file
+    let PATH_TO_MAP = './data/worldMap.json';
+    let container = d3.select("#container");
+    let width = container.node().clientWidth;;
+    let height = container.node().clientHeight;
+    let nuclear_events;
+
+    let svg = container.append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    // projection of the world map
+    var projection = d3.geo.mercator().scale(width / 2 / Math.PI).translate([width/2, height/2+100]);
+
+    d3.json(PATH_TO_MAP, function(error, topology) {
+    if (error) throw error;
+
+    var geojson = topojson.feature(topology, topology.objects.countries);
+
+    svg.selectAll("path")
+        .data(geojson.features)
+        .enter().append("path")
+        .attr("d", d3.geo.path().projection(projection));
+    });
+
+
+    // Load data
+
+    function display_events(events){
+
+    }
+
+
+    d3.tsv("./data/nuclear_test.tsv")
+    .row(function(d) {
+      return {
+        magnitude: parseFloat(d.magnitude),
+        country: d.country,
+        name: d.name,
+        site: d.site,
+        type: d.type,
+        lat: parseFloat(d.lat),
+        lng: parseFloat(d.lng),
+        date: d.date
+      };
+    })
+    .get(function(err, rows) {
+        if (err) return console.error(err);
+        nuclear_events = svg.selectAll(".site").data(rows).enter()
+            .append("circle")
+            .attr("cx", function(row){return projection([row.lng, row.lat])[0];})
+            .attr("cy", function(row){return projection([row.lng, row.lat])[1];})
+            .attr('r', 5)
+            .style('fill', 'red');
+        nuclear_events.append("title").text(function (d) { return d.site; })
+
+        window.site_data = rows;
+    });
+</script>
+</html>
