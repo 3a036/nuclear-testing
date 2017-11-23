@@ -75,7 +75,7 @@ d3.json(mapPath, function(error, world) {
       .attr("d", path)
       .attr("class", "country-boundary"); 
 
-  d3.tsv("https://raw.githubusercontent.com/rbsteinm/DataVisualizationProject/master/MapTimeline/data/nuclear_test.tsv?token=AIYc1iRTjmApiyxEzs887p9MEbZtSjRJks5aHnAKwA%3D%3D")
+  d3.tsv("https://raw.githubusercontent.com/rbsteinm/DataVisualizationProject/master/FrontEnd/MapTimeline/data/nuclear_test.tsv?token=AIYc1pZ3S5RXWM_RS5WaInFmScmy1fFDks5aIAQxwA%3D%3D")
     .row(function(d) {
       return {
         magnitude: parseFloat(d.magnitude),
@@ -127,6 +127,7 @@ var secondsInDay = 60 * 60 * 24;
 d3.select('#slider3').call(d3.slider()
   .axis(true).min(minDateUnix).max(maxDateUnix).step(secondsInDay)
   .on("slide", function(evt, value) {
+    console.log(_(site_data))
     var newData = _(site_data).filter( function(site) {
       return site.date < value;
     })
