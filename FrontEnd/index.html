@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <style type="text/css">
+        #container{
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            /*border-style:solid;
+            border-width: 1px;
+            border-color: black;*/
+        }
+    </style>
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+</head>
+<body>
+    <div id='container'></div>
+    
+</body>
+<script type="text/javascript">
+    // Generate the world map from topojson file
+    let PATH_TO_MAP = './data/worldMap.json';
+    let container = d3.select("#container");
+    //let width = container.node().clientWidth;
+    //let height = container.node().clientHeight;
+    let width = container.node().clientWidth;;
+    let height = container.node().clientHeight;;
+
+    let svg = container.append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .style('border-style', 'solid')
+        .style('border-color', 'red');
+
+    // projection of the world map
+    //var projection = d3.geo.mercator().scale((width) / 2 / Math.PI).translate([width/2, height/2]).precision(.1);
+    var projection = d3.geo.mercator().scale(width / 2 / Math.PI).translate([width/2, height/2+100]);
+
+    d3.json(PATH_TO_MAP, function(error, topology) {
+    if (error) throw error;
+
+    console.log("topojson", topology);
+    var geojson = topojson.feature(topology, topology.objects.countries);
+    console.log("geojson", geojson);
+
+    svg.selectAll("path")
+        .data(geojson.features)
+        .enter().append("path")
+        .attr("d", d3.geo.path().projection(projection));
+    });
+
+
+    /*d3.json("./data/worldMap.json", function(error, world) {
+            var countries = topojson.feature(world, world.objects.subunits);
+            var group = viewMap.selectAll("g").data(countries.features).enter().append("g");
+            var path= d3.geo.path().projection(projection);
+            var areas= group.append("path")
+            .attr("d", path)
+            .attr("class", "area");
+        });*/
+</script>
+</html>
