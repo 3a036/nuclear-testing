@@ -23,7 +23,7 @@
             right: 0;
             bottom: 0;
             width: 98%;
-            height: 7%;
+            height: 60px;
             background-color: white;
             opacity: 0.6;
             z-index: 3;
@@ -40,10 +40,15 @@
             stroke-opacity: 0.3;
             stroke-width: 10px;
         }
+
+        .handle{
+
+        }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"> </script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
 </head>
 <body>
     <div id='container'>
@@ -84,18 +89,6 @@
         .attr("d", d3.geo.path().projection(projection));
     });
 
-
-    // This function displays all the events on the map
-    function display_events(rows){
-        return svg.selectAll(".site").data(rows).enter()
-            .append("circle")
-            .attr("cx", function(row){return projection([row.lng, row.lat])[0];})
-            .attr("cy", function(row){return projection([row.lng, row.lat])[1];})
-            .attr('r', 5)
-            .style('fill', 'red');
-    }
-
-
     // Loading the data
     d3.tsv("./data/nuclear_test.tsv")
     .row(function(d) {
@@ -113,8 +106,6 @@
     })
     .get(function(err, rows) {
         if (err) return console.error(err);
-        nuclear_events = display_events(rows);
-        nuclear_events.append("title").text(function (d) {return d.textual_location;});
         window.site_data = rows;
     });
 
@@ -124,78 +115,84 @@
         .append("svg")
         .attr('width', SCREEN_WIDTH - MARGIN*2)
         .attr('height', 50);
-        //.attr("transform", "translate(" + MARGIN/5 + "," + MARGIN/5+ ")");
 
-        //Print time evolution top left corner
-        /*var timeDisplay = viewSlider.append("text").attr("id", "timedisplay").attr("x", 110).attr("y", 220)
-        .attr("visibility", "visible").attr("class", "city");*/
+    var timeRange = d3.scale.linear()
+        .domain([0, NUM_DAYS])
+        .range([0, TIMEBAR_WIDTH])
+        .clamp(true);
 
-        //-------------Time slider-----------------
-        //viewSlider.append("text").text("Time Line").attr("class", "city").attr("x", 50).attr("y", 130);
+    var timeSlider = viewSlider.append("g")
+        .attr('width', TIMEBAR_WIDTH)
+        .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
-        var timeRange = d3.scale.linear()
-            .domain([0, NUM_DAYS])
-            .range([0, TIMEBAR_WIDTH])
-            .clamp(true);
+    timeSlider.append("line")
+        .attr("class", "track")
+        .attr("x1", timeRange.range()[0])
+        .attr("x2", timeRange.range()[1])
+        /*.select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-inset")
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-overlay")*/
+        .call(d3.behavior.drag()
+        .on("drag", function() {timeUpdate(timeRange.invert(d3.event.x)); }));
 
-        var timeSlider = viewSlider.append("g")
-            .attr('width', TIMEBAR_WIDTH)
-            .attr("transform", "translate(" + 30 + "," + 20 + ")");
+    let ticks = [];
+    for(let i = 0; i < NUM_YEARS; i+=5){
+        ticks.push(i*365);
+    }
 
-        timeSlider.append("line")
-            .attr("class", "track")
-            .attr("x1", timeRange.range()[0])
-            .attr("x2", timeRange.range()[1])
-            /*.select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-            .attr("class", "track-inset")
-            .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-            .attr("class", "track-overlay")*/
-            .call(d3.behavior.drag()
-            .on("drag", function() {timeUpdate(timeRange.invert(d3.event.x)); }));
+    timeSlider.insert('g', '.track-overlay')
+        .attr('class', 'ticks')
+        .attr('transform', 'translate(0,' + 25 + ')')
+        .selectAll('text')
+        .data(ticks)
+        .enter().append('text')
+        .attr('x', d => timeRange(d))
+        .attr("text-anchor", "middle")
+        .text(d => FIRST_YEAR +  (d/365));
 
-        /*timeSlider.insert("g", ".track-overlay")
-            .attr("class", "ticks")
-            .attr("transform", "translate(0," + 18 + ")")
-            .selectAll("text")
-            .data([0,60,120,180,240,300,360,420,480,540,600,660,720,780,840,900,960,1020,1080,1140,1200,1260,1320,1380,1440])
-            .enter().append("text")
-            .attr("x", timeRange)
-            .attr("text-anchor", "middle")
-            .text(function(d) { return d/60 + "h"; });*/
-
-        let ticks = [];
-        for(let i = 0; i < NUM_YEARS; i+=5){
-            ticks.push(i*365);
-        }
-        console.log(ticks);
-
-        timeSlider.insert('g', '.track-overlay')
-            .attr('class', 'ticks')
-            .attr('transform', 'translate(0,' + 20 + ')')
-            .selectAll('text')
-            .data(ticks)
-            .enter().append('text')
-            .attr('x', d => timeRange(d))
-            .attr("text-anchor", "middle")
-            .text(d => FIRST_YEAR +  (d/365));
-
-        var timeHandle = timeSlider.insert("circle", ".track-overlay")
-            .attr("class", "handle")
-            .attr("cx", 12)
-            .attr("r", 9)
-            .call(d3.behavior.drag()
-            .on("drag", function() {timeUpdate(timeRange.invert(d3.event.x)); }));
+    var timeHandle = timeSlider.insert("circle", ".track-overlay")
+        .attr("class", "handle")
+        .attr("cx", 12)
+        .attr("r", 10)
+        .call(d3.behavior.drag()
+        .on("drag", function(){
+            onSlideEvent(slidePosToDay(d3.event.x));
+    }));
 
 
-        function timeUpdate(a) {
-            timeHandle.attr("cx", timeRange(a));
-            m = Math.round(2*timeRange(a))%60;
-            h = (2*timeRange(a) - 2*timeRange(a)%60) /60;
-            currMoment = 60*h + m;
-            if(currMoment < 464){
-                d3.select("#auxiliaryNightRect").attr("visibility", "hidden");
-            }
-        }
+    // returns the day corresponding the the given slider position
+    function slidePosToDay(pos){
+        return parseInt(timeRange.invert(pos));
+    }
+
+    // date format: dd/mm/yyyy
+    // converts a string date to the number of days ellapsed since day 1
+    function dateToDay(date){
+        var format = d3.time.format("%d/%m/%Y");
+        var first_day = format.parse('1/1/1945');
+        var date = format.parse(date);
+        var ndays = d3.timeDay.count(first_day, date);
+        return parseInt(ndays);
+        //return int(day) + int(month) * 
+    }
+
+    // prints a marker on the map at the location of the input event
+    function printEvent(event){
+        svg.append("circle")
+            .attr("cx", projection([event.lng, event.lat])[0])
+            .attr("cy", projection([event.lng, event.lat])[1])
+            .attr('r', 5)
+            .style('fill', 'red')
+            .append("title").text(function (d) {return d.textual_infos;});
+    }
+
+    //This function is called when the slider is moved
+    //input: The day (0 to max_day) corresponding to the slider position
+    function onSlideEvent(day) {
+        timeHandle.attr("cx", timeRange(day));
+        window.site_data.filter(event => dateToDay(event.date) == day).forEach(event => printEvent(event));
+    }
 
 
 </script>
