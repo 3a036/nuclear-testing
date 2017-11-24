@@ -26,8 +26,11 @@
             z-index: 3;
             border-radius: 10px;
         }
-<<<<<<< HEAD
         
+        #svg-button {
+            width: 100%;
+            height: 100%;
+        }
         .play-button {
           position: fixed;
           top:90%;
@@ -49,8 +52,6 @@
             cursor: crosshair;
             stroke-linecap: round;
         }
-=======
->>>>>>> 76b09f8fa3d2849a48a7d3323d65b77e0c5ab835
 
         .timeline {
             stroke: grey;
@@ -74,7 +75,7 @@
 <body>
     <div id='container'>
         <button class="button play-button">
-        <svg viewBox="0 0 36 36" >
+        <svg viewBox="0 0 36 36" id="svg-button" >
             <defs>
                 <path id="pause-icon" data-state="playing" d="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" />
                 <path id="play-icon"  data-state="paused"  d="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28" />
@@ -238,8 +239,13 @@
     function step(stepSize){
         let previous_day = current_day;
         current_day += stepSize;
+        if(current_day>=NUM_DAYS){
+            current_day = 0;
+            clearInterval(timer);
+            playButton.goToNextState();
+        }
         timeHandle.attr("cx", timeRange(current_day));
-        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event));
+        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event)); 
     }    
     
     
@@ -274,7 +280,6 @@
                 .attr("d", this.stateIconPath());
         },
         goToNextState: function () {
-            console.log(this.state)
             if (this.state.nextState == "paused") {
               moving = false;
               clearInterval(timer);
@@ -284,7 +289,6 @@
               // timer that moves the slider automatically
               timer = setInterval(function(d){step(50)}, 10);
             }
-            console.log("Slider moving: " + moving);
             this.setState(this.state.nextState);
             d3.select(this.el.querySelector(".js-icon")).transition()
                 .duration(this.animationDuration)
