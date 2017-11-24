@@ -13,6 +13,11 @@
             height: 100%;
         }
 
+        #month{
+            width: 30px;
+            display: inline-block;
+        }
+
         #slider{
             position: fixed;
             top:90%;
@@ -25,6 +30,20 @@
             opacity: 0.6;
             z-index: 3;
             border-radius: 10px;
+        }
+
+        #dateContainer{
+            position: fixed;
+            left: 5px;
+            top: 5px;
+            width: 7%;
+            height:50px;
+            background-color: white;
+            opacity: 0.6;
+            border-radius: 10px;
+            text-align:center;
+            line-height: 50px;
+            display:block;
         }
 
         .timeline {
@@ -48,12 +67,17 @@
 </head>
 <body>
     <div id='container'>
+        <div id='dateContainer'>
+            <span id='month'>dec</span>
+            <span id='year'>1029</span>
+        </div>
         <div id='slider'></div>
     </div>
     
 </body>
 <script type="text/javascript">
     // Generate the world map from topojson file
+    const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const FIRST_YEAR = 1945;
     const LAST_YEAR = 2006;
     const NUM_YEARS = LAST_YEAR - FIRST_YEAR;
@@ -160,6 +184,12 @@
         return d3.timeDay.offset(first_day, days_elapsed);
     }
 
+    // print the input date in the date container
+    function printDate(date){
+        d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
+        d3.select('#year').html(date.getYear());
+    }
+
     // returns the day corresponding the the given slider position
     function slidePosToDay(pos){
         return parseInt(timeRange.invert(pos));
@@ -198,10 +228,11 @@
     }
 
     // timer that moves the slider automatically
-    timer = setInterval(function(d){step(50)}, 10);
+    timer = setInterval(function(d){step(20)}, 10);
 
     // called at each tick of the timer
     function step(stepSize){
+        printDate(getDate(current_day));
         let previous_day = current_day;
         current_day += stepSize;
         timeHandle.attr("cx", timeRange(current_day));
