@@ -88,8 +88,8 @@
 <body>
     <div id='container'>
         <div id='dateContainer'>
-            <span id='month'>dec</span>
-            <span id='year'>1029</span>
+            <span id='month'></span>
+            <span id='year'></span>
         </div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
@@ -216,7 +216,7 @@
     // print the input date in the date container
     function printDate(date){
         d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
-        d3.select('#year').html(date.getYear());
+        d3.select('#year').html(date.getFullYear());
     }
 
     // returns the day corresponding the the given slider position
@@ -252,6 +252,7 @@
     function onSlideEvent(day) {
         let previous_day = current_day;
         current_day = day;
+        printDate(getDate(current_day));
         timeHandle.attr("cx", timeRange(current_day));
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event));
     }
