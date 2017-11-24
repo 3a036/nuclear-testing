@@ -163,10 +163,16 @@
     }));
 
 
+    // returns a date object corresponding to the day given in input
+    function getDate(days_elapsed){
+        var format = d3.time.format("%d/%m/%Y");
+        var first_day = format.parse('1/1/1945');
+        return d3.timeDay.offset(first_day, days_elapsed);
+    }
+
     // returns the day corresponding the the given slider position
     function slidePosToDay(pos){
         return parseInt(timeRange.invert(pos));
-        //return timeRange.invert(pos);
     }
 
     // date format: dd/mm/yyyy
@@ -207,6 +213,7 @@
 
     // called at each tick of the timer
     function step(stepSize){
+        console.log(getDate(current_day));
         let previous_day = current_day;
         current_day += stepSize;
         timeHandle.attr("cx", timeRange(current_day));
