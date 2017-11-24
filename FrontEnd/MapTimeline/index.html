@@ -97,9 +97,7 @@ d3.json(mapPath, function(error, world) {
 
 var displaySites = function(data) {
   var sites = svg.selectAll(".site")
-      .data(data, function(d) {
-        return d.site;
-      });
+      .data(data);
   sites.enter().append("circle")
       .attr("class", "site")
       .attr("cx", function(d) {
