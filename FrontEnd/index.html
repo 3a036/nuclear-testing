@@ -11,9 +11,6 @@
             background-color: grey;
             width: 100%;
             height: 100%;
-            /*border-style:solid;
-            border-width: 1px;
-            border-color: black;*/
         }
 
         #slider{
@@ -29,6 +26,7 @@
             z-index: 3;
             border-radius: 10px;
         }
+<<<<<<< HEAD
         
         .play-button {
           position: fixed;
@@ -51,15 +49,16 @@
             cursor: crosshair;
             stroke-linecap: round;
         }
+=======
+>>>>>>> 76b09f8fa3d2849a48a7d3323d65b77e0c5ab835
 
-        .track {
-            stroke: #000;
-            stroke-opacity: 0.3;
+        .timeline {
+            stroke: grey;
+            stroke-linecap: round;
             stroke-width: 10px;
         }
 
         .handle{
-
         }
 
         .event{
@@ -159,7 +158,7 @@
         .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
     timeSlider.append("line")
-        .attr("class", "track")
+        .attr("class", "timeline")
         .attr("x1", timeRange.range()[0])
         .attr("x2", timeRange.range()[1]);
 
@@ -168,7 +167,7 @@
         ticks.push(i*365);
     }
 
-    timeSlider.insert('g', '.track-overlay')
+    timeSlider.insert('g')
         .attr('class', 'ticks')
         .attr('transform', 'translate(0,' + 25 + ')')
         .selectAll('text')
@@ -178,7 +177,7 @@
         .attr("text-anchor", "middle")
         .text(d => FIRST_YEAR +  (d/365));
 
-    var timeHandle = timeSlider.insert("circle", ".track-overlay")
+    var timeHandle = timeSlider.insert("circle")
         .attr("class", "handle")
         .attr("cx", 0)
         .attr("r", 10)
@@ -188,10 +187,16 @@
     }));
 
 
+    // returns a date object corresponding to the day given in input
+    function getDate(days_elapsed){
+        var format = d3.time.format("%d/%m/%Y");
+        var first_day = format.parse('1/1/1945');
+        return d3.timeDay.offset(first_day, days_elapsed);
+    }
+
     // returns the day corresponding the the given slider position
     function slidePosToDay(pos){
         return parseInt(timeRange.invert(pos));
-        //return timeRange.invert(pos);
     }
 
     // date format: dd/mm/yyyy
@@ -202,7 +207,6 @@
         var date = format.parse(date);
         var ndays = d3.timeDay.count(first_day, date);
         return parseInt(ndays);
-        //return int(day) + int(month) * 
     }
 
     // prints a marker on the map at the location of the input event
