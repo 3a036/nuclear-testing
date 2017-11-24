@@ -11,9 +11,6 @@
             background-color: grey;
             width: 100%;
             height: 100%;
-            /*border-style:solid;
-            border-width: 1px;
-            border-color: black;*/
         }
 
         #slider{
@@ -29,21 +26,14 @@
             z-index: 3;
             border-radius: 10px;
         }
-        .track-overlay {
-            pointer-events: stroke;
-            stroke-width: 50px;
-            cursor: crosshair;
-            stroke-linecap: round;
-        }
 
-        .track {
-            stroke: #000;
-            stroke-opacity: 0.3;
+        .timeline {
+            stroke: grey;
+            stroke-linecap: round;
             stroke-width: 10px;
         }
 
         .handle{
-
         }
 
         .event{
@@ -134,7 +124,7 @@
         .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
     timeSlider.append("line")
-        .attr("class", "track")
+        .attr("class", "timeline")
         .attr("x1", timeRange.range()[0])
         .attr("x2", timeRange.range()[1]);
 
@@ -143,7 +133,7 @@
         ticks.push(i*365);
     }
 
-    timeSlider.insert('g', '.track-overlay')
+    timeSlider.insert('g')
         .attr('class', 'ticks')
         .attr('transform', 'translate(0,' + 25 + ')')
         .selectAll('text')
@@ -153,7 +143,7 @@
         .attr("text-anchor", "middle")
         .text(d => FIRST_YEAR +  (d/365));
 
-    var timeHandle = timeSlider.insert("circle", ".track-overlay")
+    var timeHandle = timeSlider.insert("circle")
         .attr("class", "handle")
         .attr("cx", 0)
         .attr("r", 10)
@@ -183,7 +173,6 @@
         var date = format.parse(date);
         var ndays = d3.timeDay.count(first_day, date);
         return parseInt(ndays);
-        //return int(day) + int(month) * 
     }
 
     // prints a marker on the map at the location of the input event
@@ -213,7 +202,6 @@
 
     // called at each tick of the timer
     function step(stepSize){
-        console.log(getDate(current_day));
         let previous_day = current_day;
         current_day += stepSize;
         timeHandle.attr("cx", timeRange(current_day));
