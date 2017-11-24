@@ -70,6 +70,8 @@
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
     let nuclear_events;
+    let current_day = 0;
+    let timer;
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -132,9 +134,9 @@
         /*.select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-inset")
         .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-        .attr("class", "track-overlay")*/
+        .attr("class", "track-overlay")
         .call(d3.behavior.drag()
-        .on("drag", function() {timeUpdate(timeRange.invert(d3.event.x)); }));
+        .on("drag", function() {timeUpdate(timeRange.invert(d3.event.x)); }));*/
 
     let ticks = [];
     for(let i = 0; i < NUM_YEARS; i+=5){
@@ -153,7 +155,7 @@
 
     var timeHandle = timeSlider.insert("circle", ".track-overlay")
         .attr("class", "handle")
-        .attr("cx", 12)
+        .attr("cx", 0)
         .attr("r", 10)
         .call(d3.behavior.drag()
         .on("drag", function(){
@@ -164,6 +166,7 @@
     // returns the day corresponding the the given slider position
     function slidePosToDay(pos){
         return parseInt(timeRange.invert(pos));
+        //return timeRange.invert(pos);
     }
 
     // date format: dd/mm/yyyy
@@ -183,15 +186,31 @@
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
             .attr('r', 5)
-            .style('fill', 'red')
-            .append("title").text(function (d) {return d.textual_infos;});
+            .style('fill', 'red');
+            /*.append("title").text(function (d) {return d.textual_infos;});*/
     }
 
     //This function is called when the slider is moved
     //input: The day (0 to max_day) corresponding to the slider position
     function onSlideEvent(day) {
-        timeHandle.attr("cx", timeRange(day));
-        window.site_data.filter(event => dateToDay(event.date) == day).forEach(event => printEvent(event));
+        //console.log(day);
+        let previous_day = current_day;
+        current_day = day;
+        timeHandle.attr("cx", timeRange(current_day));
+        //console.log(eventDay);
+        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)).forEach(event => printEvent(event));
+    }
+
+    // timer that moves the slider automatically
+    //timer = setInterval(step, 10);
+
+    // called at each tick of the timer
+    function step(){
+        current_day += 1;
+        //console.log(current_day)
+        timeHandle.attr("cx", timeRange(current_day));
+        window.site_data.filter(event => dateToDay(event.date) == current_day).forEach(event => printEvent(event));
+        //console.log(handlePos);
     }
 
 
