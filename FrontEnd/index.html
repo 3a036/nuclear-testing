@@ -27,6 +27,7 @@
             background-color: white;
             opacity: 0.6;
             z-index: 3;
+            border-radius: 10px;
         }
         .track-overlay {
             pointer-events: stroke;
@@ -100,7 +101,7 @@
     d3.tsv("./data/nuclear_test.tsv")
     .row(function(d) {
       return {
-        magnitude: parseFloat(d.magnitude),
+        magnitude: parseInt(d.magnitude),
         country: d.country,
         name: d.name,
         site: d.site,
@@ -180,21 +181,16 @@
     }
 
     // prints a marker on the map at the location of the input event
-    let n_prints = 0;
     function printEvent(event){
         svg.append("circle")
             .attr("class", "event")
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
             .attr('r', 0).transition().duration(600)
-            .attr("r", function(d) {
-                return 10;
-            })
+            .attr("r", event.magnitude*2)
             .transition().duration(400)
             .attr("r",0)
             .remove();
-        n_prints += 1;
-        console.log(n_prints);
     }
 
     //This function is called when the slider is moved manually
