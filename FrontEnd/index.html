@@ -21,15 +21,30 @@
         #slider{
             position: fixed;
             top:90%;
-            left:1%;
+            left:6%;
             right: 0;
             bottom: 0;
-            width: 98%;
+            width: 93%;
             height: 60px;
             background-color: white;
             opacity: 0.6;
             z-index: 3;
             border-radius: 10px;
+        }
+        
+        .play-button {
+          position: fixed;
+          top:90%;
+          left:1%;
+          right: 0;
+          bottom: 0;
+          width: 5%;
+          height: 60px;
+          background-color: white;
+          border-radius: 10px;
+          opacity: 0.6;
+          z-index: 3;
+          cursor: pointer;
         }
 
         #dateContainer{
@@ -71,6 +86,15 @@
             <span id='month'>dec</span>
             <span id='year'>1029</span>
         </div>
+        <button class="button play-button">
+            <svg viewBox="0 0 36 36" >
+                <defs>
+                    <path id="pause-icon" data-state="playing" d="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" />
+                    <path id="play-icon"  data-state="paused"  d="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28" />
+                </defs>
+                <use xlink:href="#play-icon" />
+            </svg>
+        </button>
         <div id='slider'></div>
     </div>
     
@@ -227,9 +251,6 @@
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event));
     }
 
-    // timer that moves the slider automatically
-    timer = setInterval(function(d){step(20)}, 10);
-
     // called at each tick of the timer
     function step(stepSize){
         printDate(getDate(current_day));
@@ -237,8 +258,64 @@
         current_day += stepSize;
         timeHandle.attr("cx", timeRange(current_day));
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event));
-    }
-
-
+    }    
+    
+    
+    // PlayPause button taken from : http://bl.ocks.org/guilhermesimoes/fbe967d45ceeb350b765
+    var playButton = {
+        el: document.querySelector(".play-button"),
+        states: {
+            playing: {
+                nextState: "paused",
+                iconEl: document.querySelector("#pause-icon")
+            },
+            paused:  {
+                nextState: "playing",
+                iconEl: document.querySelector("#play-icon")
+            }
+        },
+        animationDuration: 350,
+        init: function () {
+            this.setInitialState();
+            this.replaceUseEl();
+            this.el.addEventListener("click", this.goToNextState.bind(this));
+        },
+        setInitialState: function () {
+          var initialIconRef = this.el.querySelector("use").getAttribute("xlink:href");
+          var stateName = this.el.querySelector(initialIconRef).getAttribute("data-state");
+          this.setState(stateName);
+        },
+        replaceUseEl: function () {
+            d3.select(this.el.querySelector("use")).remove();
+            d3.select(this.el.querySelector("svg")).append("path")
+                .attr("class", "js-icon")
+                .attr("d", this.stateIconPath());
+        },
+        goToNextState: function () {
+            console.log(this.state)
+            if (this.state.nextState == "paused") {
+              moving = false;
+              clearInterval(timer);
+              // timer = 0;
+            } else {
+              moving = true;
+              // timer that moves the slider automatically
+              timer = setInterval(function(d){step(50)}, 10);
+            }
+            console.log("Slider moving: " + moving);
+            this.setState(this.state.nextState);
+            d3.select(this.el.querySelector(".js-icon")).transition()
+                .duration(this.animationDuration)
+                .attr("d", this.stateIconPath());
+        },
+        setState: function (stateName) {
+            this.state = this.states[stateName];
+        },
+        stateIconPath: function () {
+            return this.state.iconEl.getAttribute("d");
+        }
+    };
+    playButton.init();
+    
 </script>
 </html>
