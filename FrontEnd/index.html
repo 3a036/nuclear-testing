@@ -44,6 +44,10 @@
         .handle{
 
         }
+
+        .event{
+            fill: red;
+        }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"> </script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -182,34 +186,36 @@
 
     // prints a marker on the map at the location of the input event
     function printEvent(event){
-        svg.append("circle")
+        console.log(event)
+        svg.selectAll('.event').data(event).enter().append("circle")
+            .attr("class", "event")
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
             .attr('r', 5)
-            .style('fill', 'red');
             /*.append("title").text(function (d) {return d.textual_infos;});*/
     }
 
-    //This function is called when the slider is moved
+    //This function is called when the slider is moved manually
     //input: The day (0 to max_day) corresponding to the slider position
     function onSlideEvent(day) {
-        //console.log(day);
         let previous_day = current_day;
         current_day = day;
         timeHandle.attr("cx", timeRange(current_day));
-        //console.log(eventDay);
-        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)).forEach(event => printEvent(event));
+        //window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)).forEach(event => printEvent(event));
+        printEvent(window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)));
     }
 
     // timer that moves the slider automatically
-    //timer = setInterval(step, 10);
+    timer = setInterval(function(d){step(50)}, 10);
 
     // called at each tick of the timer
-    function step(){
-        current_day += 1;
+    function step(stepSize){
+        let previous_day = current_day;
+        current_day += stepSize;
         //console.log(current_day)
         timeHandle.attr("cx", timeRange(current_day));
-        window.site_data.filter(event => dateToDay(event.date) == current_day).forEach(event => printEvent(event));
+        //window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)).forEach(event => printEvent(event));
+        printEvent(window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) >= previous_day)));
         //console.log(handlePos);
     }
 
