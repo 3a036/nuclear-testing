@@ -118,6 +118,8 @@
     
 </body>
 <script type="text/javascript">
+    // Generate the world map from topojson file
+    const STEP_SIZE = 50; // represents the speed of the slider
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
     const END_DATE = new Date("2010-12-31");
@@ -127,6 +129,7 @@
     const PATH_TO_MAP = './data/worldMap.json';
     const INACTIVE_BAR_COLOR = 'white';
     const ACTIVE_BAR_COLOR = 'red';
+    let was_running = false;
     let container = d3.select("#container");
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
@@ -139,6 +142,23 @@
     let svg = container.append('svg')
         .attr('width', width)
         .attr('height', height);
+
+    // glowing effect
+
+    //Container for the gradients
+    var defs = svg.append("defs");
+
+    //Filter for the outside glow
+    var filter = defs.append("filter")
+        .attr("id","glow");
+    filter.append("feGaussianBlur")
+        .attr("stdDeviation","1.5")
+        .attr("result","coloredBlur");
+    /*var feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode")
+        .attr("in","coloredBlur");
+    feMerge.append("feMergeNode")
+        .attr("in","SourceGraphic");*/
 
     // projection of the world map
     var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
@@ -243,6 +263,13 @@
         .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
     timeSlider.append("line")
+        .on("click", function(){
+            timeHandle.attr('cx', d3.mouse(this)[0]);
+            previous_date = current_date;
+            current_date = x.invert(d3.mouse(this)[0]);
+            update(previous_date, current_date);
+            removebars(previous_date, current_date);
+        })
         .attr("class", "timeline")
         .attr("x1", x.range()[0])
         .attr("x2", x.range()[1]);
@@ -267,9 +294,15 @@
         .attr("cx", 0)
         .attr("r", 10)
         .call(d3.drag()
+        .on('start', function(){
+            was_running = pauseAnimation();
+        })
         .on("drag", function(){
             onSlideEvent(x.invert(d3.event.x));
-    }));
+        })
+        .on("end", function(){
+            if(was_running) playAnimation();
+        }));
 
     // print the input date in the date container
     function printDate(date){
@@ -306,7 +339,7 @@
         current_date = d3.timeDay.offset(current_date, stepSize);
         if(current_date>=END_DATE){
             current_date = START_DATE;
-            clearInterval(timer);
+            pauseAnimation();
             playButton.goToNextState();
             removebars(previous_date, current_date);
         }
@@ -328,6 +361,20 @@
         deletebars
             .attr("fill", ACTIVE_BAR_COLOR).transition().duration(500)
             .attr("fill", INACTIVE_BAR_COLOR);
+    }
+
+    function playAnimation(){
+        if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
+        was_running = true;
+    }
+
+    function pauseAnimation(){
+        let previous_state = timer;
+        if(timer){
+            clearInterval(timer);
+            timer = false;
+        }
+        return previous_state;
     }
     
     // Prepare the data for histogram
@@ -377,13 +424,11 @@
         },
         goToNextState: function () {
             if (this.state.nextState == "paused") {
-              moving = false;
-              clearInterval(timer);
+              pauseAnimation();
               // timer = 0;
             } else {
-              moving = true;
               // timer that moves the slider automatically
-              timer = setInterval(function(d){step(50)}, 10);
+              playAnimation();
             }
             this.setState(this.state.nextState);
             d3.select(this.el.querySelector(".js-icon")).transition()
