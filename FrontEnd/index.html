@@ -80,7 +80,7 @@
             opacity: 0.5;
         }
     </style>
-    <script src="http://d3js.org/d3.v3.min.js"> </script>
+    <script src="http://d3js.org/d3.v4.min.js"> </script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-time.v1.min.js"></script>
@@ -121,13 +121,14 @@
     let nuclear_events;
     let current_day = 0;
     let timer;
+    let histHeight = height/5;
 
     let svg = container.append('svg')
         .attr('width', width)
         .attr('height', height);
 
     // projection of the world map
-    var projection = d3.geo.mercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
+    var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
 
     d3.json(PATH_TO_MAP, function(error, topology) {
     if (error) throw error;
@@ -137,7 +138,7 @@
     svg.selectAll("path")
         .data(geojson.features)
         .enter().append("path")
-        .attr("d", d3.geo.path().projection(projection));
+        .attr("d", d3.geoPath().projection(projection));
     });
 
     // Loading the data
@@ -167,7 +168,7 @@
         .attr('width', SCREEN_WIDTH - MARGIN*2)
         .attr('height', 50);
 
-    var timeRange = d3.scale.linear()
+    var timeRange = d3.scaleLinear()
         .domain([0, NUM_DAYS])
         .range([0, TIMEBAR_WIDTH])
         .clamp(true);
@@ -200,7 +201,7 @@
         .attr("class", "handle")
         .attr("cx", 0)
         .attr("r", 10)
-        .call(d3.behavior.drag()
+        .call(d3.drag()
         .on("drag", function(){
             onSlideEvent(slidePosToDay(d3.event.x));
     }));
@@ -208,8 +209,7 @@
 
     // returns a date object corresponding to the day given in input
     function getDate(days_elapsed){
-        var format = d3.time.format("%d/%m/%Y");
-        var first_day = format.parse('1/1/1945');
+        var first_day = new Date(1945,0,1);
         return d3.timeDay.offset(first_day, days_elapsed);
     }
 
@@ -227,9 +227,9 @@
     // date format: dd/mm/yyyy
     // converts a string date to the number of days ellapsed since day 1
     function dateToDay(date){
-        var format = d3.time.format("%d/%m/%Y");
-        var first_day = format.parse('1/1/1945');
-        var date = format.parse(date);
+        var first_day = new Date(1945,1,0);
+        var datesplit = date.split('/')
+        var date = new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]));
         var ndays = d3.timeDay.count(first_day, date);
         return parseInt(ndays);
     }
@@ -268,10 +268,56 @@
         }
         timeHandle.attr("cx", timeRange(current_day));
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event)); 
-    }    
+    } 
+
+    // y scale for histogram
+    var y = d3.scaleLinear()
+        .range([histHeight, 0]);
+        
+    // set parameters for histogram
+    var histogram = d3.histogram()
+        .value(function(d) { return d.date; })
+        .domain(timeRange.domain())
+        .thresholds(timeRange.ticks(d3.timeYear));
+        
+    var hist = svg.append("g")
+        .attr("class", "histogram");
+        
+    d3.csv("histogram.csv", function(data) {
+  
+      // group data for bars
+      var bins = histogram(data);
+
+      // y domain based on binned data
+      y.domain([0, d3.max(bins, function(d) { return d.length; })]);
+
+      var bar = hist.selectAll(".bar")
+          .data(bins)
+          .enter()
+          .append("g")
+          .attr("class", "bar")
+          .attr("transform", function(d) {
+            return "translate(" + x(d.x0) + "," + y(d.length) + ")";
+          });
+          
+      bar.append("rect")
+          .attr("class", "bar")
+          .attr("x", 1)
+          .attr("width", function(d) { return x(d.x1) - x(d.x0) - 1; })
+          .attr("height", function(d) { return histHeight - y(d.length); })
+          .attr("fill", function(d) { return colours(d.x0); });
+
+      bar.append("text")
+          .attr("dy", ".75em")
+          .attr("y", "6")
+          .attr("x", function(d) { return (x(d.x1) - x(d.x0))/2; })
+          .attr("text-anchor", "middle")
+          .text(function(d) { if (d.length>15) { return d.length; } })
+          .style("fill", "white");
+    });
     
     
-    // PlayPause button taken from : http://bl.ocks.org/guilhermesimoes/fbe967d45ceeb350b765
+    // PlayPause button inspired from : http://bl.ocks.org/guilhermesimoes/fbe967d45ceeb350b765
     var playButton = {
         el: document.querySelector(".play-button"),
         states: {
