@@ -141,6 +141,23 @@
         .attr('width', width)
         .attr('height', height);
 
+    // glowing effect
+
+    //Container for the gradients
+    var defs = svg.append("defs");
+
+    //Filter for the outside glow
+    var filter = defs.append("filter")
+        .attr("id","glow");
+    filter.append("feGaussianBlur")
+        .attr("stdDeviation","1.5")
+        .attr("result","coloredBlur");
+    /*var feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode")
+        .attr("in","coloredBlur");
+    feMerge.append("feMergeNode")
+        .attr("in","SourceGraphic");*/
+
     // projection of the world map
     var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
 
@@ -330,6 +347,7 @@
             .attr("class", "event")
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
+            .style("filter", "url(#glow)")
             .attr('r', 0).transition().duration(600)
             .attr("r", event.magnitude*2)
             .transition().duration(400)
