@@ -106,6 +106,7 @@
 </body>
 <script type="text/javascript">
     // Generate the world map from topojson file
+    const STEP_SIZE = 50; // represents the speed of the slider
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const FIRST_YEAR = 1945;
     const LAST_YEAR = 2006;
@@ -269,7 +270,15 @@
         }
         timeHandle.attr("cx", timeRange(current_day));
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event)); 
-    }    
+    }
+
+    function playAnimation(){
+        timer = setInterval(function(d){step(STEP_SIZE)}, 10);
+    }
+
+    function pauseAnimation(){
+        clearInterval(timer);
+    }
     
     
     // PlayPause button taken from : http://bl.ocks.org/guilhermesimoes/fbe967d45ceeb350b765
@@ -304,13 +313,11 @@
         },
         goToNextState: function () {
             if (this.state.nextState == "paused") {
-              moving = false;
-              clearInterval(timer);
+              pauseAnimation();
               // timer = 0;
             } else {
-              moving = true;
               // timer that moves the slider automatically
-              timer = setInterval(function(d){step(50)}, 10);
+              playAnimation();
             }
             this.setState(this.state.nextState);
             d3.select(this.el.querySelector(".js-icon")).transition()
