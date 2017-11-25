@@ -35,7 +35,7 @@
         #histogram{
             position: fixed;
             top:70%;
-            left:7%;
+            left:6%;
             right: 0;
             bottom: 0;
             width: 93%;
@@ -118,23 +118,23 @@
     
 </body>
 <script type="text/javascript">
-    // Generate the world map from topojson file
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const FIRST_YEAR = 1945;
-    const LAST_YEAR = 2011;
-    const NUM_YEARS = LAST_YEAR - FIRST_YEAR;
-    const NUM_DAYS = 24090;
+    const START_DATE = new Date("1945-01-01");
+    const END_DATE = new Date("2010-12-31");
     const SCREEN_WIDTH = window.innerWidth;
     const MARGIN = SCREEN_WIDTH/100;
     const TIMEBAR_WIDTH = d3.select('#slider').node().clientWidth - 60;
     const PATH_TO_MAP = './data/worldMap.json';
+    const INACTIVE_BAR_COLOR = 'white';
+    const ACTIVE_BAR_COLOR = 'red';
     let container = d3.select("#container");
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
     let nuclear_events;
-    let current_day = 0;
+    let current_date = START_DATE;
     let timer;
     let histHeight = height/5;
+    let bins;
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -157,6 +157,7 @@
     // Loading the data
     d3.tsv("./data/nuclear_test.tsv")
     .row(function(d) {
+      var datesplit = d.date.split('/');
       return {
         magnitude: parseInt(d.magnitude),
         country: d.country,
@@ -166,7 +167,7 @@
         type: d.type,
         lat: parseFloat(d.lat),
         lng: parseFloat(d.lng),
-        date: d.date
+        date: new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]))
       };
     })
     .get(function(err, rows) {
@@ -177,17 +178,15 @@
     // Time slider
     var viewHistogram = d3.select("#histogram")
         .append("svg")
-        .attr('width', TIMEBAR_WIDTH)
+        .attr('width', SCREEN_WIDTH - MARGIN*2)
         .attr('height', 500)
         .attr("transform", function(d) {
             return "translate(" + 20 + "," + 0 + ")";
           });
         
-    
-    var startDate = new Date("1945-01-01"),
-        endDate = new Date("2011-12-31");
+        
     var x = d3.scaleTime()
-        .domain([startDate, endDate])
+        .domain([START_DATE, END_DATE])
         .range([0, TIMEBAR_WIDTH])
         .clamp(true);
 
@@ -206,34 +205,28 @@
     
     d3.tsv("./data/nuclear_test.tsv", prepare, function(data) {
     // group data for bars
-      var bins = histogram(data);
+      bins = histogram(data);
 
       // y domain based on binned data
       y.domain([0, d3.max(bins, function(d) { return d.length; })]);
 
-      var bar = hist.selectAll(".bar")
-          .data(bins)
-          .enter()
-          .append("g")
-          .attr("class", "bar")
-          .attr("transform", function(d) {
+      var bar = hist.selectAll('.bar')
+        .data(bins)
+        .enter()
+        .append("g")
+        .attr("class", "bar")
+        .attr("transform", function(d) {
             return "translate(" + x(d.x0) + "," + y(d.length) + ")";
-          });
-          
-      bar.append("rect")
-          .attr("class", "bar")
-          .attr("x", 1)
-          .attr("width", function(d) {return x(d.x1) - x(d.x0) - 1; })
-          .attr("height", function(d) {return histHeight - y(d.length); })
-          .attr("fill", "red");
-
-      bar.append("text")
-          .attr("dy", ".75em")
-          .attr("y", "6")
-          .attr("x", function(d) { return (x(d.x1) - x(d.x0))/2; })
-          .attr("text-anchor", "middle")
-          .text(function(d) { if (d.length>15) { return d.length; } })
-          .style("fill", "white");
+        });
+            
+        bar.append("rect")
+            .attr("class", "bar")
+            .attr("x", 1)
+            .attr("width", function(d) {return x(d.x1) - x(d.x0) - 5 ; })
+            .attr("height", function(d) {return histHeight - y(d.length);}) 
+            .attr("fill", INACTIVE_BAR_COLOR)
+            .attr("rx", 3)
+            .attr("ry", 3);
 
     });
     
@@ -242,12 +235,7 @@
     var viewSlider = d3.select("#slider")
         .append("svg")
         .attr('width', SCREEN_WIDTH - MARGIN*2)
-        .attr('height', 500);
-
-    var timeRange = d3.scaleLinear()
-        .domain([0, NUM_DAYS])
-        .range([0, TIMEBAR_WIDTH])
-        .clamp(true);        
+        .attr('height', 50); 
        
     var timeSlider = viewSlider.append("g")
         .attr('id', 'timebar')
@@ -256,23 +244,23 @@
 
     timeSlider.append("line")
         .attr("class", "timeline")
-        .attr("x1", timeRange.range()[0])
-        .attr("x2", timeRange.range()[1]);
+        .attr("x1", x.range()[0])
+        .attr("x2", x.range()[1]);
 
     let ticks = [];
-    for(let i = 0; i < NUM_YEARS; i+=5){
-        ticks.push(i*365);
+    for(let i = 0; i < diff_years(END_DATE,START_DATE); i+=5){
+        ticks.push(new Date(START_DATE.getFullYear() + i, 1, 0));
     }
-
+    
     timeSlider.insert('g')
         .attr('class', 'ticks')
         .attr('transform', 'translate(0,' + 25 + ')')
         .selectAll('text')
         .data(ticks)
         .enter().append('text')
-        .attr('x', d => timeRange(d))
+        .attr('x', d => x(d))
         .attr("text-anchor", "middle")
-        .text(d => FIRST_YEAR +  (d/365));
+        .text(d => d.getFullYear());
 
     var timeHandle = timeSlider.insert("circle")
         .attr("class", "handle")
@@ -280,37 +268,13 @@
         .attr("r", 10)
         .call(d3.drag()
         .on("drag", function(){
-            onSlideEvent(slidePosToDay(d3.event.x));
+            onSlideEvent(x.invert(d3.event.x));
     }));
-    
-    
-
-
-    // returns a date object corresponding to the day given in input
-    function getDate(days_elapsed){
-        var first_day = new Date(1945,0,1);
-        return d3.timeDay.offset(first_day, days_elapsed);
-    }
 
     // print the input date in the date container
     function printDate(date){
         d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
         d3.select('#year').html(date.getFullYear());
-    }
-
-    // returns the day corresponding the the given slider position
-    function slidePosToDay(pos){
-        return parseInt(timeRange.invert(pos));
-    }
-
-    // date format: dd/mm/yyyy
-    // converts a string date to the number of days ellapsed since day 1
-    function dateToDay(date){
-        var first_day = new Date(1945,1,0);
-        var datesplit = date.split('/')
-        var date = new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]));
-        var ndays = d3.timeDay.count(first_day, date);
-        return parseInt(ndays);
     }
 
     // prints a marker on the map at the location of the input event
@@ -327,27 +291,43 @@
     }
 
     //This function is called when the slider is moved manually
-    //input: The day (0 to max_day) corresponding to the slider position
-    function onSlideEvent(day) {
-        let previous_day = current_day;
-        current_day = day;
-        printDate(getDate(current_day));
-        timeHandle.attr("cx", timeRange(current_day));
-        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event));
+    //input: The date (START_DATE to END_DATE) corresponding to the slider position
+    function onSlideEvent(date) {
+        let previous_date = current_date;
+        current_date = date;
+        update(previous_date, current_date);
+        removebars(previous_date, current_date);
     }
 
     // called at each tick of the timer
     function step(stepSize){
-        printDate(getDate(current_day));
-        let previous_day = current_day;
-        current_day += stepSize;
-        if(current_day>=NUM_DAYS){
-            current_day = 0;
+        printDate(current_date);
+        let previous_date = current_date;
+        current_date = d3.timeDay.offset(current_date, stepSize);
+        if(current_date>=END_DATE){
+            current_date = START_DATE;
             clearInterval(timer);
             playButton.goToNextState();
+            removebars(previous_date, current_date);
         }
-        timeHandle.attr("cx", timeRange(current_day));
-        window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event)); 
+        update(previous_date, current_date);
+    }
+    
+    function update(previous_date, current_date){
+        printDate(current_date);
+        timeHandle.attr("cx", x(current_date));
+        window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
+        var currbars = d3.selectAll(".bar").filter(d => (d.x0 <= current_date && d.x0 > previous_date));
+        currbars
+            .attr("fill", INACTIVE_BAR_COLOR).transition().duration(500)
+            .attr("fill", ACTIVE_BAR_COLOR);
+    }
+    
+    function removebars(previous_date, current_date){
+        var deletebars = d3.selectAll(".bar").filter(d => (d.x0 > current_date && d.x0 <= previous_date));
+        deletebars
+            .attr("fill", ACTIVE_BAR_COLOR).transition().duration(500)
+            .attr("fill", INACTIVE_BAR_COLOR);
     }
     
     // Prepare the data for histogram
@@ -355,6 +335,13 @@
       var datesplit = d.date.split('/')
       d.date = new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]));
       return d;
+    }
+    
+    // Return the number of years between 2 dates
+    function diff_years(dt2, dt1){
+        var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+        diff /= (60 * 60 * 24);
+        return Math.abs(Math.round(diff/365.25));
     }
     
     
