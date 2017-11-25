@@ -32,6 +32,18 @@
             border-radius: 10px;
         }
         
+        #histogram{
+            position: fixed;
+            top:70%;
+            left:7%;
+            right: 0;
+            bottom: 0;
+            width: 93%;
+            height: 300px;
+            opacity: 0.6;
+            z-index: 3;
+        }
+        
         #svg-button {
             width: 100%;
             height: 100%;
@@ -100,6 +112,7 @@
                 <use xlink:href="#play-icon" />
             </svg>
         </button>
+        <div id='histogram'></div>
         <div id='slider'></div>
     </div>
     
@@ -108,9 +121,9 @@
     // Generate the world map from topojson file
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const FIRST_YEAR = 1945;
-    const LAST_YEAR = 2006;
+    const LAST_YEAR = 2011;
     const NUM_YEARS = LAST_YEAR - FIRST_YEAR;
-    const NUM_DAYS = 22630;
+    const NUM_DAYS = 24090;
     const SCREEN_WIDTH = window.innerWidth;
     const MARGIN = SCREEN_WIDTH/100;
     const TIMEBAR_WIDTH = d3.select('#slider').node().clientWidth - 60;
@@ -160,20 +173,84 @@
         if (err) return console.error(err);
         window.site_data = rows;
     });
-
+    
     // Time slider
+    var viewHistogram = d3.select("#histogram")
+        .append("svg")
+        .attr('width', TIMEBAR_WIDTH)
+        .attr('height', 500)
+        .attr("transform", function(d) {
+            return "translate(" + 20 + "," + 0 + ")";
+          });
+        
+    
+    var startDate = new Date("1945-01-01"),
+        endDate = new Date("2011-12-31");
+    var x = d3.scaleTime()
+        .domain([startDate, endDate])
+        .range([0, TIMEBAR_WIDTH])
+        .clamp(true);
 
+    // y scale for histogram
+    var y = d3.scaleLinear()
+        .range([histHeight, 0]);
+    
+    // set parameters for histogram
+    var histogram = d3.histogram()
+        .value(function(d) { return d.date; })
+        .domain(x.domain())
+        .thresholds(x.ticks(d3.timeYear));
+        
+    var hist = viewHistogram.append("g")
+        .attr("class", "histogram");
+    
+    d3.tsv("./data/nuclear_test.tsv", prepare, function(data) {
+    // group data for bars
+      var bins = histogram(data);
+
+      // y domain based on binned data
+      y.domain([0, d3.max(bins, function(d) { return d.length; })]);
+
+      var bar = hist.selectAll(".bar")
+          .data(bins)
+          .enter()
+          .append("g")
+          .attr("class", "bar")
+          .attr("transform", function(d) {
+            return "translate(" + x(d.x0) + "," + y(d.length) + ")";
+          });
+          
+      bar.append("rect")
+          .attr("class", "bar")
+          .attr("x", 1)
+          .attr("width", function(d) {return x(d.x1) - x(d.x0) - 1; })
+          .attr("height", function(d) {return histHeight - y(d.length); })
+          .attr("fill", "red");
+
+      bar.append("text")
+          .attr("dy", ".75em")
+          .attr("y", "6")
+          .attr("x", function(d) { return (x(d.x1) - x(d.x0))/2; })
+          .attr("text-anchor", "middle")
+          .text(function(d) { if (d.length>15) { return d.length; } })
+          .style("fill", "white");
+
+    });
+    
+    
+    // Time slider
     var viewSlider = d3.select("#slider")
         .append("svg")
         .attr('width', SCREEN_WIDTH - MARGIN*2)
-        .attr('height', 50);
+        .attr('height', 500);
 
     var timeRange = d3.scaleLinear()
         .domain([0, NUM_DAYS])
         .range([0, TIMEBAR_WIDTH])
-        .clamp(true);
-
+        .clamp(true);        
+       
     var timeSlider = viewSlider.append("g")
+        .attr('id', 'timebar')
         .attr('width', TIMEBAR_WIDTH)
         .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
@@ -205,6 +282,8 @@
         .on("drag", function(){
             onSlideEvent(slidePosToDay(d3.event.x));
     }));
+    
+    
 
 
     // returns a date object corresponding to the day given in input
@@ -269,53 +348,14 @@
         }
         timeHandle.attr("cx", timeRange(current_day));
         window.site_data.filter(event => (dateToDay(event.date) <= current_day && dateToDay(event.date) > previous_day)).forEach(event => printEvent(event)); 
-    } 
-
-    // y scale for histogram
-    var y = d3.scaleLinear()
-        .range([histHeight, 0]);
-        
-    // set parameters for histogram
-    var histogram = d3.histogram()
-        .value(function(d) { return d.date; })
-        .domain(timeRange.domain())
-        .thresholds(timeRange.ticks(d3.timeYear));
-        
-    var hist = svg.append("g")
-        .attr("class", "histogram");
-        
-    d3.csv("histogram.csv", function(data) {
-  
-      // group data for bars
-      var bins = histogram(data);
-
-      // y domain based on binned data
-      y.domain([0, d3.max(bins, function(d) { return d.length; })]);
-
-      var bar = hist.selectAll(".bar")
-          .data(bins)
-          .enter()
-          .append("g")
-          .attr("class", "bar")
-          .attr("transform", function(d) {
-            return "translate(" + x(d.x0) + "," + y(d.length) + ")";
-          });
-          
-      bar.append("rect")
-          .attr("class", "bar")
-          .attr("x", 1)
-          .attr("width", function(d) { return x(d.x1) - x(d.x0) - 1; })
-          .attr("height", function(d) { return histHeight - y(d.length); })
-          .attr("fill", function(d) { return colours(d.x0); });
-
-      bar.append("text")
-          .attr("dy", ".75em")
-          .attr("y", "6")
-          .attr("x", function(d) { return (x(d.x1) - x(d.x0))/2; })
-          .attr("text-anchor", "middle")
-          .text(function(d) { if (d.length>15) { return d.length; } })
-          .style("fill", "white");
-    });
+    }
+    
+    // Prepare the data for histogram
+    function prepare(d) {
+      var datesplit = d.date.split('/')
+      d.date = new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]));
+      return d;
+    }
     
     
     // PlayPause button inspired from : http://bl.ocks.org/guilhermesimoes/fbe967d45ceeb350b765
