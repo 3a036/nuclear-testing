@@ -256,6 +256,10 @@
         .attr("transform", "translate(" + 30 + "," + 20 + ")");
 
     timeSlider.append("line")
+        .on("click", function(){
+            timeHandle.attr('cx', d3.mouse(this)[0]);
+            current_day = slidePosToDay(d3.mouse(this)[0]);
+        })
         .attr("class", "timeline")
         .attr("x1", timeRange.range()[0])
         .attr("x2", timeRange.range()[1]);
