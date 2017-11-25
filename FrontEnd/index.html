@@ -280,9 +280,15 @@
         .attr("cx", 0)
         .attr("r", 10)
         .call(d3.drag()
+        .on('start', function(){
+            pauseAnimation();
+        })
         .on("drag", function(){
             onSlideEvent(slidePosToDay(d3.event.x));
-    }));
+        })
+        .on("end", function(){
+            playAnimation();
+        }));
     
     
 
@@ -344,7 +350,7 @@
         current_day += stepSize;
         if(current_day>=NUM_DAYS){
             current_day = 0;
-            clearInterval(timer);
+            pauseAnimation();
             playButton.goToNextState();
         }
         timeHandle.attr("cx", timeRange(current_day));
@@ -352,11 +358,15 @@
     }
 
     function playAnimation(){
-        timer = setInterval(function(d){step(STEP_SIZE)}, 10);
+        if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
     }
 
     function pauseAnimation(){
-        clearInterval(timer);
+        if(timer){
+            clearInterval(timer);
+            timer = false;
+        }
+    }
     
     // Prepare the data for histogram
     function prepare(d) {
