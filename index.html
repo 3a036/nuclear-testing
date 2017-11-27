@@ -88,8 +88,7 @@
         }
 
         .event{
-            fill: red;
-            opacity: 0.5;
+            opacity: 1;
         }
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
@@ -119,7 +118,7 @@
 </body>
 <script type="text/javascript">
     // Generate the world map from topojson file
-    const STEP_SIZE = 50; // represents the speed of the slider
+    const STEP_SIZE = 10; // represents the speed of the slider
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
     const END_DATE = new Date("2010-12-31");
@@ -142,6 +141,8 @@
     let svg = container.append('svg')
         .attr('width', width)
         .attr('height', height);
+    
+    let defs = svg.append('defs');
 
     // projection of the world map
     var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
@@ -209,9 +210,25 @@
     d3.tsv("./data/nuclear_test.tsv", prepare, function(data) {
     // group data for bars
       bins = histogram(data);
-
+      console.log(bins)
+      
       // y domain based on binned data
       y.domain([0, d3.max(bins, function(d) { return d.length; })]);
+      
+      data.forEach(function(d, i) {
+          if (d3.select("#"+d.country).empty()){
+            defs.append("pattern")
+                .attr("id", d.country)
+                .attr("height","100%")
+                .attr("width", "100%")
+                .attr("patternContentUnits", "objectBoundingBox")
+                .append("image")
+                .attr("height","1")
+                .attr("width","1")
+                .attr("preserveAspectRatio","xMidYMid slice")
+                .attr("xlink:href","./data/"+d.country+".svg");
+          }
+      });
 
       var bar = hist.selectAll('.bar')
         .data(bins)
@@ -231,8 +248,7 @@
             .attr("rx", 3)
             .attr("ry", 3);
 
-    });
-    
+    });    
     
     // Time slider
     var viewSlider = d3.select("#slider")
@@ -299,6 +315,7 @@
             .attr("class", "event")
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
+            .attr("fill", "url(#"+event.country+")")
             .attr('r', 0).transition().duration(600)
             .attr("r", event.magnitude*2)
             .transition().duration(400)
@@ -347,7 +364,6 @@
     }
 
     function playAnimation(){
-        console.log(current_date);
         if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
         was_running = true;
     }
