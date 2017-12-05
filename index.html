@@ -84,11 +84,10 @@
             stroke-width: 10px;
         }
 
-        .handle{
-        }
-
         .event{
             opacity: 1;
+            stroke: white;
+            stroke-width: 1px;
         }
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
@@ -146,7 +145,7 @@
 
     // projection of the world map
     var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
-
+    
     d3.json(PATH_TO_MAP, function(error, topology) {
     if (error) throw error;
 
@@ -210,7 +209,6 @@
     d3.tsv("./data/nuclear_test.tsv", prepare, function(data) {
     // group data for bars
       bins = histogram(data);
-      console.log(bins)
       
       // y domain based on binned data
       y.domain([0, d3.max(bins, function(d) { return d.length; })]);
@@ -225,8 +223,8 @@
                 .append("image")
                 .attr("height","1")
                 .attr("width","1")
-                .attr("preserveAspectRatio","xMidYMid slice")
-                .attr("xlink:href","./data/"+d.country+".svg");
+                .attr("preserveAspectRatio","none")
+                .attr("xlink:href","./data/"+d.country+".png");
           }
       });
 
@@ -320,11 +318,11 @@
             .attr('r', 0)
             .transition()
             .ease(d3.easeLinear)
-            .duration(800)
+            .duration(500)
             .attr("r", event.magnitude*3)
             .transition()
             .ease(d3.easeLinear)
-            .duration(800)
+            .duration(500)
             .attr("r",0)
             .remove();
     }
