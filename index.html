@@ -132,7 +132,7 @@
     let container = d3.select("#container");
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
-    let nuclear_events;
+    let nuclear_events = [];
     let current_date = START_DATE;
     let timer;
     let histHeight = height/5;
@@ -295,6 +295,7 @@
         .call(d3.drag()
         .on('start', function(){
             was_running = pauseAnimation();
+            removeShownCircles();
         })
         .on("drag", function(){
             onSlideEvent(x.invert(d3.event.x));
@@ -316,9 +317,14 @@
             .attr("cx", projection([event.lng, event.lat])[0])
             .attr("cy", projection([event.lng, event.lat])[1])
             .attr("fill", "url(#"+event.country+")")
-            .attr('r', 0).transition().duration(600)
-            .attr("r", event.magnitude*2)
-            .transition().duration(400)
+            .attr('r', 0)
+            .transition()
+            .ease(d3.easeLinear)
+            .duration(800)
+            .attr("r", event.magnitude*3)
+            .transition()
+            .ease(d3.easeLinear)
+            .duration(800)
             .attr("r",0)
             .remove();
     }
@@ -330,6 +336,15 @@
         current_date = date;
         update(previous_date, current_date);
         removebars(previous_date, current_date);
+    }
+    
+    // Continue the transition of current shown circles
+    function removeShownCircles() {
+        d3.selectAll(".event")
+        .transition()
+        .duration(500)
+        .attr('r',0)
+        .remove();
     }
 
     // called at each tick of the timer
@@ -365,6 +380,7 @@
 
     function playAnimation(){
         if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
+        removeShownCircles();
         was_running = true;
     }
 
@@ -425,6 +441,8 @@
         goToNextState: function () {
             if (this.state.nextState == "paused") {
               pauseAnimation();
+              var currEvents = d3.selectAll(".event");
+              currEvents.transition().duration(0);
               // timer = 0;
             } else {
               // timer that moves the slider automatically
