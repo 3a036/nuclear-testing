@@ -319,7 +319,7 @@
             .transition()
             .ease(d3.easeLinear)
             .duration(500)
-            .attr("r", event.magnitude*3)
+            .attr("r", Math.exp(event.magnitude * 2/3))
             .transition()
             .ease(d3.easeLinear)
             .duration(500)
