@@ -108,6 +108,7 @@
             stroke-width: 1px;
         }
 
+<<<<<<< HEAD
         .context {
             padding: 0.5em;
             max-width: 500px;
@@ -133,6 +134,18 @@
         .context p {
             margin-top: 0;
         }
+
+        #ranking{
+            position: fixed;
+            top: 100px;
+            left: 5px;
+        }
+
+        .ranks{
+            position: fixed;
+            border: 1px solid black;
+            width: 100px;
+        }
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -152,6 +165,7 @@
         <div id='checkboxContainer'>
             <button type='button' id='historyButton' onclick='handleClick(this);'>Show history</button>
         </div>
+        <div id='ranking'></div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
                 <defs>
@@ -186,7 +200,7 @@
     let timer;
     let histHeight = height/5;
     let bins;
-    let allCountries = new Set();
+    let allCountries = [];
     let history = false;
     let click = false;
 
@@ -247,7 +261,7 @@
       
       data.forEach(function(d, i) {
             if (d3.select("#"+d.country).empty()){
-                allCountries.add(d.country);
+                allCountries.push(d.country);
                 defs.append("pattern")
                     .attr("id", d.country)
                     .attr("height","100%")
@@ -301,6 +315,7 @@
     .get(function(err, rows) {
         if (err) return console.error(err);
         window.site_data = rows;
+        initRanking();
     });
     
     // Loading contextual data
@@ -526,7 +541,7 @@
         // }
 
         let ranking = getRanking(current_date);
-        //console.log(ranking);
+        printRanking(ranking);
         click = false;
     }
     
@@ -588,16 +603,38 @@
     // returns the number of explosions per country up to the date given
     function getRanking(date){
         let n_tests_per_country = {};
-        Array.from(allCountries).forEach(c => n_tests_per_country[c] = 0);
+        allCountries.forEach(c => n_tests_per_country[c] = 0);
         window.site_data.filter(event => (event.date <= current_date)).map(e => e.country).forEach(c => n_tests_per_country[c] += 1);
         // return an array because an object's order cannot be guaranted
         let ranking = [];
-        //console.log(n_tests_per_country);
         Object.keys(n_tests_per_country).forEach(key => ranking.push([key, n_tests_per_country[key]]));
         ranking.sort(function(a, b){
             return b[1] - a[1];
         });
         return ranking;
+    }
+
+    function initRanking(){
+        let ranks = d3.select('#ranking').selectAll('.ranks').data(allCountries);
+
+        ranks.enter()
+            .append('div')
+            .attr('class', 'ranks')
+            .html(x => x + " 0")
+            .style('top', function(d, i) {
+                return 100 + ((i*30)) + "px";
+            });
+    }
+
+    function printRanking(ranking){
+        let ranks = d3.select('#ranking').selectAll('.ranks').data(ranking);
+
+        ranks.html(x => x[0] + " " + x[1])
+            //.sort(function(a, b) {return d3.ascending(b[1], a[1]);})
+            .transition()
+            .style('top', function(d, i) {
+                return 100 + ((i*30)) + "px";
+            });
     }
     
     
