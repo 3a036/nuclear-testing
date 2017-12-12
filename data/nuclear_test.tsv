@@ -1,12 +1,12 @@
 	magnitude	country	date	name	site	type	lat	lng
 0	4.9	CHN	29/07/1996	-	Lop Nor	Underground	41.82	88.42
 1	5.9	CHN	08/06/1996	-	Lop Nor	Underground	41.66	88.69
-2	6.0	CHN	17/08/1995	-	Lop Nor	Underground	41.56	88.8
+2	6	CHN	17/08/1995	-	Lop Nor	Underground	41.56	88.8
 3	6.1	CHN	15/05/1995	-	Lop Nor	Underground	41.6	88.82
-4	6.0	CHN	07/10/1994	-	Lop Nor	Underground	41.66	88.75
+4	6	CHN	07/10/1994	-	Lop Nor	Underground	41.66	88.75
 5	5.8	CHN	10/06/1994	-	Lop Nor	Underground	41.53	88.71
 6	5.9	CHN	05/10/1993	-	Lop Nor	Underground	41.667	88.695
-7	5.0	CHN	25/09/1992	-	Lop Nor	Underground	41.716	88.336
+7	5	CHN	25/09/1992	-	Lop Nor	Underground	41.716	88.336
 8	6.5	CHN	21/05/1992	-	Lop Nor	Underground	41.513	88.774
 9	6.2	CHN	16/08/1990	-	Lop Nor	Underground	41.514	88.739
 10	5.5	CHN	26/05/1990	-	Lop Nor	Underground	41.569	88.701
@@ -27,7 +27,7 @@
 25	4.9	CHN	17/10/1976	-	Lop Nor	Underground	41.708	88.37
 26	5.1	CHN	26/09/1976	-	Lop Nor	Atmospheric	41.5	88.5
 27	5.1	CHN	23/01/1976	-	Lop Nor	Atmospheric	41.5	88.5
-28	5.0	CHN	27/10/1975	-	Lop Nor	Underground	41.375	88.326
+28	5	CHN	27/10/1975	-	Lop Nor	Underground	41.375	88.326
 29	4.5	CHN	17/06/1974	-	Lop Nor	Atmospheric	40.518	89.619
 30	4.8	CHN	27/06/1973	-	Lop Nor	Atmospheric	40.7985	89.8091
 31	5.1	CHN	18/03/1972	-	Lop Nor	Atmospheric	41.5	88.5
@@ -44,187 +44,187 @@
 42	5.1	CHN	09/05/1966	-	Lop Nor	Atmospheric	41.5	88.5
 43	5.1	CHN	14/05/1965	-	Lop Nor	Atmospheric	41.5	88.5
 44	5.1	CHN	16/10/1964	-	Lop Nor	Atmospheric	41.5	88.5
-45	5.3	FRA	27/01/1996	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-46	5.1	FRA	27/12/1995	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-47	4.8	FRA	21/11/1995	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-48	5.4	FRA	27/10/1995	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-49	5.4	FRA	01/10/1995	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-50	4.8	FRA	05/09/1995	-	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-51	5.3	FRA	15/07/1991	Lycurgue	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-52	3.8	FRA	05/07/1991	Coronis	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-53	5.2	FRA	14/06/1991	Pitthee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-54	5.5	FRA	29/05/1991	Periclymentos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-55	5.1	FRA	18/05/1991	Alcinos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-56	5.1	FRA	07/05/1991	MElanippe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-57	5.4	FRA	21/11/1990	Thoas	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-58	5.5	FRA	14/11/1990	Hyrtacos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-59	5.1	FRA	04/07/1990	Anticlee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-60	5.5	FRA	26/06/1990	Cypselos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-61	4.65	FRA	07/06/1990	Megapentes	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-62	5.3	FRA	02/06/1990	Telephe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-63	5.59	FRA	27/11/1989	Lycos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-64	5.19	FRA	20/11/1989	Tros	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-65	5.3	FRA	31/10/1989	Erigone	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-66	5.37	FRA	24/10/1989	Hypsipyle	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-67	5.52	FRA	10/06/1989	Cyzicos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-68	5.16	FRA	03/06/1989	Nyctee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-69	5.1	FRA	20/05/1989	Tecmessa	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-70	5.16	FRA	11/05/1989	Epeios	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-71	5.58	FRA	30/11/1988	Cycnos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-72	5.29	FRA	23/11/1988	Pheres	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-73	5.3	FRA	05/11/1988	Thrasymedes	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-74	5.1	FRA	25/10/1988	Acrisios	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-75	5.18	FRA	23/06/1988	Dejanire	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-76	4.8	FRA	16/06/1988	Antigone	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-77	5.5	FRA	25/05/1988	Niobe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-78	5.27	FRA	11/05/1988	Nelee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-79	5.1	FRA	29/11/1987	Danae	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-80	5.74	FRA	19/11/1987	Pelee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-81	5.36	FRA	05/11/1987	Pasiphae	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-82	5.54	FRA	23/10/1987	Helenos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-83	5.1	FRA	21/06/1987	Iphpitos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-84	4.4	FRA	06/06/1987	Dirce	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-85	5.51	FRA	20/05/1987	Lycomede	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-86	4.55	FRA	05/05/1987	Jocaste	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-87	5.23	FRA	10/12/1986	Circe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-88	5.1	FRA	06/12/1986	Peneleos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-89	5.28	FRA	12/11/1986	Naupolis	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-90	5.1	FRA	10/11/1986	hesione	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-91	5.58	FRA	30/05/1986	Galatee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-92	5.1	FRA	27/05/1986	Sthenelos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-93	5.1	FRA	06/05/1986	Ceto	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-94	4.45	FRA	26/04/1986	Hyllos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-95	5.76	FRA	26/11/1985	Megaree	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-96	4.55	FRA	24/11/1985	Zetes	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-97	5.3	FRA	26/10/1985	Codros	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-98	5.1	FRA	24/10/1985	Hero	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-99	5.1	FRA	07/06/1985	Erginos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-100	4.83	FRA	03/06/1985	Talaos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-101	5.64	FRA	08/05/1985	Nisos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-102	4.51	FRA	30/04/1985	Cercyon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-103	5.56	FRA	06/12/1984	Memnon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-104	5.1	FRA	01/12/1984	Miletos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-105	5.64	FRA	02/11/1984	Acaste	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-106	4.49	FRA	27/10/1984	Machaon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-107	5.28	FRA	16/06/1984	Echemos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-108	5.1	FRA	12/06/1984	Aristee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-109	5.57	FRA	12/05/1984	Midas	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-110	5.1	FRA	08/05/1984	Demophon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-111	4.89	FRA	07/12/1983	Gyges	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-112	5.1	FRA	03/12/1983	Linos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-113	5.13	FRA	04/08/1983	Carnabon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-114	5.1	FRA	20/07/1983	Battos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-115	5.32	FRA	28/06/1983	Oxylos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-116	5.1	FRA	18/06/1983	Burisis	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-117	5.87	FRA	25/05/1983	Cinyras	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-118	5.1	FRA	25/04/1983	Automedon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-119	5.7	FRA	19/04/1983	Eurytos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-120	5.1	FRA	27/11/1982	Procris	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-121	5.6	FRA	25/07/1982	laios	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-122	5.1	FRA	21/07/1982	Pitane	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-123	5.08	FRA	01/07/1982	Antilokos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-124	5.1	FRA	27/06/1982	Laodice	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-125	5.1	FRA	23/03/1982	Evevos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-126	4.96	FRA	20/03/1982	Rhesos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-127	5.1	FRA	24/02/1982	Deiphobe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-128	5.1	FRA	20/02/1982	Aerope	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-129	5.14	FRA	08/12/1981	Cadmos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-130	4.68	FRA	05/12/1981	Cilix	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-131	4.71	FRA	11/11/1981	Procles	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-132	5.1	FRA	06/11/1981	Leto	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-133	5.09	FRA	03/08/1981	Agenor	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-134	5.1	FRA	18/07/1981	Theras	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-135	5.1	FRA	11/07/1981	Eryx	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-136	5.14	FRA	08/07/1981	Lyncee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-137	4.76	FRA	10/04/1981	Clymene	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-138	4.75	FRA	28/03/1981	Iphicles	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-139	5.1	FRA	06/03/1981	Tyro	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-140	5.1	FRA	27/02/1981	Broteas	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-141	5.58	FRA	03/12/1980	Diomede	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-142	5.1	FRA	25/11/1980	Laerte	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-143	5.73	FRA	19/07/1980	Asios	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-144	4.54	FRA	06/07/1980	Chryses	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-145	5.1	FRA	21/06/1980	Ilus	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-146	5.3	FRA	16/06/1980	Eurypyle	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-147	4.3	FRA	04/04/1980	Pelpos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-148	5.05	FRA	01/04/1980	Boros	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-149	5.63	FRA	23/03/1980	Thesee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-150	5.1	FRA	03/03/1980	Adraste	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-151	5.1	FRA	23/02/1980	Thysets	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-152	5.1	FRA	22/11/1979	Atree	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-153	5.1	FRA	19/11/1979	Chrysotemis	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-154	4.73	FRA	28/07/1979	Palamede	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-155	6.11	FRA	25/07/1979	Tydee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-156	5.21	FRA	29/06/1979	Egisthe	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-157	4.71	FRA	18/06/1979	Pyrrhos	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-158	4.69	FRA	04/04/1979	Polydore	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-159	4.93	FRA	24/03/1979	Agapenor	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-160	5.1	FRA	09/03/1979	Philoctete	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-161	5.1	FRA	01/03/1979	Penthesilee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-162	5.01	FRA	19/12/1978	Eumee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-163	5.1	FRA	17/12/1978	Eteocle	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-164	5.86	FRA	30/11/1978	Priam	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-165	5.1	FRA	02/11/1978	Schedios	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-166	5.1	FRA	26/07/1978	Idomenee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-167	5.1	FRA	19/07/1978	Ares	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-168	5.1	FRA	01/07/1978	Xanthois	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-169	5.1	FRA	25/03/1978	Hecube	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-170	4.73	FRA	22/03/1978	Pylade	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-171	5.1	FRA	27/02/1978	Polypheme	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-172	5.1	FRA	17/12/1977	Laocoon	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-173	5.86	FRA	24/11/1977	Enee	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-174	5.1	FRA	12/11/1977	Oreste	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-175	4.81	FRA	06/07/1977	Ajax	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-176	5.1	FRA	02/04/1977	0	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-177	5.92	FRA	19/03/1977	Nestor	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-178	5.02	FRA	19/02/1977	Ulysse_B	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-179	5.1	FRA	05/12/1976	Astanax	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-180	5.1	FRA	30/10/1976	Ulysse_A	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-181	4.93	FRA	11/07/1976	Menelas	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-182	5.1	FRA	03/04/1976	Patrocle	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-183	5.1	FRA	26/11/1975	Hector	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-184	5.1	FRA	05/06/1975	Achille	Tuamotu Archipelago	Underground	-19.000000	-142.000000
-185	5.1	FRA	14/09/1974	Verseau	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-186	5.1	FRA	24/08/1974	Taurue	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-187	5.1	FRA	15/08/1974	Scorpion	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-188	5.1	FRA	25/07/1974	Maquis	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-189	5.1	FRA	17/07/1974	Centaure	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-190	5.1	FRA	07/07/1974	Gemeaux	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-191	5.1	FRA	16/06/1974	Capricorne	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-192	5.1	FRA	28/08/1973	Tamara	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-193	5.1	FRA	24/08/1973	Parthenope	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-194	5.1	FRA	18/08/1973	Pallas	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-195	5.1	FRA	28/07/1973	Melpomene	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-196	5.1	FRA	21/07/1973	Euterpe	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-197	5.1	FRA	27/07/1972	Oberon	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-198	5.1	FRA	30/06/1972	Titania	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-199	5.1	FRA	25/06/1972	Umbriel	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-200	4.65	FRA	14/08/1971	Rhea	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-201	5.1	FRA	08/08/1971	Phoebe	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-202	5.1	FRA	04/07/1971	Japet	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-203	5.1	FRA	12/06/1971	Encelade	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-204	5.1	FRA	05/06/1971	Dione	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-205	5.1	FRA	06/08/1970	Toucan	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-206	5.1	FRA	02/08/1970	Orion	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-207	5.1	FRA	27/07/1970	Pegase	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-208	4.65	FRA	03/07/1970	Licorne	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-209	5.1	FRA	24/06/1970	Eridan	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-210	4.44	FRA	30/05/1970	Dragon	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-211	5.1	FRA	22/05/1970	Cassiopee	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-212	5.1	FRA	15/05/1970	Andromede	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-213	4.91	FRA	08/09/1968	Procyon	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-214	4.95	FRA	24/08/1968	Canopus	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-215	5.1	FRA	03/08/1968	Pollux	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-216	5.1	FRA	15/07/1968	Castor	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-217	5.1	FRA	07/07/1968	Capella	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-218	5.1	FRA	02/07/1967	Arcturus	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-219	5.1	FRA	27/06/1967	Antares	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-220	5.1	FRA	05/06/1967	Altair	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-221	5.1	FRA	04/10/1966	Sirus	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-222	5.1	FRA	24/09/1966	Rigel	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-223	5.1	FRA	11/09/1966	Betelguese	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-224	5.1	FRA	19/07/1966	Tamore	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
-225	5.1	FRA	02/07/1966	Aldebaron	Tuamotu Archipelago	Atmospheric	-19.000000	-142.000000
+45	5.3	FRA	27/01/1996	-	Tuamotu Archipelago	Underground	-19	-142
+46	5.1	FRA	27/12/1995	-	Tuamotu Archipelago	Underground	-19	-142
+47	4.8	FRA	21/11/1995	-	Tuamotu Archipelago	Underground	-19	-142
+48	5.4	FRA	27/10/1995	-	Tuamotu Archipelago	Underground	-19	-142
+49	5.4	FRA	01/10/1995	-	Tuamotu Archipelago	Underground	-19	-142
+50	4.8	FRA	05/09/1995	-	Tuamotu Archipelago	Underground	-19	-142
+51	5.3	FRA	15/07/1991	Lycurgue	Tuamotu Archipelago	Underground	-19	-142
+52	3.8	FRA	05/07/1991	Coronis	Tuamotu Archipelago	Underground	-19	-142
+53	5.2	FRA	14/06/1991	Pitthee	Tuamotu Archipelago	Underground	-19	-142
+54	5.5	FRA	29/05/1991	Periclymentos	Tuamotu Archipelago	Underground	-19	-142
+55	5.1	FRA	18/05/1991	Alcinos	Tuamotu Archipelago	Underground	-19	-142
+56	5.1	FRA	07/05/1991	MElanippe	Tuamotu Archipelago	Underground	-19	-142
+57	5.4	FRA	21/11/1990	Thoas	Tuamotu Archipelago	Underground	-19	-142
+58	5.5	FRA	14/11/1990	Hyrtacos	Tuamotu Archipelago	Underground	-19	-142
+59	5.1	FRA	04/07/1990	Anticlee	Tuamotu Archipelago	Underground	-19	-142
+60	5.5	FRA	26/06/1990	Cypselos	Tuamotu Archipelago	Underground	-19	-142
+61	4.65	FRA	07/06/1990	Megapentes	Tuamotu Archipelago	Underground	-19	-142
+62	5.3	FRA	02/06/1990	Telephe	Tuamotu Archipelago	Underground	-19	-142
+63	5.59	FRA	27/11/1989	Lycos	Tuamotu Archipelago	Underground	-19	-142
+64	5.19	FRA	20/11/1989	Tros	Tuamotu Archipelago	Underground	-19	-142
+65	5.3	FRA	31/10/1989	Erigone	Tuamotu Archipelago	Underground	-19	-142
+66	5.37	FRA	24/10/1989	Hypsipyle	Tuamotu Archipelago	Underground	-19	-142
+67	5.52	FRA	10/06/1989	Cyzicos	Tuamotu Archipelago	Underground	-19	-142
+68	5.16	FRA	03/06/1989	Nyctee	Tuamotu Archipelago	Underground	-19	-142
+69	5.1	FRA	20/05/1989	Tecmessa	Tuamotu Archipelago	Underground	-19	-142
+70	5.16	FRA	11/05/1989	Epeios	Tuamotu Archipelago	Underground	-19	-142
+71	5.58	FRA	30/11/1988	Cycnos	Tuamotu Archipelago	Underground	-19	-142
+72	5.29	FRA	23/11/1988	Pheres	Tuamotu Archipelago	Underground	-19	-142
+73	5.3	FRA	05/11/1988	Thrasymedes	Tuamotu Archipelago	Underground	-19	-142
+74	5.1	FRA	25/10/1988	Acrisios	Tuamotu Archipelago	Underground	-19	-142
+75	5.18	FRA	23/06/1988	Dejanire	Tuamotu Archipelago	Underground	-19	-142
+76	4.8	FRA	16/06/1988	Antigone	Tuamotu Archipelago	Underground	-19	-142
+77	5.5	FRA	25/05/1988	Niobe	Tuamotu Archipelago	Underground	-19	-142
+78	5.27	FRA	11/05/1988	Nelee	Tuamotu Archipelago	Underground	-19	-142
+79	5.1	FRA	29/11/1987	Danae	Tuamotu Archipelago	Underground	-19	-142
+80	5.74	FRA	19/11/1987	Pelee	Tuamotu Archipelago	Underground	-19	-142
+81	5.36	FRA	05/11/1987	Pasiphae	Tuamotu Archipelago	Underground	-19	-142
+82	5.54	FRA	23/10/1987	Helenos	Tuamotu Archipelago	Underground	-19	-142
+83	5.1	FRA	21/06/1987	Iphpitos	Tuamotu Archipelago	Underground	-19	-142
+84	4.4	FRA	06/06/1987	Dirce	Tuamotu Archipelago	Underground	-19	-142
+85	5.51	FRA	20/05/1987	Lycomede	Tuamotu Archipelago	Underground	-19	-142
+86	4.55	FRA	05/05/1987	Jocaste	Tuamotu Archipelago	Underground	-19	-142
+87	5.23	FRA	10/12/1986	Circe	Tuamotu Archipelago	Underground	-19	-142
+88	5.1	FRA	06/12/1986	Peneleos	Tuamotu Archipelago	Underground	-19	-142
+89	5.28	FRA	12/11/1986	Naupolis	Tuamotu Archipelago	Underground	-19	-142
+90	5.1	FRA	10/11/1986	hesione	Tuamotu Archipelago	Underground	-19	-142
+91	5.58	FRA	30/05/1986	Galatee	Tuamotu Archipelago	Underground	-19	-142
+92	5.1	FRA	27/05/1986	Sthenelos	Tuamotu Archipelago	Underground	-19	-142
+93	5.1	FRA	06/05/1986	Ceto	Tuamotu Archipelago	Underground	-19	-142
+94	4.45	FRA	26/04/1986	Hyllos	Tuamotu Archipelago	Underground	-19	-142
+95	5.76	FRA	26/11/1985	Megaree	Tuamotu Archipelago	Underground	-19	-142
+96	4.55	FRA	24/11/1985	Zetes	Tuamotu Archipelago	Underground	-19	-142
+97	5.3	FRA	26/10/1985	Codros	Tuamotu Archipelago	Underground	-19	-142
+98	5.1	FRA	24/10/1985	Hero	Tuamotu Archipelago	Underground	-19	-142
+99	5.1	FRA	07/06/1985	Erginos	Tuamotu Archipelago	Underground	-19	-142
+100	4.83	FRA	03/06/1985	Talaos	Tuamotu Archipelago	Underground	-19	-142
+101	5.64	FRA	08/05/1985	Nisos	Tuamotu Archipelago	Underground	-19	-142
+102	4.51	FRA	30/04/1985	Cercyon	Tuamotu Archipelago	Underground	-19	-142
+103	5.56	FRA	06/12/1984	Memnon	Tuamotu Archipelago	Underground	-19	-142
+104	5.1	FRA	01/12/1984	Miletos	Tuamotu Archipelago	Underground	-19	-142
+105	5.64	FRA	02/11/1984	Acaste	Tuamotu Archipelago	Underground	-19	-142
+106	4.49	FRA	27/10/1984	Machaon	Tuamotu Archipelago	Underground	-19	-142
+107	5.28	FRA	16/06/1984	Echemos	Tuamotu Archipelago	Underground	-19	-142
+108	5.1	FRA	12/06/1984	Aristee	Tuamotu Archipelago	Underground	-19	-142
+109	5.57	FRA	12/05/1984	Midas	Tuamotu Archipelago	Underground	-19	-142
+110	5.1	FRA	08/05/1984	Demophon	Tuamotu Archipelago	Underground	-19	-142
+111	4.89	FRA	07/12/1983	Gyges	Tuamotu Archipelago	Underground	-19	-142
+112	5.1	FRA	03/12/1983	Linos	Tuamotu Archipelago	Underground	-19	-142
+113	5.13	FRA	04/08/1983	Carnabon	Tuamotu Archipelago	Underground	-19	-142
+114	5.1	FRA	20/07/1983	Battos	Tuamotu Archipelago	Underground	-19	-142
+115	5.32	FRA	28/06/1983	Oxylos	Tuamotu Archipelago	Underground	-19	-142
+116	5.1	FRA	18/06/1983	Burisis	Tuamotu Archipelago	Underground	-19	-142
+117	5.87	FRA	25/05/1983	Cinyras	Tuamotu Archipelago	Underground	-19	-142
+118	5.1	FRA	25/04/1983	Automedon	Tuamotu Archipelago	Underground	-19	-142
+119	5.7	FRA	19/04/1983	Eurytos	Tuamotu Archipelago	Underground	-19	-142
+120	5.1	FRA	27/11/1982	Procris	Tuamotu Archipelago	Underground	-19	-142
+121	5.6	FRA	25/07/1982	laios	Tuamotu Archipelago	Underground	-19	-142
+122	5.1	FRA	21/07/1982	Pitane	Tuamotu Archipelago	Underground	-19	-142
+123	5.08	FRA	01/07/1982	Antilokos	Tuamotu Archipelago	Underground	-19	-142
+124	5.1	FRA	27/06/1982	Laodice	Tuamotu Archipelago	Underground	-19	-142
+125	5.1	FRA	23/03/1982	Evevos	Tuamotu Archipelago	Underground	-19	-142
+126	4.96	FRA	20/03/1982	Rhesos	Tuamotu Archipelago	Underground	-19	-142
+127	5.1	FRA	24/02/1982	Deiphobe	Tuamotu Archipelago	Underground	-19	-142
+128	5.1	FRA	20/02/1982	Aerope	Tuamotu Archipelago	Underground	-19	-142
+129	5.14	FRA	08/12/1981	Cadmos	Tuamotu Archipelago	Underground	-19	-142
+130	4.68	FRA	05/12/1981	Cilix	Tuamotu Archipelago	Underground	-19	-142
+131	4.71	FRA	11/11/1981	Procles	Tuamotu Archipelago	Underground	-19	-142
+132	5.1	FRA	06/11/1981	Leto	Tuamotu Archipelago	Underground	-19	-142
+133	5.09	FRA	03/08/1981	Agenor	Tuamotu Archipelago	Underground	-19	-142
+134	5.1	FRA	18/07/1981	Theras	Tuamotu Archipelago	Underground	-19	-142
+135	5.1	FRA	11/07/1981	Eryx	Tuamotu Archipelago	Underground	-19	-142
+136	5.14	FRA	08/07/1981	Lyncee	Tuamotu Archipelago	Underground	-19	-142
+137	4.76	FRA	10/04/1981	Clymene	Tuamotu Archipelago	Underground	-19	-142
+138	4.75	FRA	28/03/1981	Iphicles	Tuamotu Archipelago	Underground	-19	-142
+139	5.1	FRA	06/03/1981	Tyro	Tuamotu Archipelago	Underground	-19	-142
+140	5.1	FRA	27/02/1981	Broteas	Tuamotu Archipelago	Underground	-19	-142
+141	5.58	FRA	03/12/1980	Diomede	Tuamotu Archipelago	Underground	-19	-142
+142	5.1	FRA	25/11/1980	Laerte	Tuamotu Archipelago	Underground	-19	-142
+143	5.73	FRA	19/07/1980	Asios	Tuamotu Archipelago	Underground	-19	-142
+144	4.54	FRA	06/07/1980	Chryses	Tuamotu Archipelago	Underground	-19	-142
+145	5.1	FRA	21/06/1980	Ilus	Tuamotu Archipelago	Underground	-19	-142
+146	5.3	FRA	16/06/1980	Eurypyle	Tuamotu Archipelago	Underground	-19	-142
+147	4.3	FRA	04/04/1980	Pelpos	Tuamotu Archipelago	Underground	-19	-142
+148	5.05	FRA	01/04/1980	Boros	Tuamotu Archipelago	Underground	-19	-142
+149	5.63	FRA	23/03/1980	Thesee	Tuamotu Archipelago	Underground	-19	-142
+150	5.1	FRA	03/03/1980	Adraste	Tuamotu Archipelago	Underground	-19	-142
+151	5.1	FRA	23/02/1980	Thysets	Tuamotu Archipelago	Underground	-19	-142
+152	5.1	FRA	22/11/1979	Atree	Tuamotu Archipelago	Underground	-19	-142
+153	5.1	FRA	19/11/1979	Chrysotemis	Tuamotu Archipelago	Underground	-19	-142
+154	4.73	FRA	28/07/1979	Palamede	Tuamotu Archipelago	Underground	-19	-142
+155	6.11	FRA	25/07/1979	Tydee	Tuamotu Archipelago	Underground	-19	-142
+156	5.21	FRA	29/06/1979	Egisthe	Tuamotu Archipelago	Underground	-19	-142
+157	4.71	FRA	18/06/1979	Pyrrhos	Tuamotu Archipelago	Underground	-19	-142
+158	4.69	FRA	04/04/1979	Polydore	Tuamotu Archipelago	Underground	-19	-142
+159	4.93	FRA	24/03/1979	Agapenor	Tuamotu Archipelago	Underground	-19	-142
+160	5.1	FRA	09/03/1979	Philoctete	Tuamotu Archipelago	Underground	-19	-142
+161	5.1	FRA	01/03/1979	Penthesilee	Tuamotu Archipelago	Underground	-19	-142
+162	5.01	FRA	19/12/1978	Eumee	Tuamotu Archipelago	Underground	-19	-142
+163	5.1	FRA	17/12/1978	Eteocle	Tuamotu Archipelago	Underground	-19	-142
+164	5.86	FRA	30/11/1978	Priam	Tuamotu Archipelago	Underground	-19	-142
+165	5.1	FRA	02/11/1978	Schedios	Tuamotu Archipelago	Underground	-19	-142
+166	5.1	FRA	26/07/1978	Idomenee	Tuamotu Archipelago	Underground	-19	-142
+167	5.1	FRA	19/07/1978	Ares	Tuamotu Archipelago	Underground	-19	-142
+168	5.1	FRA	01/07/1978	Xanthois	Tuamotu Archipelago	Underground	-19	-142
+169	5.1	FRA	25/03/1978	Hecube	Tuamotu Archipelago	Underground	-19	-142
+170	4.73	FRA	22/03/1978	Pylade	Tuamotu Archipelago	Underground	-19	-142
+171	5.1	FRA	27/02/1978	Polypheme	Tuamotu Archipelago	Underground	-19	-142
+172	5.1	FRA	17/12/1977	Laocoon	Tuamotu Archipelago	Underground	-19	-142
+173	5.86	FRA	24/11/1977	Enee	Tuamotu Archipelago	Underground	-19	-142
+174	5.1	FRA	12/11/1977	Oreste	Tuamotu Archipelago	Underground	-19	-142
+175	4.81	FRA	06/07/1977	Ajax	Tuamotu Archipelago	Underground	-19	-142
+176	5.1	FRA	02/04/1977	0	Tuamotu Archipelago	Underground	-19	-142
+177	5.92	FRA	19/03/1977	Nestor	Tuamotu Archipelago	Underground	-19	-142
+178	5.02	FRA	19/02/1977	Ulysse_B	Tuamotu Archipelago	Underground	-19	-142
+179	5.1	FRA	05/12/1976	Astanax	Tuamotu Archipelago	Underground	-19	-142
+180	5.1	FRA	30/10/1976	Ulysse_A	Tuamotu Archipelago	Underground	-19	-142
+181	4.93	FRA	11/07/1976	Menelas	Tuamotu Archipelago	Underground	-19	-142
+182	5.1	FRA	03/04/1976	Patrocle	Tuamotu Archipelago	Underground	-19	-142
+183	5.1	FRA	26/11/1975	Hector	Tuamotu Archipelago	Underground	-19	-142
+184	5.1	FRA	05/06/1975	Achille	Tuamotu Archipelago	Underground	-19	-142
+185	5.1	FRA	14/09/1974	Verseau	Tuamotu Archipelago	Atmospheric	-19	-142
+186	5.1	FRA	24/08/1974	Taurue	Tuamotu Archipelago	Atmospheric	-19	-142
+187	5.1	FRA	15/08/1974	Scorpion	Tuamotu Archipelago	Atmospheric	-19	-142
+188	5.1	FRA	25/07/1974	Maquis	Tuamotu Archipelago	Atmospheric	-19	-142
+189	5.1	FRA	17/07/1974	Centaure	Tuamotu Archipelago	Atmospheric	-19	-142
+190	5.1	FRA	07/07/1974	Gemeaux	Tuamotu Archipelago	Atmospheric	-19	-142
+191	5.1	FRA	16/06/1974	Capricorne	Tuamotu Archipelago	Atmospheric	-19	-142
+192	5.1	FRA	28/08/1973	Tamara	Tuamotu Archipelago	Atmospheric	-19	-142
+193	5.1	FRA	24/08/1973	Parthenope	Tuamotu Archipelago	Atmospheric	-19	-142
+194	5.1	FRA	18/08/1973	Pallas	Tuamotu Archipelago	Atmospheric	-19	-142
+195	5.1	FRA	28/07/1973	Melpomene	Tuamotu Archipelago	Atmospheric	-19	-142
+196	5.1	FRA	21/07/1973	Euterpe	Tuamotu Archipelago	Atmospheric	-19	-142
+197	5.1	FRA	27/07/1972	Oberon	Tuamotu Archipelago	Atmospheric	-19	-142
+198	5.1	FRA	30/06/1972	Titania	Tuamotu Archipelago	Atmospheric	-19	-142
+199	5.1	FRA	25/06/1972	Umbriel	Tuamotu Archipelago	Atmospheric	-19	-142
+200	4.65	FRA	14/08/1971	Rhea	Tuamotu Archipelago	Atmospheric	-19	-142
+201	5.1	FRA	08/08/1971	Phoebe	Tuamotu Archipelago	Atmospheric	-19	-142
+202	5.1	FRA	04/07/1971	Japet	Tuamotu Archipelago	Atmospheric	-19	-142
+203	5.1	FRA	12/06/1971	Encelade	Tuamotu Archipelago	Atmospheric	-19	-142
+204	5.1	FRA	05/06/1971	Dione	Tuamotu Archipelago	Atmospheric	-19	-142
+205	5.1	FRA	06/08/1970	Toucan	Tuamotu Archipelago	Atmospheric	-19	-142
+206	5.1	FRA	02/08/1970	Orion	Tuamotu Archipelago	Atmospheric	-19	-142
+207	5.1	FRA	27/07/1970	Pegase	Tuamotu Archipelago	Atmospheric	-19	-142
+208	4.65	FRA	03/07/1970	Licorne	Tuamotu Archipelago	Atmospheric	-19	-142
+209	5.1	FRA	24/06/1970	Eridan	Tuamotu Archipelago	Atmospheric	-19	-142
+210	4.44	FRA	30/05/1970	Dragon	Tuamotu Archipelago	Atmospheric	-19	-142
+211	5.1	FRA	22/05/1970	Cassiopee	Tuamotu Archipelago	Atmospheric	-19	-142
+212	5.1	FRA	15/05/1970	Andromede	Tuamotu Archipelago	Atmospheric	-19	-142
+213	4.91	FRA	08/09/1968	Procyon	Tuamotu Archipelago	Atmospheric	-19	-142
+214	4.95	FRA	24/08/1968	Canopus	Tuamotu Archipelago	Atmospheric	-19	-142
+215	5.1	FRA	03/08/1968	Pollux	Tuamotu Archipelago	Atmospheric	-19	-142
+216	5.1	FRA	15/07/1968	Castor	Tuamotu Archipelago	Atmospheric	-19	-142
+217	5.1	FRA	07/07/1968	Capella	Tuamotu Archipelago	Atmospheric	-19	-142
+218	5.1	FRA	02/07/1967	Arcturus	Tuamotu Archipelago	Atmospheric	-19	-142
+219	5.1	FRA	27/06/1967	Antares	Tuamotu Archipelago	Atmospheric	-19	-142
+220	5.1	FRA	05/06/1967	Altair	Tuamotu Archipelago	Atmospheric	-19	-142
+221	5.1	FRA	04/10/1966	Sirus	Tuamotu Archipelago	Atmospheric	-19	-142
+222	5.1	FRA	24/09/1966	Rigel	Tuamotu Archipelago	Atmospheric	-19	-142
+223	5.1	FRA	11/09/1966	Betelguese	Tuamotu Archipelago	Atmospheric	-19	-142
+224	5.1	FRA	19/07/1966	Tamore	Tuamotu Archipelago	Atmospheric	-19	-142
+225	5.1	FRA	02/07/1966	Aldebaron	Tuamotu Archipelago	Atmospheric	-19	-142
 226	4.94	FRA	16/02/1966	grenat	Ekker, Algeria	Underground	24.0441	5.0412
 227	5.1	FRA	01/12/1965	tourmaline	Ekker, Algeria	Underground	24.0437	5.0469
 228	5.1	FRA	01/10/1965	corindon	Ekker, Algeria	Underground	24.0649	5.034
@@ -243,7 +243,7 @@
 241	5.1	FRA	01/04/1960	gerb._blanche	Reggan,Algeria	Atmospheric	25.275963	-1.520862
 242	5.1	FRA	13/02/1960	gerb._bleue	Reggan,Algeria	Atmospheric	25.275963	-1.520862
 243	5.2	IND	11/05/1998	Shakti-1	Pokharan	Underground	27.078	71.719
-244	5.0	IND	18/05/1974	-	Pokharan	Underground	27.095	71.752
+244	5	IND	18/05/1974	-	Pokharan	Underground	27.095	71.752
 245	4.6	PAK	30/05/1998	Chagai-II	Kharan	Underground	28.49	63.73
 246	4.87	PAK	28/05/1998	Chagai-I	Ras Koh Mountains	Underground	28.83	64.95
 247	3.9	NK	09/10/2006		Punggye	Underground	41.3	129.2
@@ -252,7 +252,7 @@
 250	4.6	SOV	04/10/1989		Semipalatinsk	Underground	49.7498	78.0117
 251	4.94	SOV	02/09/1989	712 S	Semipalatinsk	Underground	50.0058	78.9856
 252	5.55	SOV	08/07/1989		Semipalatinsk	Underground	49.8678	78.7803
-253	5.0	SOV	17/02/1989		Semipalatinsk	Underground	49.8278	78.0597
+253	5	SOV	17/02/1989		Semipalatinsk	Underground	49.8278	78.0597
 254	5.86	SOV	12/02/1989		Semipalatinsk	Underground	49.9186	78.7111
 255	6.1	SOV	22/01/1989	708 S	Semipalatinsk	Underground	49.9394	78.8194
 256	3.74	SOV	28/12/1988	707 S	Semipalatinsk	Underground	49.8011	78.0686
@@ -271,14 +271,14 @@
 269	5.99	SOV	03/04/1988		Semipalatinsk	Underground	49.9083	78.9083
 270	5.98	SOV	13/02/1988	693 S	Semipalatinsk	Underground	49.9367	78.8639
 271	4.7	SOV	06/02/1988	692 S	Semipalatinsk	Underground	49.7758	78.0197
-272	6.0	SOV	27/12/1987	691 S	Semipalatinsk	Underground	49.8794	78.725
+272	6	SOV	27/12/1987	691 S	Semipalatinsk	Underground	49.8794	78.725
 273	4.8	SOV	20/12/1987		Semipalatinsk	Underground	49.7758	78.0122
 274	6.06	SOV	13/12/1987	689 S	Semipalatinsk	Underground	49.9631	78.7931
 275	5.98	SOV	15/11/1987	688 S	Semipalatinsk	Underground	49.8986	78.7581
 276	6.1	SOV	16/10/1987	687	Semipalatinsk	Underground	49.7297	78.0867
 277	5.3	SOV	03/10/1987	686 Batolit-2		Underground	47.6	56.2
 278	4.3	SOV	18/09/1987	685 S	Semipalatinsk	Underground	49.8044	78.0875
-279	5.0	SOV	12/08/1987	684 Neva 2-3		Underground	61.45	112.8
+279	5	SOV	12/08/1987	684 Neva 2-3		Underground	61.45	112.8
 280	5.82	SOV	02/08/1987	682 S	Novaya Zemlya Test Site	Underground	73.326	54.602
 281	5.83	SOV	02/08/1987	683 S	Semipalatinsk	Underground	49.8806	78.8747
 282	5.1	SOV	24/07/1987	681 Neva 2-2		Underground	61.45	112.8
@@ -304,16 +304,16 @@
 302	6.05	SOV	15/06/1985	661 S	Semipalatinsk	Underground	49.9086	78.8428
 303	5.84	SOV	25/04/1985	660 S	Semipalatinsk	Underground	49.9267	78.8808
 304	5.83	SOV	10/02/1985	659 S	Semipalatinsk	Underground	49.8992	78.7806
-305	6.0	SOV	28/12/1984	658 S	Semipalatinsk	Underground	49.8803	78.7039
+305	6	SOV	28/12/1984	658 S	Semipalatinsk	Underground	49.8803	78.7039
 306	6.12	SOV	16/12/1984	657 S	Semipalatinsk	Underground	49.9458	78.8086
 307	5.77	SOV	02/12/1984	656 S	Semipalatinsk	Underground	50.0061	79.0089
 308	4.38	SOV	23/11/1984	655 S	Semipalatinsk	Underground	49.8125	78.0594
-309	5.0	SOV	27/10/1984	653 Vega		Underground	46.95	48.1
-310	5.0	SOV	27/10/1984	652 Vega		Underground	46.9	48.15
+309	5	SOV	27/10/1984	653 Vega		Underground	46.95	48.1
+310	5	SOV	27/10/1984	652 Vega		Underground	46.9	48.15
 311	6.19	SOV	27/10/1984		Semipalatinsk	Underground	49.9347	78.9281
 312	5.9	SOV	25/10/1984	651 S	Novaya Zemlya Test Site	Underground	73.355	54.99
 313	4.25	SOV	18/10/1984		Semipalatinsk	Underground	49.7294	78.0864
-314	5.0	SOV	17/09/1984	649 Kvarts-4		Underground	55.834	87.526
+314	5	SOV	17/09/1984	649 Kvarts-4		Underground	55.834	87.526
 315	4.89	SOV	09/09/1984	648 S	Semipalatinsk	Underground	49.8044	78.0875
 316	4.4	SOV	28/08/1984	647 Geliy		Underground	60.7	57.5
 317	4.4	SOV	28/08/1984	646 Geliy		Underground	60.3	57.1
@@ -335,14 +335,14 @@
 333	5.31	SOV	29/11/1983	630 S	Semipalatinsk	Underground	49.7586	78.0486
 334	5.1	SOV	29/11/1983		Semipalatinsk	Underground	49.7303	78.0958
 335	5.33	SOV	20/11/1983	628 S	Semipalatinsk	Underground	50.0508	78.9992
-336	3.0	SOV	02/11/1983		Semipalatinsk	Underground	49.7792	78.1247
+336	3	SOV	02/11/1983		Semipalatinsk	Underground	49.7792	78.1247
 337	6.04	SOV	26/10/1983		Semipalatinsk	Underground	49.9125	78.8217
 338	5.95	SOV	06/10/1983	625 S	Semipalatinsk	Underground	49.9246	78.7507
 339	5.8	SOV	25/09/1983	624 S	Novaya Zemlya Test Site	Underground	73.328	54.541
 340	5.3	SOV	24/09/1983	623 Vega		Underground	46.766	48.274
 341	5.4	SOV	24/09/1983	622 Vega		Underground	46.754	48.289
 342	5.2	SOV	24/09/1983	621 Vega		Underground	46.749	48.303
-343	5.0	SOV	24/09/1983	620 Vega		Underground	46.767	48.31
+343	5	SOV	24/09/1983	620 Vega		Underground	46.767	48.31
 344	5.1	SOV	24/09/1983	619 Vega		Underground	46.788	48.297
 345	5.2	SOV	24/09/1983	618 Vega		Underground	46.783	48.315
 346	4.48	SOV	11/09/1983	617 Dynamika	Semipalatinsk	Underground	49.7847	78.0842
@@ -370,7 +370,7 @@
 368	5.3	SOV	04/09/1982	595 Rift-1		Underground	69.2	81.65
 369	5.2	SOV	31/08/1982	594 S	Semipalatinsk	Underground	49.9142	78.7614
 370	4.44	SOV	23/08/1982	593 S	Semipalatinsk	Underground	49.7403	78.0308
-371	5.0	SOV	30/07/1982	592 Rift-3		Underground	53.8	104.15
+371	5	SOV	30/07/1982	592 Rift-3		Underground	53.8	104.15
 372	6.08	SOV	04/07/1982	591 S	Semipalatinsk	Underground	49.9586	78.8117
 373	4.57	SOV	25/06/1982	590 S	Semipalatinsk	Underground	49.7714	78.1108
 374	6.03	SOV	25/04/1982	589 S	Semipalatinsk	Underground	49.9169	78.8878
@@ -378,11 +378,11 @@
 376	6.16	SOV	27/12/1981		Semipalatinsk	Underground	49.9331	78.7783
 377	4.96	SOV	22/12/1981	586 S	Semipalatinsk	Underground	49.8342	78.0803
 378	5.62	SOV	29/11/1981	585 S	Semipalatinsk	Underground	49.9019	78.8489
-379	5.0	SOV	20/11/1981	584 S	Semipalatinsk	Underground	49.7367	78.1042
+379	5	SOV	20/11/1981	584 S	Semipalatinsk	Underground	49.7367	78.1042
 380	5.1	SOV	22/10/1981	583 Shpat-2		Underground	63.8	97.55
-381	6.0	SOV	18/10/1981	582 S	Semipalatinsk	Underground	49.9281	78.8447
+381	6	SOV	18/10/1981	582 S	Semipalatinsk	Underground	49.9281	78.8447
 382	5.1	SOV	16/10/1981		Semipalatinsk	Underground	49.8342	78.0803
-383	6.0	SOV	01/10/1981	580 S	Novaya Zemlya Test Site	Underground	73.304	54.818
+383	6	SOV	01/10/1981	580 S	Novaya Zemlya Test Site	Underground	73.304	54.818
 384	5.3	SOV	26/09/1981	579 Vega		Underground	46.771	48.304
 385	5.2	SOV	26/09/1981	578 Vega		Underground	46.79	48.313
 386	6.06	SOV	13/09/1981		Semipalatinsk	Underground	49.9133	78.8944
@@ -428,7 +428,7 @@
 426	5.8	SOV	24/10/1979	537 Galit S		Underground	47.85	48.14
 427	5.85	SOV	18/10/1979	536 S	Novaya Zemlya Test Site	Underground	73.316	54.816
 428	5.23	SOV	18/10/1979	535 S	Semipalatinsk	Underground	49.8242	78.0975
-429	5.0	SOV	07/10/1979	534 Sheksna		Underground	61.85	113.1
+429	5	SOV	07/10/1979	534 Sheksna		Underground	61.85	113.1
 430	5.4	SOV	04/10/1979	533 Kimberlit-1		Underground	60.675	71.455
 431	4.42	SOV	27/09/1979		Semipalatinsk	Underground	49.7506	78.0492
 432	5.8	SOV	24/09/1979	531 S	Novaya Zemlya Test Site	Underground	73.343	54.672
@@ -449,7 +449,7 @@
 447	5.1	SOV	23/03/1979		Semipalatinsk	Underground	49.81	78.1714
 448	5.39	SOV	16/02/1979	515 S	Semipalatinsk	Underground	49.974	77.668
 449	5.29	SOV	01/02/1979		Semipalatinsk	Underground	50.0808	78.8533
-450	6.0	SOV	17/01/1979	513 Galit S		Underground	47.92	48.12
+450	6	SOV	17/01/1979	513 Galit S		Underground	47.92	48.12
 451	5.1	SOV	10/01/1979			Underground	47.909	47.912
 452	4.71	SOV	20/12/1978	511 S	Semipalatinsk	Underground	49.8108	78.0542
 453	5.9	SOV	18/12/1978	510 Galit		Underground	47.86	48.16
@@ -492,15 +492,15 @@
 490	5.52	SOV	29/10/1977	473 S	Semipalatinsk	Underground	49.8342	78.0803
 491	5.1	SOV	14/10/1977			Underground	47.909	47.912
 492	4.6	SOV	09/10/1977		Novaya Zemlya Test Site	Underground	73.409	54.927
-493	5.0	SOV	30/09/1977	470 Galit		Underground	47.897	48.161
+493	5	SOV	30/09/1977	470 Galit		Underground	47.897	48.161
 494	4.8	SOV	10/09/1977	469 Meteorit-4		Underground	57.251	106.551
 495	5.73	SOV	05/09/1977	468 S	Semipalatinsk	Underground	50.0556	78.9142
 496	5.71	SOV	01/09/1977	467 S	Novaya Zemlya Test Site	Underground	73.339	54.619
-497	5.0	SOV	20/08/1977	466 Meteorit-3		Underground	64.108	99.558
+497	5	SOV	20/08/1977	466 Meteorit-3		Underground	64.108	99.558
 498	5.01	SOV	17/08/1977		Semipalatinsk	Underground	49.8308	78.1139
-499	5.0	SOV	10/08/1977	464 Meteorit-5		Underground	50.955	110.983
+499	5	SOV	10/08/1977	464 Meteorit-5		Underground	50.955	110.983
 500	5.13	SOV	30/07/1977	463 S	Semipalatinsk	Underground	49.7506	78.0492
-501	5.0	SOV	26/07/1977	462 Meteorit-2		Underground	69.575	90.375
+501	5	SOV	26/07/1977	462 Meteorit-2		Underground	69.575	90.375
 502	5.2	SOV	29/06/1977		Semipalatinsk	Underground	49.9994	78.8667
 503	5.75	SOV	29/05/1977		Semipalatinsk	Underground	49.9464	78.7717
 504	5.07	SOV	25/04/1977		Semipalatinsk	Underground	49.8133	78.1086
@@ -523,12 +523,12 @@
 521	4.72	SOV	19/05/1976		Semipalatinsk	Underground	49.7775	78.0156
 522	4.94	SOV	21/04/1976		Semipalatinsk	Underground	49.9006	78.8308
 523	5.12	SOV	21/04/1976		Semipalatinsk	Underground	49.7547	78.1075
-524	3.0	SOV	10/04/1976		Semipalatinsk	Underground	49.755	78.0475
+524	3	SOV	10/04/1976		Semipalatinsk	Underground	49.755	78.0475
 525	4.3	SOV	29/03/1976			Underground	47.897	48.133
 526	2.2	SOV	17/03/1976		Semipalatinsk	Underground	49.7556	78.0992
 527	5.18	SOV	15/01/1976		Semipalatinsk	Underground	49.81	78.1714
 528	5.69	SOV	25/12/1975		Semipalatinsk	Underground	50.0439	78.82
-529	5.0	SOV	13/12/1975		Semipalatinsk	Underground	49.8133	78.1086
+529	5	SOV	13/12/1975		Semipalatinsk	Underground	49.8133	78.1086
 530	5.61	SOV	29/10/1975		Semipalatinsk	Underground	49.9539	78.8739
 531	6.6	SOV	21/10/1975	432 S	Novaya Zemlya Test Site	Underground	73.307	55.01
 532	5.1	SOV	18/10/1975	430 S	Novaya Zemlya Test Site	Underground	70.816	53.744
@@ -555,7 +555,7 @@
 553	5.41	SOV	16/10/1974	410 Argon-3	Semipalatinsk	Underground	49.9875	78.8942
 554	4.6	SOV	02/10/1974	409 Kristall		Underground	66.1	112.65
 555	5.14	SOV	13/09/1974		Semipalatinsk	Underground	49.7697	78.0553
-556	5.0	SOV	29/08/1974	406 Gorizont-1		Underground	67.085	62.625
+556	5	SOV	29/08/1974	406 Gorizont-1		Underground	67.085	62.625
 557	6.58	SOV	29/08/1974	407 S	Novaya Zemlya Test Site	Underground	73.397	54.905
 558	5.4	SOV	14/08/1974	405 Gorizont-2		Underground	68.903	75.823
 559	3.3	SOV	29/07/1974		Semipalatinsk	Underground	49.9375	78.9358
@@ -591,7 +591,7 @@
 589	4.5	SOV	24/11/1972	374 Region-2		Underground	51.99	51.867
 590	6.16	SOV	02/11/1972		Semipalatinsk	Underground	49.927	78.8173
 591	5.6	SOV	03/10/1972	372 Region-4		Underground	46.853	44.938
-592	5.0	SOV	21/09/1972	371 Region-1		Underground	52.118	52.068
+592	5	SOV	21/09/1972	371 Region-1		Underground	52.118	52.068
 593	4.6	SOV	04/09/1972	370 Dnepr-1		Underground	67.75	33.1
 594	4.79	SOV	02/09/1972		Semipalatinsk	Underground	49.9594	77.6409
 595	6.49	SOV	28/08/1972	368 S	Novaya Zemlya Test Site	Underground	73.388	54.847
@@ -610,7 +610,7 @@
 608	5.27	SOV	10/02/1972		Semipalatinsk	Underground	50.0243	78.8781
 609	5.84	SOV	30/12/1971		Semipalatinsk	Underground	49.755	78.0475
 610	5.8	SOV	30/12/1971		Semipalatinsk	Underground	49.7492	78.0061
-611	6.0	SOV	22/12/1971	352 Galit		Underground	47.897	48.133
+611	6	SOV	22/12/1971	352 Galit		Underground	47.897	48.133
 612	4.68	SOV	15/12/1971		Semipalatinsk	Underground	49.8306	77.9933
 613	5.46	SOV	29/11/1971	350 S	Semipalatinsk	Underground	49.7378	78.0814
 614	5.2	SOV	22/10/1971	349 Sapfir-1		Underground	51.6	54.45
@@ -631,9 +631,9 @@
 629	5.77	SOV	22/03/1971		Semipalatinsk	Underground	49.7933	78.1131
 630	5.1	SOV	22/03/1971		Semipalatinsk	Underground	49.7744	78.0828
 631	4.47	SOV	29/01/1971		Semipalatinsk	Underground	49.8053	78.1686
-632	6.0	SOV	23/12/1970	331 Say-Utes-3		Underground	44.025	54.933
+632	6	SOV	23/12/1970	331 Say-Utes-3		Underground	44.025	54.933
 633	5.43	SOV	17/12/1970		Semipalatinsk	Underground	49.7519	78.1017
-634	6.0	SOV	12/12/1970	329 Say-Utes-2		Underground	43.85	54.8
+634	6	SOV	12/12/1970	329 Say-Utes-2		Underground	43.85	54.8
 635	5.44	SOV	04/11/1970		Semipalatinsk	Underground	49.9892	77.7624
 636	6.79	SOV	14/10/1970	327 S	Novaya Zemlya Test Site	Underground	73.304	55.027
 637	5.1	SOV	06/09/1970		Semipalatinsk	Underground	49.7889	77.9975
@@ -970,7 +970,7 @@
 968	5.7	GBR	05/12/1985	Kinibito	NTS	Underground	37.116449	-116.188871
 969	5.5	GBR	09/12/1984	Egmont	NTS	Underground	37.116449	-116.188871
 970	5.4	GBR	01/05/1984	Mundo	NTS	Underground	37.116449	-116.188871
-971	4.0	GBR	22/04/1983	Armada	NTS	Underground	37.116449	-116.188871
+971	4	GBR	22/04/1983	Armada	NTS	Underground	37.116449	-116.188871
 972	5.4	GBR	25/04/1982	Gibne	NTS	Underground	37.116449	-116.188871
 973	5.4	GBR	12/11/1981	Rousanne	NTS	Underground	37.116449	-116.188871
 974	5.1	GBR	17/12/1980	Serpa	NTS	Underground	37.116449	-116.188871
@@ -992,21 +992,21 @@
 990	5.1	GBR	22/08/1958	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
 991	5.1	GBR	28/04/1958	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
 992	5.1	GBR	08/11/1957	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
-993	5.1	GBR	09/10/1957	Antler	Maralinga	Atmospheric	-30.163170	131.575195
-994	5.1	GBR	25/09/1957	Antler	Maralinga	Atmospheric	-30.163170	131.575195
-995	5.1	GBR	14/09/1957	Antler	Maralinga	Atmospheric	-30.163170	131.575195
+993	5.1	GBR	09/10/1957	Antler	Maralinga	Atmospheric	-30.16317	131.575195
+994	5.1	GBR	25/09/1957	Antler	Maralinga	Atmospheric	-30.16317	131.575195
+995	5.1	GBR	14/09/1957	Antler	Maralinga	Atmospheric	-30.16317	131.575195
 996	5.1	GBR	19/06/1957	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
 997	5.1	GBR	31/05/1957	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
 998	5.1	GBR	15/05/1957	grapple	Christmas Island	Atmospheric	-10.447525	105.690449
-999	5.1	GBR	22/10/1956	Buffalo	Maralinga	Atmospheric	-30.163170	131.575195
-1000	5.1	GBR	11/10/1956	Buffalo	Maralinga	Atmospheric	-30.163170	131.575195
-1001	5.1	GBR	04/10/1956	Buffalo	Maralinga	Atmospheric	-30.163170	131.575195
-1002	5.1	GBR	27/09/1956	Buffalo	Maralinga	Atmospheric	-30.163170	131.575195
-1003	5.1	GBR	19/06/1956	Mosaic G2	Monte Bello Is	Atmospheric	-20.439168	115.556260
-1004	5.1	GBR	16/05/1956	Mosaic G1	Monte Bello Is	Atmospheric	-20.439168	115.556260
+999	5.1	GBR	22/10/1956	Buffalo	Maralinga	Atmospheric	-30.16317	131.575195
+1000	5.1	GBR	11/10/1956	Buffalo	Maralinga	Atmospheric	-30.16317	131.575195
+1001	5.1	GBR	04/10/1956	Buffalo	Maralinga	Atmospheric	-30.16317	131.575195
+1002	5.1	GBR	27/09/1956	Buffalo	Maralinga	Atmospheric	-30.16317	131.575195
+1003	5.1	GBR	19/06/1956	Mosaic G2	Monte Bello Is	Atmospheric	-20.439168	115.55626
+1004	5.1	GBR	16/05/1956	Mosaic G1	Monte Bello Is	Atmospheric	-20.439168	115.55626
 1005	5.1	GBR	26/10/1953	Totem 2	Emu Fields, Australia	Atmospheric	-28.698333	132.371389
 1006	5.1	GBR	14/10/1953	Totem 1	Emu Fields, Australia	Atmospheric	-28.698333	132.371389
-1007	5.1	GBR	03/10/1952	Hurricane	Monte Bello Is	Atmospheric	-20.439168	115.556260
+1007	5.1	GBR	03/10/1952	Hurricane	Monte Bello Is	Atmospheric	-20.439168	115.55626
 1008	4.4	USA	23/09/1992	DIVIDER	Nevada Test Site	Underground	37.05575	-116.03825
 1009	4.4	USA	18/09/1992	HUNTERS TROPHY	Nevada Test Site	Underground	37.05575	-116.03825
 1010	5.1	USA	23/06/1992	GALENA-YELLOW	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1015,7 +1015,7 @@
 1013	5.5	USA	26/03/1992	JUNCTION	Nevada Test Site	Underground	37.05575	-116.03825
 1014	5.1	USA	26/11/1991	BRISTOL	Nevada Test Site	Underground	37.05575	-116.03825
 1015	5.2	USA	18/10/1991	LUBBOCK	Nevada Test Site	Underground	37.05575	-116.03825
-1016	4.0	USA	19/09/1991	DISTANT ZENITH	Nevada Test Site	Underground	37.05575	-116.03825
+1016	4	USA	19/09/1991	DISTANT ZENITH	Nevada Test Site	Underground	37.05575	-116.03825
 1017	5.5	USA	14/09/1991	HOYA	Nevada Test Site	Underground	37.05575	-116.03825
 1018	4.4	USA	15/08/1991	FLOYDADA	Nevada Test Site	Underground	37.05575	-116.03825
 1019	5.4	USA	16/04/1991	MONTELLO	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1039,10 +1039,10 @@
 1037	5.3	USA	22/06/1989	CONTACT	Nevada Test Site	Underground	37.05575	-116.03825
 1038	3.7	USA	26/05/1989	TULIA	Nevada Test Site	Underground	37.05575	-116.03825
 1039	4.4	USA	15/05/1989	PALISADE-1	Nevada Test Site	Underground	37.05575	-116.03825
-1040	5.0	USA	09/03/1989	INGOT	Nevada Test Site	Underground	37.05575	-116.03825
+1040	5	USA	09/03/1989	INGOT	Nevada Test Site	Underground	37.05575	-116.03825
 1041	4.4	USA	24/02/1989	KAWICH-RED	Nevada Test Site	Underground	37.05575	-116.03825
 1042	5.2	USA	10/02/1989	TEXARKANA	Nevada Test Site	Underground	37.05575	-116.03825
-1043	5.0	USA	10/12/1988	MISTY ECHO	Nevada Test Site	Underground	37.05575	-116.03825
+1043	5	USA	10/12/1988	MISTY ECHO	Nevada Test Site	Underground	37.05575	-116.03825
 1044	5.1	USA	09/12/1988	KAWICH-WHITE	Nevada Test Site	Underground	37.05575	-116.03825
 1045	5.1	USA	09/11/1988	MONAHANS-A	Nevada Test Site	Underground	37.05575	-116.03825
 1046	5.9	USA	13/10/1988	DALHART	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1084,8 +1084,8 @@
 1082	5.4	USA	05/06/1986	TAJO	Nevada Test Site	Underground	37.05575	-116.03825
 1083	5.1	USA	21/05/1986	PANAMINT	Nevada Test Site	Underground	37.05575	-116.03825
 1084	5.4	USA	22/04/1986	JEFFERSON	Nevada Test Site	Underground	37.05575	-116.03825
-1085	4.0	USA	20/04/1986	MOGOLLON	Nevada Test Site	Underground	37.05575	-116.03825
-1086	5.0	USA	10/04/1986	MIGHTY OAK	Nevada Test Site	Underground	37.05575	-116.03825
+1085	4	USA	20/04/1986	MOGOLLON	Nevada Test Site	Underground	37.05575	-116.03825
+1086	5	USA	10/04/1986	MIGHTY OAK	Nevada Test Site	Underground	37.05575	-116.03825
 1087	5.2	USA	22/03/1986	GLENCOE	Nevada Test Site	Underground	37.05575	-116.03825
 1088	5.3	USA	28/12/1985	GOLDSTONE	Nevada Test Site	Underground	37.05575	-116.03825
 1089	5.1	USA	05/12/1985	KINIBITO	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1110,7 +1110,7 @@
 1108	5.1	USA	09/12/1984	EGMONT	Nevada Test Site	Underground	37.05575	-116.03825
 1109	4.5	USA	10/11/1984	VILLITA	Nevada Test Site	Underground	37.05575	-116.03825
 1110	4.2	USA	02/10/1984	VERMEJO	Nevada Test Site	Underground	37.05575	-116.03825
-1111	5.0	USA	13/09/1984	BRETON	Nevada Test Site	Underground	37.05575	-116.03825
+1111	5	USA	13/09/1984	BRETON	Nevada Test Site	Underground	37.05575	-116.03825
 1112	5.1	USA	30/08/1984	WEXFORD	Nevada Test Site	Underground	37.05575	-116.03825
 1113	4.9	USA	30/08/1984	DOLCETTO	Nevada Test Site	Underground	37.05575	-116.03825
 1114	4.7	USA	02/08/1984	CORREO	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1142,7 +1142,7 @@
 1140	5.1	USA	22/04/1983	ARMADA	Nevada Test Site	Underground	37.05575	-116.03825
 1141	5.7	USA	14/04/1983	TURQUOISE	Nevada Test Site	Underground	37.05575	-116.03825
 1142	5.2	USA	26/03/1983	CABRA	Nevada Test Site	Underground	37.05575	-116.03825
-1143	4.0	USA	17/02/1983	CHEEDAM	Nevada Test Site	Underground	37.05575	-116.03825
+1143	4	USA	17/02/1983	CHEEDAM	Nevada Test Site	Underground	37.05575	-116.03825
 1144	5.1	USA	11/02/1983	COALORA	Nevada Test Site	Underground	37.05575	-116.03825
 1145	4.8	USA	10/12/1982	MANTECA	Nevada Test Site	Underground	37.05575	-116.03825
 1146	4.4	USA	12/11/1982	SEYVAL	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1205,8 +1205,8 @@
 1203	5.1	USA	29/08/1979	NESSEL	Nevada Test Site	Underground	37.05575	-116.03825
 1204	4.9	USA	08/08/1979	OFFSHORE	Nevada Test Site	Underground	37.05575	-116.03825
 1205	4.6	USA	03/08/1979	BURZET	Nevada Test Site	Underground	37.05575	-116.03825
-1206	5.0	USA	28/06/1979	FAJY	Nevada Test Site	Underground	37.05575	-116.03825
-1207	4.0	USA	20/06/1979	CHESS	Nevada Test Site	Underground	37.05575	-116.03825
+1206	5	USA	28/06/1979	FAJY	Nevada Test Site	Underground	37.05575	-116.03825
+1207	4	USA	20/06/1979	CHESS	Nevada Test Site	Underground	37.05575	-116.03825
 1208	5.5	USA	11/06/1979	PEPATO	Nevada Test Site	Underground	37.05575	-116.03825
 1209	5.1	USA	11/05/1979	FREEZEOUT	Nevada Test Site	Underground	37.05575	-116.03825
 1210	4.4	USA	14/03/1979	MEMORY	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1218,12 +1218,12 @@
 1216	5.1	USA	18/11/1978	QUARGEL	Nevada Test Site	Underground	37.05575	-116.03825
 1217	4.2	USA	02/11/1978	EMMENTHAL	Nevada Test Site	Underground	37.05575	-116.03825
 1218	5.8	USA	27/09/1978	RUMMY	Nevada Test Site	Underground	37.05575	-116.03825
-1219	5.0	USA	27/09/1978	DRAUGHTS	Nevada Test Site	Underground	37.05575	-116.03825
+1219	5	USA	27/09/1978	DRAUGHTS	Nevada Test Site	Underground	37.05575	-116.03825
 1220	5.1	USA	27/09/1978	CREMINO	Nevada Test Site	Underground	37.05575	-116.03825
 1221	4.6	USA	13/09/1978	DIABLO HAWK	Nevada Test Site	Underground	37.05575	-116.03825
 1222	5.6	USA	31/08/1978	PANIR	Nevada Test Site	Underground	37.05575	-116.03825
 1223	5.6	USA	12/07/1978	LOWBALL	Nevada Test Site	Underground	37.05575	-116.03825
-1224	4.0	USA	07/07/1978	SATZ	Nevada Test Site	Underground	37.05575	-116.03825
+1224	4	USA	07/07/1978	SATZ	Nevada Test Site	Underground	37.05575	-116.03825
 1225	5.1	USA	01/06/1978	JACKPOTS	Nevada Test Site	Underground	37.05575	-116.03825
 1226	5.1	USA	10/05/1978	TRANSOM	Nevada Test Site	Underground	37.05575	-116.03825
 1227	5.1	USA	25/04/1978	ASCO	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1231,7 +1231,7 @@
 1229	5.4	USA	11/04/1978	FONDUTTA	Nevada Test Site	Underground	37.05575	-116.03825
 1230	5.1	USA	23/03/1978	TOPMAST	Nevada Test Site	Underground	37.05575	-116.03825
 1231	5.6	USA	23/03/1978	ICEBERG	Nevada Test Site	Underground	37.05575	-116.03825
-1232	4.0	USA	16/03/1978	KARAB	Nevada Test Site	Underground	37.05575	-116.03825
+1232	4	USA	16/03/1978	KARAB	Nevada Test Site	Underground	37.05575	-116.03825
 1233	5.6	USA	23/02/1978	REBLOCHON	Nevada Test Site	Underground	37.05575	-116.03825
 1234	3.8	USA	13/02/1978	CAMPOS	Nevada Test Site	Underground	37.05575	-116.03825
 1235	5.7	USA	14/12/1977	FARALLONES	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1268,16 +1268,16 @@
 1266	5.8	USA	17/03/1976	STRAIT	Nevada Test Site	Underground	37.05575	-116.03825
 1267	6.1	USA	17/03/1976	POOL	Nevada Test Site	Underground	37.05575	-116.03825
 1268	6.3	USA	14/03/1976	COLBY	Nevada Test Site	Underground	37.05575	-116.03825
-1269	6.0	USA	09/03/1976	ESTUARY	Nevada Test Site	Underground	37.05575	-116.03825
+1269	6	USA	09/03/1976	ESTUARY	Nevada Test Site	Underground	37.05575	-116.03825
 1270	4.2	USA	26/02/1976	SHALLOWS	Nevada Test Site	Underground	37.05575	-116.03825
-1271	6.0	USA	14/02/1976	CHESHIRE	Nevada Test Site	Underground	37.05575	-116.03825
+1271	6	USA	14/02/1976	CHESHIRE	Nevada Test Site	Underground	37.05575	-116.03825
 1272	6.3	USA	12/02/1976	FONTINA	Nevada Test Site	Underground	37.05575	-116.03825
 1273	5.7	USA	04/02/1976	ESROM	Nevada Test Site	Underground	37.05575	-116.03825
 1274	5.8	USA	04/02/1976	KEELSON	Nevada Test Site	Underground	37.05575	-116.03825
 1275	6.2	USA	03/01/1976	MUENSTER	Nevada Test Site	Underground	37.05575	-116.03825
 1276	5.7	USA	20/12/1975	CHIBERTA	Nevada Test Site	Underground	37.05575	-116.03825
-1277	5.0	USA	26/11/1975	LEYDEN	Nevada Test Site	Underground	37.05575	-116.03825
-1278	6.0	USA	20/11/1975	INLET	Nevada Test Site	Underground	37.05575	-116.03825
+1277	5	USA	26/11/1975	LEYDEN	Nevada Test Site	Underground	37.05575	-116.03825
+1278	6	USA	20/11/1975	INLET	Nevada Test Site	Underground	37.05575	-116.03825
 1279	4.4	USA	18/11/1975	DECK	Nevada Test Site	Underground	37.05575	-116.03825
 1280	6.4	USA	28/10/1975	KASSERI	Nevada Test Site	Underground	37.05575	-116.03825
 1281	4.7	USA	24/10/1975	HUSKY PUP	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1288,7 +1288,7 @@
 1286	5.1	USA	11/06/1975	ALVISO	Nevada Test Site	Underground	37.05575	-116.03825
 1287	5.7	USA	03/06/1975	MIZZEN	Nevada Test Site	Underground	37.05575	-116.03825
 1288	5.9	USA	03/06/1975	STILTON	Nevada Test Site	Underground	37.05575	-116.03825
-1289	6.0	USA	14/05/1975	TYBO	Nevada Test Site	Underground	37.05575	-116.03825
+1289	6	USA	14/05/1975	TYBO	Nevada Test Site	Underground	37.05575	-116.03825
 1290	5.2	USA	30/04/1975	OBAR	Nevada Test Site	Underground	37.05575	-116.03825
 1291	4.6	USA	24/04/1975	EDAM	Nevada Test Site	Underground	37.05575	-116.03825
 1292	4.9	USA	05/04/1975	DINING CAR	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1309,7 +1309,7 @@
 1307	4.6	USA	14/08/1974	PUYE	Nevada Test Site	Underground	37.05575	-116.03825
 1308	5.1	USA	18/07/1974	CRESTLAKE-TANSAN	Nevada Test Site	Underground	37.05575	-116.03825
 1309	5.7	USA	10/07/1974	ESCABOSA	Nevada Test Site	Underground	37.05575	-116.03825
-1310	5.0	USA	19/06/1974	MING BLADE	Nevada Test Site	Underground	37.05575	-116.03825
+1310	5	USA	19/06/1974	MING BLADE	Nevada Test Site	Underground	37.05575	-116.03825
 1311	4.4	USA	06/06/1974	JARA	Nevada Test Site	Underground	37.05575	-116.03825
 1312	5.1	USA	23/05/1974	FALLON	Nevada Test Site	Underground	37.05575	-116.03825
 1313	4.2	USA	22/05/1974	GROVE	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1335,7 +1335,7 @@
 1333	5.1	USA	05/06/1973	DIDO QUEEN	Nevada Test Site	Underground	37.05575	-116.03825
 1334	4.8	USA	24/05/1973	CABRESTO	Nevada Test Site	Underground	37.05575	-116.03825
 1335	5.1	USA	24/05/1973	KASHAN	Nevada Test Site	Underground	37.05575	-116.03825
-1336	5.4	USA	17/05/1973	RIO BLANCO-1	Rifle, Colorado	Underground	39.534702	-107.783120
+1336	5.4	USA	17/05/1973	RIO BLANCO-1	Rifle, Colorado	Underground	39.534702	-107.78312
 1337	5.1	USA	09/05/1973	MESITA	Nevada Test Site	Underground	37.05575	-116.03825
 1338	5.6	USA	26/04/1973	STARWORT	Nevada Test Site	Underground	37.05575	-116.03825
 1339	5.1	USA	26/04/1973	COLMOR	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1345,7 +1345,7 @@
 1343	5.4	USA	08/03/1973	MIERA	Nevada Test Site	Underground	37.05575	-116.03825
 1344	5.1	USA	14/02/1973	ALUMROOT	Nevada Test Site	Underground	37.05575	-116.03825
 1345	5.1	USA	21/12/1972	FLAX-TEST	Nevada Test Site	Underground	37.05575	-116.03825
-1346	5.0	USA	21/12/1972	FLAX-SOURCE	Nevada Test Site	Underground	37.05575	-116.03825
+1346	5	USA	21/12/1972	FLAX-SOURCE	Nevada Test Site	Underground	37.05575	-116.03825
 1347	5.1	USA	14/12/1972	SOLANUM	Nevada Test Site	Underground	37.05575	-116.03825
 1348	5.1	USA	12/12/1972	TULOSO	Nevada Test Site	Underground	37.05575	-116.03825
 1349	5.1	USA	17/11/1972	CANNA-UMBRINUS	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1354,8 +1354,8 @@
 1352	4.4	USA	26/09/1972	DELPHINIUM	Nevada Test Site	Underground	37.05575	-116.03825
 1353	5.7	USA	21/09/1972	OSCURO	Nevada Test Site	Underground	37.05575	-116.03825
 1354	5.1	USA	09/08/1972	CEBOLLA	Nevada Test Site	Underground	37.05575	-116.03825
-1355	4.0	USA	25/07/1972	ATARQUE	Nevada Test Site	Underground	37.05575	-116.03825
-1356	5.0	USA	20/07/1972	DIAMOND SCULLS	Nevada Test Site	Underground	37.05575	-116.03825
+1355	4	USA	25/07/1972	ATARQUE	Nevada Test Site	Underground	37.05575	-116.03825
+1356	5	USA	20/07/1972	DIAMOND SCULLS	Nevada Test Site	Underground	37.05575	-116.03825
 1357	5.1	USA	28/06/1972	HAPLOPAPPUS	Nevada Test Site	Underground	37.05575	-116.03825
 1358	5.1	USA	28/06/1972	TAJIQUE	Nevada Test Site	Underground	37.05575	-116.03825
 1359	5.1	USA	28/06/1972	CAPITAN	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1363,7 +1363,7 @@
 1361	4.9	USA	19/05/1972	MONERO	Nevada Test Site	Underground	37.05575	-116.03825
 1362	4.4	USA	17/05/1972	ZINNIA	Nevada Test Site	Underground	37.05575	-116.03825
 1363	5.1	USA	11/05/1972	KARA	Nevada Test Site	Underground	37.05575	-116.03825
-1364	5.0	USA	02/05/1972	MISTY NORTH	Nevada Test Site	Underground	37.05575	-116.03825
+1364	5	USA	02/05/1972	MISTY NORTH	Nevada Test Site	Underground	37.05575	-116.03825
 1365	5.1	USA	19/04/1972	JICARILLA	Nevada Test Site	Underground	37.05575	-116.03825
 1366	4.6	USA	19/04/1972	LONGCHAMPS	Nevada Test Site	Underground	37.05575	-116.03825
 1367	4.6	USA	30/03/1972	OCATE	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1410,7 +1410,7 @@
 1408	5.1	USA	28/05/1970	PITON-A	Nevada Test Site	Underground	37.05575	-116.03825
 1409	4.2	USA	28/05/1970	PITON-C	Nevada Test Site	Underground	37.05575	-116.03825
 1410	5.6	USA	26/05/1970	FLASK-GREEN	Nevada Test Site	Underground	37.05575	-116.03825
-1411	5.0	USA	26/05/1970	HUDSON MOON	Nevada Test Site	Underground	37.05575	-116.03825
+1411	5	USA	26/05/1970	HUDSON MOON	Nevada Test Site	Underground	37.05575	-116.03825
 1412	5.1	USA	21/05/1970	MORRONES	Nevada Test Site	Underground	37.05575	-116.03825
 1413	3.5	USA	21/05/1970	MANZANAS	Nevada Test Site	Underground	37.05575	-116.03825
 1414	5.3	USA	15/05/1970	CORNICE-YELLOW	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1439,12 +1439,12 @@
 1437	5.5	USA	17/12/1969	GRAPE A	Nevada Test Site	Underground	37.05575	-116.03825
 1438	5.1	USA	10/12/1969	TUN-A	Nevada Test Site	Underground	37.05575	-116.03825
 1439	5.1	USA	10/12/1969	CULANTRO-A	Nevada Test Site	Underground	37.05575	-116.03825
-1440	5.0	USA	05/12/1969	DIESEL TRAIN	Nevada Test Site	Underground	37.05575	-116.03825
-1441	5.0	USA	21/11/1969	PICCALILLI	Nevada Test Site	Underground	37.05575	-116.03825
+1440	5	USA	05/12/1969	DIESEL TRAIN	Nevada Test Site	Underground	37.05575	-116.03825
+1441	5	USA	21/11/1969	PICCALILLI	Nevada Test Site	Underground	37.05575	-116.03825
 1442	5.1	USA	21/11/1969	PLANER	Nevada Test Site	Underground	37.05575	-116.03825
 1443	5.1	USA	13/11/1969	SCUTTLE	Nevada Test Site	Underground	37.05575	-116.03825
 1444	5.7	USA	29/10/1969	CALABASH	Nevada Test Site	Underground	37.05575	-116.03825
-1445	5.0	USA	29/10/1969	POD-A	Nevada Test Site	Underground	37.05575	-116.03825
+1445	5	USA	29/10/1969	POD-A	Nevada Test Site	Underground	37.05575	-116.03825
 1446	5.1	USA	29/10/1969	CRUET	Nevada Test Site	Underground	37.05575	-116.03825
 1447	5.1	USA	16/10/1969	SEAWEED B	Nevada Test Site	Underground	37.05575	-116.03825
 1448	5.6	USA	08/10/1969	PIPKIN	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1461,7 +1461,7 @@
 1459	4.7	USA	16/07/1969	ILDRIM	Nevada Test Site	Underground	37.05575	-116.03825
 1460	5.1	USA	26/06/1969	BOWL-1	Nevada Test Site	Underground	37.05575	-116.03825
 1461	4.5	USA	12/06/1969	TAPPER	Nevada Test Site	Underground	37.05575	-116.03825
-1462	5.0	USA	27/05/1969	TORRIDO	Nevada Test Site	Underground	37.05575	-116.03825
+1462	5	USA	27/05/1969	TORRIDO	Nevada Test Site	Underground	37.05575	-116.03825
 1463	5.1	USA	27/05/1969	IPECAC-A	Nevada Test Site	Underground	37.05575	-116.03825
 1464	5.1	USA	15/05/1969	ALIMENT	Nevada Test Site	Underground	37.05575	-116.03825
 1465	5.8	USA	07/05/1969	PURSE	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1490,14 +1490,14 @@
 1488	5.1	USA	15/11/1968	KNIFE B	Nevada Test Site	Underground	37.05575	-116.03825
 1489	5.1	USA	15/11/1968	AUGER	Nevada Test Site	Underground	37.05575	-116.03825
 1490	5.1	USA	04/11/1968	CREW-2nd	Nevada Test Site	Underground	37.05575	-116.03825
-1491	5.0	USA	04/11/1968	CREW	Nevada Test Site	Underground	37.05575	-116.03825
+1491	5	USA	04/11/1968	CREW	Nevada Test Site	Underground	37.05575	-116.03825
 1492	5.1	USA	31/10/1968	BIT-A	Nevada Test Site	Underground	37.05575	-116.03825
 1493	5.1	USA	31/10/1968	FILE	Nevada Test Site	Underground	37.05575	-116.03825
 1494	5.1	USA	29/10/1968	HULA	Nevada Test Site	Underground	37.05575	-116.03825
 1495	5.1	USA	10/10/1968	VAT	Nevada Test Site	Underground	37.05575	-116.03825
 1496	5.1	USA	03/10/1968	KNIFE C	Nevada Test Site	Underground	37.05575	-116.03825
 1497	5.1	USA	03/10/1968	WELDER	Nevada Test Site	Underground	37.05575	-116.03825
-1498	5.0	USA	24/09/1968	HUDSON SEAL	Nevada Test Site	Underground	37.05575	-116.03825
+1498	5	USA	24/09/1968	HUDSON SEAL	Nevada Test Site	Underground	37.05575	-116.03825
 1499	5.1	USA	17/09/1968	STODDARD	Nevada Test Site	Underground	37.05575	-116.03825
 1500	5.8	USA	12/09/1968	KNIFE A	Nevada Test Site	Underground	37.05575	-116.03825
 1501	5.6	USA	06/09/1968	NOGGIN	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1527,7 +1527,7 @@
 1525	5.1	USA	14/03/1968	POMMARD	Nevada Test Site	Underground	37.05575	-116.03825
 1526	5.1	USA	12/03/1968	BUGGY-A	Nevada Test Site	Underground	37.05575	-116.03825
 1527	5.1	USA	05/03/1968	RUSSET	Nevada Test Site	Underground	37.05575	-116.03825
-1528	5.0	USA	29/02/1968	DORSAL FIN	Nevada Test Site	Underground	37.05575	-116.03825
+1528	5	USA	29/02/1968	DORSAL FIN	Nevada Test Site	Underground	37.05575	-116.03825
 1529	5.8	USA	21/02/1968	KNOX	Nevada Test Site	Underground	37.05575	-116.03825
 1530	5.1	USA	21/02/1968	TORCH	Nevada Test Site	Underground	37.05575	-116.03825
 1531	5.1	USA	31/01/1968	MALLET	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1547,13 +1547,13 @@
 1545	5.7	USA	27/09/1967	ZAZA	Nevada Test Site	Underground	37.05575	-116.03825
 1546	5.1	USA	21/09/1967	MARVEL	Nevada Test Site	Underground	37.05575	-116.03825
 1547	5.1	USA	15/09/1967	GILROY	Nevada Test Site	Underground	37.05575	-116.03825
-1548	5.0	USA	07/09/1967	YARD	Nevada Test Site	Underground	37.05575	-116.03825
-1549	5.0	USA	31/08/1967	DOOR MIST	Nevada Test Site	Underground	37.05575	-116.03825
+1548	5	USA	07/09/1967	YARD	Nevada Test Site	Underground	37.05575	-116.03825
+1549	5	USA	31/08/1967	DOOR MIST	Nevada Test Site	Underground	37.05575	-116.03825
 1550	5.1	USA	24/08/1967	LEXINGTON	Nevada Test Site	Underground	37.05575	-116.03825
 1551	4.6	USA	18/08/1967	BORDEAUX	Nevada Test Site	Underground	37.05575	-116.03825
 1552	5.1	USA	10/08/1967	WASHER	Nevada Test Site	Underground	37.05575	-116.03825
 1553	5.1	USA	04/08/1967	GIBSON	Nevada Test Site	Underground	37.05575	-116.03825
-1554	5.0	USA	27/07/1967	STANLEY	Nevada Test Site	Underground	37.05575	-116.03825
+1554	5	USA	27/07/1967	STANLEY	Nevada Test Site	Underground	37.05575	-116.03825
 1555	5.1	USA	14/07/1967	VITO	Nevada Test Site	Underground	37.05575	-116.03825
 1556	4.6	USA	29/06/1967	UMBER	Nevada Test Site	Underground	37.05575	-116.03825
 1557	5.1	USA	26/06/1967	MIDI MIST	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1562,7 +1562,7 @@
 1560	5.1	USA	26/05/1967	ABSINTHE	Nevada Test Site	Underground	37.05575	-116.03825
 1561	5.7	USA	23/05/1967	SCOTCH	Nevada Test Site	Underground	37.05575	-116.03825
 1562	5.9	USA	20/05/1967	COMMODORE	Nevada Test Site	Underground	37.05575	-116.03825
-1563	5.0	USA	10/05/1967	MICKEY	Nevada Test Site	Underground	37.05575	-116.03825
+1563	5	USA	10/05/1967	MICKEY	Nevada Test Site	Underground	37.05575	-116.03825
 1564	3.8	USA	27/04/1967	EFFENDI	Nevada Test Site	Underground	37.05575	-116.03825
 1565	4.3	USA	21/04/1967	CHOCOLATE	Nevada Test Site	Underground	37.05575	-116.03825
 1566	3.9	USA	07/04/1967	FAWN	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1619,7 +1619,7 @@
 1617	5.1	USA	12/03/1966	CLYMER	Nevada Test Site	Underground	37.05575	-116.03825
 1618	5.1	USA	07/03/1966	FINFOOT	Nevada Test Site	Underground	37.05575	-116.03825
 1619	4.11	USA	05/03/1966	RED HOT	Nevada Test Site	Underground	37.05575	-116.03825
-1620	5.0	USA	24/02/1966	REX	Nevada Test Site	Underground	37.05575	-116.03825
+1620	5	USA	24/02/1966	REX	Nevada Test Site	Underground	37.05575	-116.03825
 1621	4.3	USA	03/02/1966	PLAID II	Nevada Test Site	Underground	37.05575	-116.03825
 1622	5.1	USA	22/01/1966	REO	Nevada Test Site	Underground	37.05575	-116.03825
 1623	5.1	USA	21/01/1966	DOVEKIE	Nevada Test Site	Underground	37.05575	-116.03825
@@ -1652,7 +1652,7 @@
 1650	5.1	USA	07/05/1965	TEE	Nevada Test Site	Underground	37.05575	-116.03825
 1651	5.1	USA	23/04/1965	MUSCOVY	Nevada Test Site	Underground	37.05575	-116.03825
 1652	5.1	USA	22/04/1965	CHENILLE	Nevada Test Site	Underground	37.05575	-116.03825
-1653	5.0	USA	21/04/1965	GUM DROP	Nevada Test Site	Underground	37.05575	-116.03825
+1653	5	USA	21/04/1965	GUM DROP	Nevada Test Site	Underground	37.05575	-116.03825
 1654	4.33	USA	14/04/1965	PALANQUIN	Nevada Test Site	Underground	37.05575	-116.03825
 1655	5.1	USA	05/04/1965	KESTREL	Nevada Test Site	Underground	37.05575	-116.03825
 1656	5.25	USA	26/03/1965	CUP	Nevada Test Site	Underground	37.05575	-116.03825
@@ -2062,5 +2062,6 @@
 2060	5.1	USA	30/06/1946	Able	Bikini Is (USA)	Atmospheric	11	165
 2061	5.1	USA	09/08/1945	fatman	Nagasaki, Japan	Atmospheric	32.48	129.53
 2062	5.1	USA	05/08/1945	littleboy	Hiroshima, Japan	Atmospheric	34.22	132.25
-2063	5.1	USA	16/07/1945	Trinity	New Mexico (USA)	Atmospheric	34.519940	-105.870090
+2063	5.1	USA	16/07/1945	Trinity	New Mexico (USA)	Atmospheric	34.51994	-105.87009
 2064	5.1	UNK	22/09/1979	-		Atmospheric	-47	40
+2065	250	UNK	03/09/17			Underground	41.343	129.036
