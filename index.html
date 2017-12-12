@@ -111,7 +111,7 @@
             <span id='year'></span>
         </div>
         <div id='checkboxContainer'>
-            <label><input type='checkbox' id='historycb' onclick='handleClick(this);'>Show history</label>
+            <button type='button' id='historyButton' onclick='handleClick(this);'>Show history</button>
         </div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
@@ -147,7 +147,8 @@
     let timer;
     let histHeight = height/5;
     let bins;
-    let history = d3.select('#historycb').node().checked;
+    let history = false;
+    let click = false;
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -177,7 +178,6 @@
         .attr("transform", function(d) {
             return "translate(" + 20 + "," + 0 + ")";
           });
-        
         
     var x = d3.scaleTime()
         .domain([START_DATE, END_DATE])
@@ -216,9 +216,8 @@
                     .attr("height","1")
                     .attr("width","1")
                     .attr("preserveAspectRatio","none")
-                    .attr("xlink:href","./data/"+d.country+".png");
+                    .attr("xlink:href","./data/"+d.country+".png");  
             }
-            
       });
 
       var bar = hist.selectAll('.bar')
@@ -276,12 +275,16 @@
     timeSlider.append("line")
         .on("click", function(){
             timeHandle.attr('cx', d3.mouse(this)[0]);
-            previous_date = current_date;
+            previous_date = new Date(current_date);
             current_date = x.invert(d3.mouse(this)[0]);
+            updatebars(previous_date, current_date);
+            removeShownCircles();
+            
+            previous_date = new Date(current_date);
+            previous_date = new Date(previous_date.setMonth(previous_date.getMonth()-12));
+            click = true;
             update(previous_date, current_date);
-            removebars(previous_date, current_date);
             history = false;
-            removeInstantShownCircles();
         })
         .attr("class", "timeline")
         .attr("x1", x.range()[0])
@@ -341,6 +344,19 @@
             .remove();
     }
     
+    // prints a marker on the map at the location of the input event
+    function printClickEvent(event){
+        svg.append("circle")
+            .attr("class", "event")
+            .attr("cx", event.x)
+            .attr("cy", event.y)
+            .attr("fill", "url(#"+event.country+")")
+            .attr("r", 0)
+            .transition()
+            .duration(300)
+            .attr("r", Math.exp(event.magnitude * 2/3));
+    }
+    
     // prints instant marker on the map for the history
     function printInstantEvent(event){
         svg.append("circle")
@@ -349,6 +365,7 @@
                 .attr("cy", event.y)
                 .attr("fill", "url(#"+event.country+")")
                 .attr("r", Math.exp(event.magnitude * 2/3))
+                .style("opacity", 0.5);
     }
 
     //This function is called when the slider is moved manually
@@ -357,7 +374,7 @@
         let previous_date = current_date;
         current_date = date;
         update(previous_date, current_date);
-        removebars(previous_date, current_date);
+        updatebars(previous_date, current_date);
     }
     
     // Continue the transition of current shown circles
@@ -384,28 +401,31 @@
             current_date = START_DATE;
             pauseAnimation();
             playButton.goToNextState();
-            removebars(previous_date, current_date);
         }
         update(previous_date, current_date);
+        updatebars(previous_date, current_date);
     }
     
+    // Update visualization in function of two dates
     function update(previous_date, current_date){
         printDate(current_date);
         timeHandle.attr("cx", x(current_date));
-        if (history){
-            window.site_data.filter(event => (event.date <= current_date)).forEach(event => printInstantEvent(event));
+        if (click){
+            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printClickEvent(event)); 
         } else {
             window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
         }
-        var currbars = d3.selectAll(".bar").filter(d => (d.x0 <= current_date && d.x0 > previous_date));
-        currbars
-            .attr("fill", INACTIVE_BAR_COLOR).transition().duration(500)
-            .attr("fill", ACTIVE_BAR_COLOR);
+        click = false;
+        
     }
     
-    function removebars(previous_date, current_date){
-        var deletebars = d3.selectAll(".bar").filter(d => (d.x0 > current_date && d.x0 <= previous_date));
-        deletebars
+    // Update histogram colors in function of two dates
+    function updatebars(previous_date, current_date){
+        d3.selectAll(".bar").filter(d => (d.x0 <= current_date && d.x0 > previous_date))
+            .attr("fill", INACTIVE_BAR_COLOR).transition().duration(500)
+            .attr("fill", ACTIVE_BAR_COLOR);
+        
+        d3.selectAll(".bar").filter(d => (d.x0 > current_date && d.x0 <= previous_date))
             .attr("fill", ACTIVE_BAR_COLOR).transition().duration(500)
             .attr("fill", INACTIVE_BAR_COLOR);
     }
@@ -413,6 +433,7 @@
     function playAnimation(){
         if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
         was_running = true;
+        history = false;
         removeShownCircles();
     }
 
@@ -422,6 +443,7 @@
             clearInterval(timer);
             timer = false;
         }
+        history = false;
         return previous_state;
     }
     
@@ -439,17 +461,16 @@
         return Math.abs(Math.round(diff/365.25));
     }
     
-    // Function that handle checkbox click
-    function handleClick(cb) {
-        history = cb.checked;
-        if (history){
-            removeInstantShownCircles();
-            update(current_date, END_DATE)
-        } else {
-            removeShownCircles();
-            update(previous_date, current_date);
-            removebars(previous_date, current_date);
+    // Function that handle button click
+    function handleClick(button) {
+        if(!history){
+            window.site_data.filter(event => (event.date <= current_date)).forEach(event => printInstantEvent(event));
+            if(timer){
+                pauseAnimation();
+                playButton.goToNextState();
+            }
         }
+        history = true;
     }
     
     
