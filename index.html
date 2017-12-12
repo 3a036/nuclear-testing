@@ -77,6 +77,15 @@
             line-height: 50px;
             display:block;
         }
+        #checkboxContainer{
+            position: fixed;
+            left: 5px;
+            top: 60px;
+            height:50px;
+            text-align:left;
+            line-height: 50px;
+            display:block;
+        }
 
         .timeline {
             stroke: grey;
@@ -100,6 +109,9 @@
         <div id='dateContainer'>
             <span id='month'></span>
             <span id='year'></span>
+        </div>
+        <div id='checkboxContainer'>
+            <label><input type='checkbox' id='historycb' onclick='handleClick(this);'>Show history</label>
         </div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
@@ -131,51 +143,30 @@
     let container = d3.select("#container");
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
-    let nuclear_events = [];
     let current_date = START_DATE;
     let timer;
     let histHeight = height/5;
     let bins;
+    let history = d3.select('#historycb').node().checked;
 
     let svg = container.append('svg')
         .attr('width', width)
         .attr('height', height);
     
     let defs = svg.append('defs');
-
+    
     // projection of the world map
     var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
     
     d3.json(PATH_TO_MAP, function(error, topology) {
-    if (error) throw error;
+        if (error) throw error;
 
-    var geojson = topojson.feature(topology, topology.objects.countries);
+        var geojson = topojson.feature(topology, topology.objects.countries);
 
-    svg.selectAll("path")
-        .data(geojson.features)
-        .enter().append("path")
-        .attr("d", d3.geoPath().projection(projection));
-    });
-
-    // Loading the data
-    d3.tsv("./data/nuclear_test.tsv")
-    .row(function(d) {
-      var datesplit = d.date.split('/');
-      return {
-        magnitude: parseInt(d.magnitude),
-        country: d.country,
-        name: d.name,
-        site: d.site,
-        textual_location: d.textual_infos,
-        type: d.type,
-        lat: parseFloat(d.lat),
-        lng: parseFloat(d.lng),
-        date: new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]))
-      };
-    })
-    .get(function(err, rows) {
-        if (err) return console.error(err);
-        window.site_data = rows;
+        svg.selectAll("path")
+            .data(geojson.features)
+            .enter().append("path")
+            .attr("d", d3.geoPath().projection(projection));
     });
     
     // Time slider
@@ -206,6 +197,7 @@
     var hist = viewHistogram.append("g")
         .attr("class", "histogram");
     
+    // Create binned data + images for display on map
     d3.tsv("./data/nuclear_test.tsv", prepare, function(data) {
     // group data for bars
       bins = histogram(data);
@@ -214,18 +206,19 @@
       y.domain([0, d3.max(bins, function(d) { return d.length; })]);
       
       data.forEach(function(d, i) {
-          if (d3.select("#"+d.country).empty()){
-            defs.append("pattern")
-                .attr("id", d.country)
-                .attr("height","100%")
-                .attr("width", "100%")
-                .attr("patternContentUnits", "objectBoundingBox")
-                .append("image")
-                .attr("height","1")
-                .attr("width","1")
-                .attr("preserveAspectRatio","none")
-                .attr("xlink:href","./data/"+d.country+".png");
-          }
+            if (d3.select("#"+d.country).empty()){
+                defs.append("pattern")
+                    .attr("id", d.country)
+                    .attr("height","100%")
+                    .attr("width", "100%")
+                    .attr("patternContentUnits", "objectBoundingBox")
+                    .append("image")
+                    .attr("height","1")
+                    .attr("width","1")
+                    .attr("preserveAspectRatio","none")
+                    .attr("xlink:href","./data/"+d.country+".png");
+            }
+            
       });
 
       var bar = hist.selectAll('.bar')
@@ -246,7 +239,28 @@
             .attr("rx", 3)
             .attr("ry", 3);
 
-    });    
+    }); 
+
+    // Loading the data
+    d3.tsv("./data/nuclear_test.tsv")
+    .row(function(d) {
+      var datesplit = d.date.split('/');
+      return {
+        magnitude: parseInt(d.magnitude),
+        country: d.country,
+        name: d.name,
+        site: d.site,
+        textual_location: d.textual_infos,
+        type: d.type,
+        x: projection([d.lng, d.lat])[0],
+        y: projection([d.lng, d.lat])[1],
+        date: new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]))
+      };
+    })
+    .get(function(err, rows) {
+        if (err) return console.error(err);
+        window.site_data = rows;
+    });
     
     // Time slider
     var viewSlider = d3.select("#slider")
@@ -266,6 +280,8 @@
             current_date = x.invert(d3.mouse(this)[0]);
             update(previous_date, current_date);
             removebars(previous_date, current_date);
+            history = false;
+            removeInstantShownCircles();
         })
         .attr("class", "timeline")
         .attr("x1", x.range()[0])
@@ -312,19 +328,27 @@
     function printEvent(event){
         svg.append("circle")
             .attr("class", "event")
-            .attr("cx", projection([event.lng, event.lat])[0])
-            .attr("cy", projection([event.lng, event.lat])[1])
+            .attr("cx", event.x)
+            .attr("cy", event.y)
             .attr("fill", "url(#"+event.country+")")
-            .attr('r', 0)
+            .attr("r", 0)
             .transition()
-            .ease(d3.easeLinear)
-            .duration(500)
+            .duration(300)
             .attr("r", Math.exp(event.magnitude * 2/3))
             .transition()
-            .ease(d3.easeLinear)
-            .duration(500)
-            .attr("r",0)
+            .duration(300)
+            .attr("r", 0)
             .remove();
+    }
+    
+    // prints instant marker on the map for the history
+    function printInstantEvent(event){
+        svg.append("circle")
+                .attr("class", "event")
+                .attr("cx", event.x)
+                .attr("cy", event.y)
+                .attr("fill", "url(#"+event.country+")")
+                .attr("r", Math.exp(event.magnitude * 2/3))
     }
 
     //This function is called when the slider is moved manually
@@ -340,8 +364,14 @@
     function removeShownCircles() {
         d3.selectAll(".event")
         .transition()
-        .duration(500)
-        .attr('r',0)
+        .duration(300)
+        .style('r',0)
+        .remove();
+    }
+    
+    // Instant remove of current shown circles
+    function removeInstantShownCircles() {
+        d3.selectAll(".event")
         .remove();
     }
 
@@ -362,7 +392,11 @@
     function update(previous_date, current_date){
         printDate(current_date);
         timeHandle.attr("cx", x(current_date));
-        window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
+        if (history){
+            window.site_data.filter(event => (event.date <= current_date)).forEach(event => printInstantEvent(event));
+        } else {
+            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
+        }
         var currbars = d3.selectAll(".bar").filter(d => (d.x0 <= current_date && d.x0 > previous_date));
         currbars
             .attr("fill", INACTIVE_BAR_COLOR).transition().duration(500)
@@ -378,8 +412,8 @@
 
     function playAnimation(){
         if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
-        removeShownCircles();
         was_running = true;
+        removeShownCircles();
     }
 
     function pauseAnimation(){
@@ -403,6 +437,19 @@
         var diff =(dt2.getTime() - dt1.getTime()) / 1000;
         diff /= (60 * 60 * 24);
         return Math.abs(Math.round(diff/365.25));
+    }
+    
+    // Function that handle checkbox click
+    function handleClick(cb) {
+        history = cb.checked;
+        if (history){
+            removeInstantShownCircles();
+            update(current_date, END_DATE)
+        } else {
+            removeShownCircles();
+            update(previous_date, current_date);
+            removebars(previous_date, current_date);
+        }
     }
     
     
