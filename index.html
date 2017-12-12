@@ -2,6 +2,15 @@
 <html>
 <head>
     <style type="text/css">
+        body {
+            font-family: helvetica;
+            color: #222;
+        }
+
+        a {
+            font-weight: normal;
+            /*color: white;*/
+        }
         #container{
             position: fixed;
             left: 0px;
@@ -98,11 +107,41 @@
             stroke: white;
             stroke-width: 1px;
         }
+
+        .context {
+            padding: 0.5em;
+            max-width: 500px;
+            min-width: 0;
+            /*font-size: 140%;*/
+            font-weight: lighter;
+            background-color: rgba(235, 235, 235, 0.8);
+        }
+        .context .leftarrow {
+            color: rgba(235, 235, 235, 0.8);
+            font-size: 150%;
+            position: absolute;
+            top: -30px;
+            left: -30px;
+        }
+        .context .rightarrow {
+            color: rgba(235, 235, 235, 0.8);
+            font-size: 150%;
+            position: absolute;
+            top: -30px;
+            right: -30px;
+        }
+        .context p {
+            margin-top: 0;
+        }
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 </head>
 <body>
     <div id='container'>
@@ -247,6 +286,7 @@
     .row(function(d) {
       var datesplit = d.date.split('/');
       return {
+        id: d.id,
         magnitude: parseInt(d.magnitude),
         country: d.country,
         name: d.name,
@@ -263,6 +303,20 @@
         window.site_data = rows;
     });
     
+    // Loading contextual data
+    d3.tsv("./data/nuclear_test_context.tsv")
+    .row(function(d) {
+      return {
+        id: d.id,
+        description: d.description,
+        url: d.url
+      };
+    })
+    .get(function(err, rows) {
+        if (err) return console.error(err);
+        window.contextual_data = rows;
+    });
+
     // Time slider
     var viewSlider = d3.select("#slider")
         .append("svg")
@@ -323,6 +377,14 @@
             if(was_running) playAnimation();
         }));
 
+    // Returns, if any, contextual information for a given event
+    function getContext(event) {
+        context = window.contextual_data.filter(context => context.id == event.id);
+        if(context) {
+            return context[0];
+        }
+    }
+
     // print the input date in the date container
     function printDate(date){
         d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
@@ -370,6 +432,38 @@
                 .style("opacity", 0.5);
     }
 
+    function printContext(event, context) {
+        let contextSpan = $('<span class="context">');
+        contextSpan.html('<p>' + context.description + '</p> <a href="' + context.url + '">' +
+            context.url + '</a>');
+        contextSpan.css({
+            position: "absolute",
+            display: "none",
+        });
+
+        let space = 45;
+        if(event.x < width/2) {
+            contextSpan.css({
+                left: event.x+45,
+                top: event.y+45,
+            });
+            contextSpan.append('<span class="leftarrow">&#8598;</span>');
+        } else {
+            contextSpan.css({
+                right: width-event.x+45,
+                top: event.y+45,
+            });
+            contextSpan.append('<span class="rightarrow">&#8599;</span>');
+        }
+        $('#container').append(contextSpan);
+        contextSpan.fadeIn(250);
+    }
+
+    // Remove context info
+    function removeContext() {
+        $('.context').fadeOut(250, () => $('.context').remove());
+    }
+
     //This function is called when the slider is moved manually
     //input: The date (START_DATE to END_DATE) corresponding to the slider position
     function onSlideEvent(date) {
@@ -387,7 +481,7 @@
         .style('r',0)
         .remove();
     }
-    
+
     // Instant remove of current shown circles
     function removeInstantShownCircles() {
         d3.selectAll(".event")
@@ -412,11 +506,24 @@
     function update(previous_date, current_date){
         printDate(current_date);
         timeHandle.attr("cx", x(current_date));
-        if (click){
-            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printClickEvent(event)); 
-        } else {
-            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
-        }
+        // if (click){
+            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => {
+                if(click){
+                    printClickEvent(event);
+                } else {
+                    printEvent(event);
+                }
+                context = getContext(event);
+                if(context) {
+                    printContext(event, context);
+                    if(playButton.state.nextState == "paused") {
+                        playButton.goToNextState();
+                    }
+                }
+            }); 
+        // } else {
+            // window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
+        // }
 
         let ranking = getRanking(current_date);
         //console.log(ranking);
@@ -439,6 +546,7 @@
         was_running = true;
         history = false;
         removeShownCircles();
+        removeContext();
     }
 
     function pauseAnimation(){

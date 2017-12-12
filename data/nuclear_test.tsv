@@ -1,4 +1,4 @@
-	magnitude	country	date	name	site	type	lat	lng
+id	magnitude	country	date	name	site	type	lat	lng
 0	4.9	CHN	29/07/1996	-	Lop Nor	Underground	41.82	88.42
 1	5.9	CHN	08/06/1996	-	Lop Nor	Underground	41.66	88.69
 2	6	CHN	17/08/1995	-	Lop Nor	Underground	41.56	88.8
