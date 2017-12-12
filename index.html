@@ -148,6 +148,7 @@
     let histHeight = height/5;
     let bins;
     let history = d3.select('#historycb').node().checked;
+    let allCountries = new Set();
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -207,6 +208,7 @@
       
       data.forEach(function(d, i) {
             if (d3.select("#"+d.country).empty()){
+                allCountries.add(d.country);
                 defs.append("pattern")
                     .attr("id", d.country)
                     .attr("height","100%")
@@ -401,6 +403,9 @@
         currbars
             .attr("fill", INACTIVE_BAR_COLOR).transition().duration(500)
             .attr("fill", ACTIVE_BAR_COLOR);
+
+        let ranking = getRanking(current_date);
+        //console.log(ranking);
     }
     
     function removebars(previous_date, current_date){
@@ -450,6 +455,21 @@
             update(previous_date, current_date);
             removebars(previous_date, current_date);
         }
+    }
+
+    // returns the number of explosions per country up to the date given
+    function getRanking(date){
+        let n_tests_per_country = {};
+        Array.from(allCountries).forEach(c => n_tests_per_country[c] = 0);
+        window.site_data.filter(event => (event.date <= current_date)).map(e => e.country).forEach(c => n_tests_per_country[c] += 1);
+        // return an array because an object's order cannot be guaranted
+        let ranking = [];
+        //console.log(n_tests_per_country);
+        Object.keys(n_tests_per_country).forEach(key => ranking.push([key, n_tests_per_country[key]]));
+        ranking.sort(function(a, b){
+            return b[1] - a[1];
+        });
+        return ranking;
     }
     
     
