@@ -136,14 +136,27 @@
 
         #ranking{
             position: fixed;
-            top: 100px;
             left: 5px;
         }
 
         .ranks{
             position: fixed;
-            border: 1px solid black;
-            width: 100px;
+            margin-bottom: 200px;
+            display: table;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+
+        }
+        .rankspan{
+            display:table-cell;
+            vertical-align: middle;
+            padding-left: 10px;
+            font-size: 20px;
+        }
+
+        img{
+            width: 30px;
         }
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
@@ -184,7 +197,7 @@
     const STEP_SIZE = 10; // represents the speed of the slider
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
-    const END_DATE = new Date("2010-12-31");
+    const END_DATE = new Date("2017-12-31");
     const SCREEN_WIDTH = window.innerWidth;
     const MARGIN = SCREEN_WIDTH/100;
     const TIMEBAR_WIDTH = d3.select('#slider').node().clientWidth - 60;
@@ -202,6 +215,7 @@
     let allCountries = [];
     let history = false;
     let click = false;
+    let COUNTRY_NAMES = {'GBR':'United Kingdom','USA':'United States of America', 'CHN':'China','FRA':'France','IND':'India','NK':'North Korea','PAK':'Pakistan','SOV':'Sovietic Union','UNK':'Unknown'}
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -619,20 +633,20 @@
         ranks.enter()
             .append('div')
             .attr('class', 'ranks')
-            .html(x => x + " 0")
+            .html(x => "<img src=./data/" + x + ".png alt='"+ x + "' title='" + COUNTRY_NAMES[x] + "'> <span class='rankspan'>0</span>")
             .style('top', function(d, i) {
-                return 100 + ((i*30)) + "px";
+                return 270 + ((i*50)) + "px";
             });
     }
 
     function printRanking(ranking){
         let ranks = d3.select('#ranking').selectAll('.ranks').data(ranking);
 
-        ranks.html(x => x[0] + " " + x[1])
+        ranks.html(x => "<img src=./data/" + x[0] + ".png alt='"+ x + "' title='" + COUNTRY_NAMES[x[0]] + "'> <span class='rankspan'>" + x[1] + "</span>")
             //.sort(function(a, b) {return d3.ascending(b[1], a[1]);})
             .transition()
             .style('top', function(d, i) {
-                return 100 + ((i*30)) + "px";
+                return 270 + ((i*50)) + "px";
             });
     }
     
