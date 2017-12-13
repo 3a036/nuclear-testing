@@ -28,7 +28,7 @@
 
         #slider{
             position: fixed;
-            top:90%;
+            top:94%;
             left:6%;
             right: 0;
             bottom: 0;
@@ -42,7 +42,7 @@
         
         #histogram{
             position: fixed;
-            top:70%;
+            top:74%;
             left:6%;
             right: 0;
             bottom: 0;
@@ -59,7 +59,7 @@
         
         .play-button {
           position: fixed;
-          top:90%;
+          top:94%;
           left:1%;
           right: 0;
           bottom: 0;
@@ -111,6 +111,7 @@
             padding: 0.5em;
             max-width: 500px;
             min-width: 0;
+            border-radius: 10px;
             /*font-size: 140%;*/
             font-weight: lighter;
             background-color: rgba(235, 235, 235, 0.8);
@@ -122,6 +123,7 @@
             top: -30px;
             left: -30px;
         }
+        
         .context .rightarrow {
             color: rgba(235, 235, 235, 0.8);
             font-size: 150%;
@@ -129,6 +131,7 @@
             top: -30px;
             right: -30px;
         }
+        
         .context p {
             margin-top: 0;
         }
@@ -193,10 +196,9 @@
 </body>
 <script type="text/javascript">
     // Generate the world map from topojson file
-    const STEP_SIZE = 10; // represents the speed of the slider
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
-    const END_DATE = new Date("2017-12-31");
+    const END_DATE = new Date("2020-12-31");
     const SCREEN_WIDTH = window.innerWidth;
     const MARGIN = SCREEN_WIDTH/100;
     const TIMEBAR_WIDTH = d3.select('#slider').node().clientWidth - 60;
@@ -206,6 +208,12 @@
     const COUNTRY_NAMES = {'GBR':'United Kingdom','USA':'United States of America', 'CHN':'China','FRA':'France','IND':'India','NK':'North Korea','PAK':'Pakistan','SOV':'Sovietic Union','UNK':'Unknown'};
     const MAP_COLOR = '#707779';//'#9DA3A4';
     const BACKGROUND_COLOR = '#121E21'//'#4B4B51';
+    const SLOW_SPEED = 1;
+    
+    let contextsShown = 0;
+    let step_size = 10; // represents the speed of the slider
+    let last_speed = step_size;
+    let animation_time = 3000 / (step_size)
     let was_running = false;
     let container = d3.select("#container");
     let width = container.node().clientWidth;
@@ -217,6 +225,7 @@
     let allCountries = [];
     let history = false;
     let click = false;
+    
 
     container.style('background-color', BACKGROUND_COLOR);
 
@@ -227,7 +236,10 @@
     let defs = svg.append('defs');
     
     // projection of the world map
-    var projection = d3.geoMercator().scale(width / 2 / Math.PI).translate([width/2, height/2+140]);
+    var projection = d3.geoMercator()
+      .scale(width / 2 / Math.PI)
+      .center([0,-5])
+      .translate([width / 2, height / 2 + 140]);
     
     d3.json(PATH_TO_MAP, function(error, topology) {
         if (error) throw error;
@@ -367,6 +379,7 @@
             current_date = x.invert(d3.mouse(this)[0]);
             updatebars(previous_date, current_date);
             removeShownCircles();
+            removeAllContext();
             
             previous_date = new Date(current_date);
             previous_date = new Date(previous_date.setMonth(previous_date.getMonth()-12));
@@ -432,10 +445,10 @@
             .attr("fill", "url(#"+event.country+")")
             .attr("r", 0)
             .transition()
-            .duration(300)
+            .duration(animation_time)
             .attr("r", Math.exp(event.magnitude * 2/3))
             .transition()
-            .duration(300)
+            .duration(animation_time)
             .attr("r", 0)
             .remove();
     }
@@ -449,7 +462,7 @@
             .attr("fill", "url(#"+event.country+")")
             .attr("r", 0)
             .transition()
-            .duration(300)
+            .duration(animation_time)
             .attr("r", Math.exp(event.magnitude * 2/3));
     }
     
@@ -465,7 +478,7 @@
     }
 
     function printContext(event, context) {
-        let contextSpan = $('<span class="context">');
+        let contextSpan = $('<span class="context" id="'+event.id+'">');
         contextSpan.html('<p>' + context.description + '</p> <a href="' + context.url + '">' +
             context.url + '</a>');
         contextSpan.css({
@@ -488,12 +501,17 @@
             contextSpan.append('<span class="rightarrow">&#8599;</span>');
         }
         $('#container').append(contextSpan);
-        contextSpan.fadeIn(250);
+        contextSpan.fadeIn(animation_time);
     }
 
     // Remove context info
-    function removeContext() {
-        $('.context').fadeOut(250, () => $('.context').remove());
+    function removeContext(event) {
+        $('#'+event.id).fadeOut(animation_time/10, () => $('#'+event.id).remove());
+    }
+    
+    // Remove context info
+    function removeAllContext(event) {
+        $('.context').fadeOut(animation_time, () => $('.context').remove());
     }
 
     //This function is called when the slider is moved manually
@@ -509,7 +527,7 @@
     function removeShownCircles() {
         d3.selectAll(".event")
         .transition()
-        .duration(300)
+        .duration(animation_time)
         .style('r',0)
         .remove();
     }
@@ -538,28 +556,46 @@
     function update(previous_date, current_date){
         printDate(current_date);
         timeHandle.attr("cx", x(current_date));
-        // if (click){
-            window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => {
-                if(click){
-                    printClickEvent(event);
-                } else {
-                    printEvent(event);
+        window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => {
+            context = getContext(event);
+            if(context) {
+                contextsShown+=1;
+                printContext(event, context);
+                if(step_size!=SLOW_SPEED){
+                    last_speed = step_size;
                 }
-                context = getContext(event);
-                if(context) {
-                    printContext(event, context);
-                    if(playButton.state.nextState == "paused") {
-                        playButton.goToNextState();
-                    }
+                changeSpeed(SLOW_SPEED);
+                if (!click){
+                    setTimeout(function(){
+                        if (timer){
+                            removeContext(event);
+                        }
+                    }, 1.9 * animation_time);
+                    setTimeout(function(){
+                        if (contextsShown==1){
+                            changeSpeed(last_speed);
+                            removeShownCircles();
+                        }
+                        contextsShown-=1;
+                    }, 2*animation_time);
                 }
-            }); 
-        // } else {
-            // window.site_data.filter(event => (event.date <= current_date && event.date > previous_date)).forEach(event => printEvent(event)); 
-        // }
+            }
+            if(click){
+                printClickEvent(event);
+            } else {
+                printEvent(event);
+            }
+        }); 
 
         let ranking = getRanking(current_date);
         printRanking(ranking);
         click = false;
+    }
+    
+    // Change speed 
+    function changeSpeed(speed){
+        step_size = speed;
+        animation_time = 3000 / step_size
     }
     
     // Update histogram colors in function of two dates
@@ -574,11 +610,12 @@
     }
 
     function playAnimation(){
-        if(!timer) timer = setInterval(function(d){step(STEP_SIZE)}, 10);
+        if(!timer) timer = setInterval(function(d){step(step_size)}, 10);
         was_running = true;
         history = false;
         removeShownCircles();
-        removeContext();
+        removeAllContext();
+        changeSpeed(last_speed);
     }
 
     function pauseAnimation(){
@@ -688,12 +725,12 @@
         goToNextState: function () {
             if (this.state.nextState == "paused") {
               pauseAnimation();
-              var currEvents = d3.selectAll(".event");
-              currEvents.transition().duration(0);
+              d3.selectAll(".event").transition().duration(animation_time);
               // timer = 0;
             } else {
               // timer that moves the slider automatically
               playAnimation();
+              changeSpeed(last_speed);
             }
             this.setState(this.state.nextState);
             d3.select(this.el.querySelector(".js-icon")).transition()
