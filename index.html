@@ -17,7 +17,6 @@
             right: 0px;
             top: 0px;
             bottom: 0px;
-            background-color: grey;
             width: 100%;
             height: 100%;
         }
@@ -204,6 +203,9 @@
     const PATH_TO_MAP = './data/worldMap.json';
     const INACTIVE_BAR_COLOR = 'white';
     const ACTIVE_BAR_COLOR = 'red';
+    const COUNTRY_NAMES = {'GBR':'United Kingdom','USA':'United States of America', 'CHN':'China','FRA':'France','IND':'India','NK':'North Korea','PAK':'Pakistan','SOV':'Sovietic Union','UNK':'Unknown'};
+    const MAP_COLOR = '#707779';//'#9DA3A4';
+    const BACKGROUND_COLOR = '#121E21'//'#4B4B51';
     let was_running = false;
     let container = d3.select("#container");
     let width = container.node().clientWidth;
@@ -215,7 +217,8 @@
     let allCountries = [];
     let history = false;
     let click = false;
-    let COUNTRY_NAMES = {'GBR':'United Kingdom','USA':'United States of America', 'CHN':'China','FRA':'France','IND':'India','NK':'North Korea','PAK':'Pakistan','SOV':'Sovietic Union','UNK':'Unknown'}
+
+    container.style('background-color', BACKGROUND_COLOR);
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -234,6 +237,7 @@
         svg.selectAll("path")
             .data(geojson.features)
             .enter().append("path")
+            .style('fill', MAP_COLOR)
             .attr("d", d3.geoPath().projection(projection));
     });
     
