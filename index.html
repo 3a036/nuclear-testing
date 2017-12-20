@@ -13,11 +13,23 @@
         }
         #container-div{
             position: fixed;
+            float: right;
+            left: 20%;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            width: 80%;
+            height: 100%;
+        }
+
+        #panel{
+            position: fixed;
+            float: left;
             left: 0px;
             right: 0px;
             top: 0px;
             bottom: 0px;
-            width: 100%;
+            width: 20%;
             height: 100%;
         }
 
@@ -29,10 +41,10 @@
         #slider{
             position: fixed;
             top:90%;
-            left:6%;
+            left:26%;
             right: 0;
             bottom: 0;
-            width: 93%;
+            width: 73%;
             height: 7%;
             background-color: white;
             opacity: 0.6;
@@ -43,10 +55,10 @@
         #histogram{
             position: fixed;
             top:70%;
-            left:6%;
+            left:26%;
             right: 0;
             bottom: 0;
-            width: 93%;
+            width: 73%;
             height: 20%;
             opacity: 0.6;
             z-index: 3;
@@ -58,18 +70,19 @@
         }
         
         .play-button {
-          position: fixed;
-          top:90%;
-          left:1%;
-          right: 0;
-          bottom: 0;
-          width: 5%;
-          height: 7%;
-          background-color: white;
-          border-radius: 10px;
-          opacity: 0.6;
-          z-index: 3;
-          cursor: pointer;
+            border-style: none;
+            position: fixed;
+            top:90%;
+            left: 20.5%;
+            right: 0;
+            bottom: 0;
+            width: 5%;
+            height: 7%;
+            background-color: white;
+            border-radius: 10px;
+            opacity: 0.6;
+            z-index: 3;
+            cursor: pointer;
         }
 
         #dateContainer{
@@ -78,8 +91,7 @@
             top: 5px;
             width: 7%;
             height:50px;
-            background-color: white;
-            opacity: 0.6;
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
             text-align:center;
             line-height: 50px;
@@ -193,15 +205,18 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <div id='panel'></div>
     <div id='container-div'>
         <div id='dateContainer'>
             <span id='month'></span>
             <span id='year'></span>
         </div>
         <div id='checkboxContainer'>
-            <button type='button' id='historyButton' onclick='handleClick(this);'>Show history</button>
+            <div id='historyButton', onclick='handleClick(this)'><i class="fa fa-history" aria-hidden="true" style='font-size: 40px; color: #707779;' title='Show history'></i></div>
+            <!--<button type='button' id='historyButton' onclick='handleClick(this);'>Show history</button>-->
         </div>
         <div id='ranking'></div>
         <button class="button play-button">
@@ -241,6 +256,7 @@
     let animation_time = 30/ (step_size)
     let was_running = false;
     let container = d3.select("#container-div");
+    let panel = d3.select('#panel');
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
     let current_date = START_DATE;
@@ -253,6 +269,8 @@
     
 
     container.style('background-color', BACKGROUND_COLOR);
+    panel.style('background-color', BACKGROUND_COLOR);
+    container.style('border-left', '1px solid ' + MAP_COLOR);
 
     let svg = container.append('svg')
         .attr('width', width)
