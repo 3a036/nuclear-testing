@@ -11,7 +11,7 @@
             font-weight: normal;
             /*color: white;*/
         }
-        #container{
+        #container-div{
             position: fixed;
             left: 0px;
             right: 0px;
@@ -136,6 +136,30 @@
             margin-top: 0;
         }
 
+        .treaty {
+            z-index: 42;
+            padding: 0;
+            /*max-width: 500px;*/
+            /*min-width: 0;*/
+            border-radius: 10px;
+            font-size: 80%;
+            line-height: 80%;
+            font-weight: lighter;
+            background-color: rgba(235, 235, 235, 0.8);
+        }
+
+        .treaty p {
+            margin: 0.5em;
+        }
+
+        .treaty .arrow {
+            color: rgba(235, 235, 235, 0.8);
+            font-size: 80%;
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+        }
+
         #ranking{
             position: fixed;
             left: 5px;
@@ -171,7 +195,7 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id='container'>
+    <div id='container-div'>
         <div id='dateContainer'>
             <span id='month'></span>
             <span id='year'></span>
@@ -213,9 +237,9 @@
     let contextsShown = 0;
     let step_size = 10; // represents the speed of the slider
     let last_speed = step_size;
-    let animation_time = 3000 / (step_size)
+    let animation_time = 30/ (step_size)
     let was_running = false;
-    let container = d3.select("#container");
+    let container = d3.select("#container-div");
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
     let current_date = START_DATE;
@@ -311,13 +335,17 @@
         .attr("class", "bar")
         .attr("transform", function(d) {
             return "translate(" + x(d.x0) + "," + y(d.length) + ")";
+        })
+        .attr("data-year", function(d) {
+            return d.x0.getFullYear();
         });
             
         bar.append("rect")
             .attr("class", "bar")
             .attr("x", 1)
             .attr("width", function(d) {return x(d.x1) - x(d.x0) - 5 ; })
-            .attr("height", function(d) {return histHeight - y(d.length);}) 
+            // Add 0.01 to each bar because 0 height bars get a buggy bounding box on firefox
+            .attr("height", function(d) {return histHeight - y(d.length) + 0.01;}) 
             .attr("fill", INACTIVE_BAR_COLOR)
             .attr("rx", 3)
             .attr("ry", 3);
@@ -359,6 +387,22 @@
     .get(function(err, rows) {
         if (err) return console.error(err);
         window.contextual_data = rows;
+    });
+
+    // Load nuclear treaties
+    d3.tsv("./data/nuclear_treaties.tsv")
+    .row(function(d) {
+      var datesplit = d.date_effective.split('/');
+      return {
+        url: d.url,
+        name: d.name,
+        year: parseInt(datesplit[2]),
+        date: new Date(parseInt(datesplit[2]), parseInt(datesplit[1])-1, parseInt(datesplit[0]))
+      };
+    })
+    .get(function(err, rows) {
+        if (err) return console.error(err);
+        window.nuclear_treaties = rows;
     });
 
     // Time slider
@@ -500,7 +544,7 @@
             });
             contextSpan.append('<span class="rightarrow">&#8599;</span>');
         }
-        $('#container').append(contextSpan);
+        $('#container-div').append(contextSpan);
         contextSpan.fadeIn(animation_time);
     }
 
@@ -512,6 +556,34 @@
     // Remove context info
     function removeAllContext(event) {
         $('.context').fadeOut(animation_time, () => $('.context').remove());
+    }
+
+    function showTreaty(currentDate) {
+        let year = currentDate.getFullYear();
+        let treaty = window.nuclear_treaties.filter(treaty => treaty.year == year);
+        if(treaty.length) {
+            treaty = treaty[0];
+            let treatySpan = $('<span class="treaty">');
+            treatySpan.html('<p>' + treaty.name +'</p>');
+
+            // Get the histogram bar for this year, and get its absolute position
+            let barPos = $('g[data-year="' + (year + 1) + '"]')[0].getBoundingClientRect();
+
+            // Make the span invisible before appending it
+            treatySpan.hide();
+            // Append it so we can compute its height and width
+            $('#container-div').append(treatySpan);
+
+            // Use the bar position, and the span's height and width to position the treaty info span
+            treatySpan.css({
+                left: barPos.left - treatySpan.width() - 20,
+                top: barPos.top - treatySpan.height() - 20,
+                position: 'absolute'
+            });
+            treatySpan.append('<span class="arrow">&#8600;</span>');
+
+            treatySpan.fadeIn(animation_time);
+        }
     }
 
     //This function is called when the slider is moved manually
@@ -550,6 +622,7 @@
         }
         update(previous_date, current_date);
         updatebars(previous_date, current_date);
+        showTreaty(current_date);
     }
     
     // Update visualization in function of two dates
