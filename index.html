@@ -890,9 +890,8 @@
         let max_nucl = 1056;
         let scale = d3.scaleLinear().domain([0, max_nucl]).range([minSize, maxSize]);
         let sizes = rankings.map(r => [r[0], scale(r[1])]);
-        sizes.forEach(function(d){
-            d3.select('.ranks#rank_'+d[0]).style('width', d[1]+'px');
-            if(d[0] == 'USA') console.log(d3.select('.ranks#rank_'+d[0]).attr('width'));
+        sizes.forEach(function(d){;
+            d3.select('.ranks#rank_'+d[0]).transition().style('width', d[1]+'px');
         });
     }
     
