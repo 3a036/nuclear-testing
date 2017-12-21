@@ -99,13 +99,15 @@
         
         #tooltip{
             margin: 20px;
-            padding: 20px;
+            margin-right: 40%;
+            padding: 40px;
             position: absolute;
             opacity: 0;
             z-index: 1;
             color: black;
             border-radius: 10px;
-            background-color: rgba(255,255,255,0.6);
+            background-color: rgba(255,255,255,0.8);
+            font-size: 13px;
         }
         
         #historyButton{
@@ -590,7 +592,7 @@
     
     // print infos in the info panel
     function vizInfoToString(){
-        return "<strong><i>What is the pupose of the visualization?</i></strong><br/><br/>This map shows all the nuclear events that happened around the world and some different treaties signed for this matter.<br/><br/><strong><i>How does this work?</i></strong><br/><br/>You can simply use the date slide at the bottom of the page to navigate through time. The current date is displayed in the top-left corner of your screen. The map contains the nuclear events with the country that made the test as a display. The size of the circles that are created is directly linked to the magnitude of the test. Some informations can be found for different events, you can enable and disable them by using the bubble button at the top left.The history button will pause the animation and show all the nuclear events that happened until the date currently displayed by the slider. <br/><br/><strong><i>What's with the histogram at the top of the slider?</i></strong><br/><br/>Well I'm glad you ask! The histogram represents the amount of nuclear events for each year, it permits you to understand what were the most active years in the nuclear's history.<br/><br/><strong><i>What about the panel on the left with the country and numbers?</i></strong><br/><br/>This small animation corresponds to the number of nuclear events each country did until the date you are currently in. It shows the proportion of nuclear activity every country has.<br/><br/><strong><i>Where did you get all this data?</i></strong><br/><br/>The data comes from the Geoscience Agency of Australia<br/><br/><strong><i>Authors</i></strong><br/><br/>This data visualization was realized by <strong>Raphaël Steinmann</strong>, <strong>Semion Sidorenko</strong> and <strong>Alain Milliet</strong> in the scope of Prof. Kirell Benzi's Data Visualisation course at EPFL. It comes along with a process book in the form of a data story. (see link on the right).<br/><br/><strong><i>Running compatibilities</i></strong><br/><br/>This visualization was developped and tested on Google Chrome. As this project was conducted in less than two months, there is no guarantee that it runs perfectly on other browsers."
+        return "<strong><i>What is the pupose of the visualization?</i></strong><br/><br/>This map shows all the nuclear events that happened around the world and some different treaties signed for this matter.<br/><br/><strong><i>How does this work?</i></strong><br/><br/>You can simply use the date slide at the bottom of the page to navigate through time. The current date is displayed in the top-left corner of your screen. Each bubble that pops on the map represents a nuclear test. The flag indicates the country that ran the test and the radius of the circle represents the magnitude of the test. Some information can be found for different events, you can enable and disable them by using the bubble button at the top left.The history button will pause the animation and show all the nuclear events that happened until the date currently displayed by the slider. <br/><br/><strong><i>The histogram</i></strong><br/><br/>The histogram above the slider displays the amount of nuclear events for each year. It gives an insight about the most active years in the nuclear's history.<br/><br/><strong><i>The information panel (on the left)</i></strong><br/><br/>This small animation corresponds to the total amount of nuclear events ran by each country up to the current date. It shows the proportion of nuclear activity every country has.<br/><br/><strong><i>The data</i></strong><br/><br/>The data comes from the Geoscience Agency of Australia.<br/><br/><strong><i>Authors</i></strong><br/><br/>This data visualization was realized by <strong>Raphaël Steinmann</strong>, <strong>Semion Sidorenko</strong> and <strong>Alain Milliet</strong> in the scope of Prof. Kirell Benzi's Data Visualisation course at EPFL.<br/><br/><strong><i>Compatible browsers</i></strong><br/><br/>This visualization was developped and tested on Google Chrome. As this project was conducted in less than two months, there is no guarantee that it runs perfectly on other browsers."
     }
 
     // prints a marker on the map at the location of the input event
