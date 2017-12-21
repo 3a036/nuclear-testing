@@ -106,6 +106,15 @@
             display:block;
         }
 
+        #infoButton{
+            position: fixed;
+            left: 220px;
+            top: 5px;
+            text-align:left;
+            line-height: 50px;
+            display:block;
+        }
+
         .timeline {
             stroke: grey;
             stroke-linecap: round;
@@ -213,7 +222,8 @@
             <span id='month'></span>
             <span id='year'></span>
         </div>
-            <div id='historyButton'><i class="fa fa-history" aria-hidden="true" style='font-size: 50px; color: #707779;' title='Show history'></i></div>
+            <i id='historyButton' class="fa fa-history" aria-hidden="true" style='font-size: 50px; color: #707779;' title='Show history'></i>
+            <i class="fa fa-info-circle" id='infoButton' aria-hidden="true" style='font-size: 50px; color: #707779;'></i>
         <div id='ranking'></div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
@@ -267,7 +277,7 @@
     container.style('background-color', BACKGROUND_COLOR);
     panel.style('background-color', BACKGROUND_COLOR);
     container.style('border-left', '1px solid ' + MAP_COLOR);
-    d3.select('#historyButton').select('i')
+    d3.select('#historyButton')
         .on('mouseover', function(d){
             d3.select(this).style('color', 'white');
         })
@@ -770,7 +780,7 @@
         else{
             d3.selectAll('.instant_event').remove();
             history = false;
-            d3.select('#historyButton').select('i').style('color', MAP_COLOR);
+            d3.select('#historyButton').style('color', MAP_COLOR);
         }
     }
 
@@ -779,7 +789,7 @@
        if(history){
             d3.selectAll('.instant_event').remove();
             history = false;
-            d3.select('#historyButton').select('i').style('color', MAP_COLOR);
+            d3.select('#historyButton').style('color', MAP_COLOR);
         } 
     }
 
