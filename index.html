@@ -96,6 +96,18 @@
             line-height: 50px;
             display:block;
         }
+        
+        #tooltip{
+            margin: 20px;
+            padding: 20px;
+            position: absolute;
+            opacity: 0;
+            z-index: 1;
+            color: black;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.6);
+        }
+        
         #historyButton{
             position: fixed;
             left: 160px;
@@ -104,6 +116,7 @@
             line-height: 50px;
             display:block;
             font-size: 50px;
+            color: #707779;
         }
 
         #infoButton{
@@ -113,7 +126,8 @@
             text-align:left;
             line-height: 50px;
             display:block;
-            font-size: 50px; 
+            font-size: 50px;
+            color: #707779;
         }
         
         #showContextButton{
@@ -124,6 +138,7 @@
             line-height: 50px;
             display:block;
             font-size: 50px;
+            color: white;
         }
 
         .timeline {
@@ -223,14 +238,16 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
 </head>
 <body>
-    <div id='panel'>
-        <i id='historyButton' class="fa fa-history" aria-hidden="true" style='color: #707779;' title='Show history'></i>
-        <i class="fa fa-info-circle" id='infoButton' aria-hidden="true" style='color: #707779;'></i>
-        <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" style='color: white;' title='Show context informations of nuclear tests on the map'></i>        
-    </div>
     <div id='container-div'>
+        <span id='tooltip'></span>
+        <div id='panel'>
+            <i id='historyButton' class="fa fa-history" aria-hidden="true" title='Show history'></i>
+            <i id='infoButton' class="fa fa-info-circle" aria-hidden="true"></i>
+            <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" title='Show context informations of nuclear tests on the map'></i>        
+        </div>
         <div id='dateContainer'>
             <span id='month'></span>
             <span id='year'></span>
@@ -248,6 +265,7 @@
         </button>
         <div id='histogram'></div>
         <div id='slider'></div>
+        <div id='tooltip'></div>
     </div>
     
 </body>
@@ -315,6 +333,23 @@
         })
         .on('click', function(d){
             showHideContext();
+        });
+        
+    var div = d3.select("#tooltip");
+        
+    d3.select('#infoButton')
+        .on("mouseover", function(d) {
+            d3.select(this).style('color', 'white');
+            div.transition()        
+                .duration(200)      
+                .style("opacity", 1);      
+            div.html(vizInfoToString()); 
+        })                  
+        .on("mouseout", function(d) {  
+            d3.select(this).style('color', MAP_COLOR);        
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
         });
 
     let svg = container.append('svg')
@@ -549,6 +584,11 @@
         d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
         d3.select('#year').html(date.getFullYear());
     }
+    
+    // print infos in the info panel
+    function vizInfoToString(){
+        return "<strong><i>What is the pupose of the visualization?</i></strong><br/><br/>This map shows all the nuclear events that happened around the world and some different treaties signed for this matter.<br/><br/><strong><i>How does this work?</i></strong><br/><br/>You can simply use the date slide at the bottom of the page to navigate through time. The current date is displayed in the top-left corner of your screen. The map contains the nuclear events with the country that made the test as a display. The size of the circles that are created is directly linked to the magnitude of the test. Some informations can be found for different events, you can enable and disable them by using the bubble button at the top left.The history button will pause the animation and show all the nuclear events that happened until the date currently displayed by the slider. <br/><br/><strong><i>What's with the histogram at the top of the slider?</i></strong><br/><br/>Well I'm glad you ask! The histogram represents the amount of nuclear events for each year, it permits you to understand what were the most active years in the nuclear's history.<br/><br/><strong><i>What about the panel on the left with the country and numbers?</i></strong><br/><br/>This small animation corresponds to the number of nuclear events each country did until the date you are currently in. It shows the proportion of nuclear activity every country has.<br/><br/><strong><i>Where did you get all this data?</i></strong><br/><br/>The data comes from the Geoscience Agency of Australia<br/><br/><strong><i>Authors</i></strong><br/><br/>This data visualization was realized by <strong>Raphaël Steinmann</strong>, <strong>Semion Sidorenko</strong> and <strong>Alain Milliet</strong> in the scope of Prof. Kirell Benzi's Data Visualisation course at EPFL. It comes along with a process book in the form of a data story. (see link on the right).<br/><br/><strong><i>Running compatibilities</i></strong><br/><br/>This visualization was developped and tested on Google Chrome. As this project was conducted in less than two months, there is no guarantee that it runs perfectly on other browsers."
+    }
 
     // prints a marker on the map at the location of the input event
     function printEvent(event){
@@ -737,7 +777,7 @@
                     }, 2*animation_time);
                 }
             }
-            if(click){
+            if(click && !timer){
                 printClickEvent(event);
             } else {
                 printEvent(event);
