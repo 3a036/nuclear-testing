@@ -103,7 +103,7 @@
             text-align:left;
             line-height: 50px;
             display:block;
-            font-size: 50px; 
+            font-size: 50px;
         }
 
         #infoButton{
@@ -143,7 +143,6 @@
             max-width: 500px;
             min-width: 0;
             border-radius: 10px;
-            /*font-size: 140%;*/
             font-weight: lighter;
             background-color: rgba(235, 235, 235, 0.8);
         }
@@ -170,8 +169,6 @@
         .treaty {
             z-index: 42;
             padding: 0;
-            /*max-width: 500px;*/
-            /*min-width: 0;*/
             border-radius: 10px;
             font-size: 80%;
             line-height: 80%;
@@ -231,7 +228,7 @@
     <div id='panel'>
         <i id='historyButton' class="fa fa-history" aria-hidden="true" style='color: #707779;' title='Show history'></i>
         <i class="fa fa-info-circle" id='infoButton' aria-hidden="true" style='color: #707779;'></i>
-        <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" style='color: white;' title='Show infos on the map'></i>        
+        <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" style='color: white;' title='Show context informations of nuclear tests on the map'></i>        
     </div>
     <div id='container-div'>
         <div id='dateContainer'>
@@ -802,8 +799,7 @@
         return Math.abs(Math.round(diff/365.25));
     }
     
-    // Displays the history of nuclear incidents or hides it
-    // called when the history button is clicked
+    // Displays the history of nuclear incidents or hides it called when the history button is clicked
     function showHideHistory() {
         if(!history){
             window.site_data.filter(event => (event.date <= current_date)).forEach(event => printInstantEvent(event));
@@ -812,6 +808,7 @@
                 playButton.goToNextState();
             }
             history = true;
+            d3.select('#historyButton').style('color', 'white');
         }
         else{
             d3.selectAll('.instant_event').remove();
@@ -829,17 +826,17 @@
         } 
     }
     
-    // Displays the history of nuclear incidents or hides it
-    // called when the history button is clicked
+    // Displays the context informations of nuclear incidents or hides it called when the show context button is clicked
     function showHideContext() {
         if(!showContext){
             showContext = true;
+            d3.select('#showContextButton').style('color', 'white');
         }
         else{
             showContext = false;
             removeAllContext();
             step_size = NORMAL_SPEED;
-            d3.select('#infosButton').style('color', MAP_COLOR);
+            d3.select('#showContextButton').style('color', MAP_COLOR);
         }
     }
 
