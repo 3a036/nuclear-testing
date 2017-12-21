@@ -89,7 +89,7 @@
             position: fixed;
             left: 5px;
             top: 5px;
-            width: 7%;
+            width: 140px;
             height:50px;
             background-color: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
@@ -97,11 +97,10 @@
             line-height: 50px;
             display:block;
         }
-        #checkboxContainer{
+        #historyButton{
             position: fixed;
-            left: 5px;
-            top: 60px;
-            height:50px;
+            left: 160px;
+            top: 5px;
             text-align:left;
             line-height: 50px;
             display:block;
@@ -214,10 +213,7 @@
             <span id='month'></span>
             <span id='year'></span>
         </div>
-        <div id='checkboxContainer'>
-            <div id='historyButton', onclick='handleClick(this)'><i class="fa fa-history" aria-hidden="true" style='font-size: 40px; color: #707779;' title='Show history'></i></div>
-            <!--<button type='button' id='historyButton' onclick='handleClick(this);'>Show history</button>-->
-        </div>
+            <div id='historyButton'><i class="fa fa-history" aria-hidden="true" style='font-size: 50px; color: #707779;' title='Show history'></i></div>
         <div id='ranking'></div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
@@ -271,6 +267,18 @@
     container.style('background-color', BACKGROUND_COLOR);
     panel.style('background-color', BACKGROUND_COLOR);
     container.style('border-left', '1px solid ' + MAP_COLOR);
+    d3.select('#historyButton').select('i')
+        .on('mouseover', function(d){
+            d3.select(this).style('color', 'white');
+        })
+        .on('mouseout', function(d){
+            if(!history){
+                d3.select(this).style('color', MAP_COLOR);
+            }
+        })
+        .on('click', function(d){
+            showHideHistory();
+        });
 
     let svg = container.append('svg')
         .attr('width', width)
@@ -448,7 +456,7 @@
             previous_date = new Date(previous_date.setMonth(previous_date.getMonth()-12));
             click = true;
             update(previous_date, current_date);
-            history = false;
+            hideHistory();
         })
         .attr("class", "timeline")
         .attr("x1", x.range()[0])
@@ -486,7 +494,7 @@
             previous_date = new Date(previous_date.setMonth(previous_date.getMonth()-12));
             click = true;
             update(previous_date, current_date);
-            history = false;
+            hideHistory();
             if(was_running) playAnimation();
         }));
 
@@ -537,7 +545,7 @@
     // prints instant marker on the map for the history
     function printInstantEvent(event){
         svg.append("circle")
-                .attr("class", "event")
+                .attr("class", "event instant_event")
                 .attr("cx", event.x)
                 .attr("cy", event.y)
                 .attr("fill", "url(#"+event.country+")")
@@ -718,7 +726,7 @@
     function playAnimation(){
         if(!timer) timer = setInterval(function(d){step(step_size);}, 10);
         was_running = true;
-        history = false;
+        hideHistory();
         removeShownCircles();
         removeAllContext();
         changeSpeed(last_speed);
@@ -730,7 +738,7 @@
             clearInterval(timer);
             timer = false;
         }
-        history = false;
+        hideHistory();
         return previous_state;
     }
     
@@ -748,16 +756,31 @@
         return Math.abs(Math.round(diff/365.25));
     }
     
-    // Function that handle button click
-    function handleClick(button) {
+    // Displays the history of nuclear incidents or hides it
+    // called when the history button is clicked
+    function showHideHistory() {
         if(!history){
             window.site_data.filter(event => (event.date <= current_date)).forEach(event => printInstantEvent(event));
             if(timer){
                 pauseAnimation();
                 playButton.goToNextState();
             }
+            history = true;
         }
-        history = true;
+        else{
+            d3.selectAll('.instant_event').remove();
+            history = false;
+            d3.select('#historyButton').select('i').style('color', MAP_COLOR);
+        }
+    }
+
+    // hides the history if it's displayed, otherwise does nothing
+    function hideHistory(){
+       if(history){
+            d3.selectAll('.instant_event').remove();
+            history = false;
+            d3.select('#historyButton').select('i').style('color', MAP_COLOR);
+        } 
     }
 
     // returns the number of explosions per country up to the date given
