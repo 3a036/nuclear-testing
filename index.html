@@ -865,7 +865,7 @@
             .append('div')
             .attr('class', 'ranks')
             .attr('id', x => 'rank_'+x)
-            .attr('width', '62px')
+            .style('width', '62px')
             .html(x => "<img src=./data/" + x + ".png alt='"+ x + "' title='" + COUNTRY_NAMES[x] + "'> <span class='rankspan'>0</span>")
             .style('top', function(d, i) {
                 return 270 + ((i*50)) + "px";
@@ -884,14 +884,23 @@
             });
     }
 
+    // updates the size of each div on the info panel according to
+    // the number of tests ran by each country up to current_date
     function rankingBarSizes(rankings){
         let minSize = 62;
         let maxSize = panel.node().getBoundingClientRect().width - 20;
         let max_nucl = 1056;
         let scale = d3.scaleLinear().domain([0, max_nucl]).range([minSize, maxSize]);
         let sizes = rankings.map(r => [r[0], scale(r[1])]);
-        sizes.forEach(function(d){;
-            d3.select('.ranks#rank_'+d[0]).transition().style('width', d[1]+'px');
+        sizes.forEach(function(d){
+            let elem = d3.select('.ranks#rank_'+d[0]);
+            // only do transitions if the viz is on pause to avoid delays
+            if(!timer){
+                elem.transition().style('width', d[1]+'px');
+            }
+            else{
+                elem.style('width', d[1]+'px');
+            }
         });
     }
     
