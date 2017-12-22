@@ -173,7 +173,7 @@ a {
 
 #githubButton{
     position: fixed;
-    left: 7%;
+    left: 6%;
     top: 95%;
     font-size: 2.5vw;
     color: #707779;
@@ -182,7 +182,16 @@ a {
 
 #processBookButton{
     position: fixed;
-    left: 10%;
+    left: 9%;
+    top: 95%;
+    font-size: 2.5vw;
+    color: #707779;
+    cursor: pointer;
+}
+
+#screencastButton{
+    position: fixed;
+    left: 12%;
     top: 95%;
     font-size: 2.5vw;
     color: #707779;

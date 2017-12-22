@@ -66,10 +66,17 @@
         });
         
         
-    d3.select('#infoButton').on("click", function(d){
-		showInfoTooltip();
-		event.stopPropagation(); 
-	});
+    d3.select('#infoButton')
+		.on('mouseover', function(d){
+            d3.select(this).style('color', 'white');
+        })
+        .on('mouseout', function(d){
+            d3.select(this).style('color', MAP_COLOR);
+        })
+		.on("click", function(d){
+			showInfoTooltip();
+			event.stopPropagation(); 
+		});
 
     container.on('click', hideInfoTooltip);
 
@@ -93,6 +100,17 @@
         })
         .on('click', function(d){
             openInNewTab("https://rbsteinm.github.io/DataVisualizationProject/process-book.pdf");
+        });
+		
+	d3.select('#screencastButton')
+        .on('mouseover', function(d){
+            d3.select(this).style('color', 'white');
+        })
+        .on('mouseout', function(d){
+            d3.select(this).style('color', MAP_COLOR);
+        })
+        .on('click', function(d){
+            openInNewTab("http://youtube.com/");
         });
 
     let svg = container.append('svg')
