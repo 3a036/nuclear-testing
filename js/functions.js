@@ -432,12 +432,15 @@
     // called when mouseover a circle
     // fills the infobox on the left and highlights the circle
     function fillInfobox(circle, event_id, over, highlight){
+        let infobox = d3.select('#infobox');
         if(over){
-            d3.select('#infobox').html(testToString(event_id));
+            infobox.style('opacity', 0).style('opacity', 1);
+            infobox.html(testToString(event_id));
             if(highlight) circle.style('stroke-width', '3px');
         }
         else {
-            d3.select('#infobox').html('');
+            infobox.style('opacity', 1).style('opacity', 0);
+            infobox.html('');
             if(highlight) circle.style('stroke-width', '1px');
         }
     }
