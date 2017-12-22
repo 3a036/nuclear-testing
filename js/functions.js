@@ -204,22 +204,24 @@
     }
 
     function showInfoTooltip(d) {
-        if(d3.select("#infotooltip").style("visibility") == "visible") {
-            return hideInfoTooltip(d);
+		console.log("show")
+        if(d3.select("#infotooltip").attr("visibility") == "on") {
+            return hideInfoTooltip();
         }
-        d3.select(this).style('color', 'white');
-        d3.select("#infotooltip").style('visibility', 'visible')
+        d3.select("#infoButton").style('color', 'white');
+        d3.select("#infotooltip").attr('visibility', 'on')
             .transition()        
             .duration(200)      
             .style("opacity", 1);  
     }
 
-    function hideInfoTooltip(d) {
+    function hideInfoTooltip() {
+		console.log("hide")
         d3.select("#infoButton").style('color', MAP_COLOR);        
-        d3.select("#infotooltip").style('visibility', 'hidden')
-            .transition()        
+        d3.select("#infotooltip").transition()        
             .duration(500)      
-            .style("opacity", 0);   
+            .style("opacity", 0)
+			.attr('visibility', 'off');   
     }
 
     // called at each tick of the timer
