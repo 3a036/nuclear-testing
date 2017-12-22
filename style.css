@@ -229,25 +229,27 @@ a {
 
 .ranks{
     position: fixed;
-    margin-bottom: 200px;
     display: table;
-    padding: 5px;
+    padding: 0.3vh;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-
+	height: 2vh;
 }
 .rankspan{
     display:table-cell;
     vertical-align: middle;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 20px;
+    font-size: 2vh;
     text-align: right;
     color: rgb(200, 200, 200);
 }
 
 img{
-    width: 30px;
+    width: 2.3vh;
+	padding-left: 0.5vh;
+	height:100%;
+	vertical-align: middle;
 }
 
 #infobox{

@@ -24,6 +24,7 @@
     let panel = d3.select('#panel');
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
+	let rankheight = 50;
     let current_date = START_DATE;
     let timer;
     let histHeight = height/5;
@@ -225,6 +226,7 @@
         if (err) return console.error(err);
         window.site_data = rows;
         initRanking();
+		rankheight = d3.select('.ranks').node().clientHeight;
     });
     
     // Loading contextual data
