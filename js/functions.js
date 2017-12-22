@@ -448,13 +448,11 @@
     function fillInfobox(circle, event_id, over, highlight){
         let infobox = d3.select('#infobox');
         if(over){
-            infobox.style('opacity', 0).style('opacity', 1);
-            infobox.html(testToString(event_id));
+            infobox.style('text-align', 'left').html(testToString(event_id));
             if(highlight) circle.style('stroke-width', '3px');
         }
         else {
-            infobox.style('opacity', 1).style('opacity', 0);
-            infobox.html('');
+            infobox.style('text-align', 'center').html('<span style="opacity:0.5;"><i>Hover any circle ...</i></span>');
             if(highlight) circle.style('stroke-width', '1px');
         }
     }
