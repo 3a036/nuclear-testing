@@ -679,7 +679,6 @@
     }
 
     function showTreaty(currentDate) {
-        console.log(treatyYears);
         let year = currentDate.getFullYear();
         let toRemove = [];
         for (var i=0; i < treatyYears.length; i++) {
@@ -693,38 +692,38 @@
                 toRemove.push(i);
             }
         }
-        for (index in toRemove){
-            treatyYears.splice(index, 1);
+        for (var i = 0; i<toRemove.length; i++){
+            treatyYears.splice(toRemove[i], 1);
         }
-        if (treatyYears.indexOf(year)==-1){
-            let treaties = window.nuclear_treaties.filter(treaty => treaty.year <= year);
-            if(treaties.length) {
-                for (var i=0; i < treaties.length; i++) {
-                    treaty = treaties[i];
-                    treatyYears.push(treaty.year)
-                    let treatySpan = $('<span class="treaty" id='+(treaty.name).split(' ').join('_')+'>');
-                    treatySpan.html('<p>' + treaty.year + " " + treaty.name +'</p>');
+		let treaties = window.nuclear_treaties.filter(treaty => treaty.year <= year);
+		if(treaties.length) {
+			for (var i=0; i < treaties.length; i++) {
+				treaty = treaties[i];
+				if (treatyYears.indexOf(treaty.year)==-1){
+					treatyYears.push(treaty.year)
+					let treatySpan = $('<span class="treaty" id='+(treaty.name).split(' ').join('_')+'>');
+					treatySpan.html('<p>' + treaty.year + " " + treaty.name +'</p>');
 
-                    // Get the histogram bar for this year, and get its absolute position
-                    let barPos = $('g[data-year="' + (treaty.year + 1) + '"]')[0].getBoundingClientRect();
+					// Get the histogram bar for this year, and get its absolute position
+					let barPos = $('g[data-year="' + (treaty.year + 1) + '"]')[0].getBoundingClientRect();
 
-                    // Make the span invisible before appending it
-                    treatySpan.hide();
-                    // Append it so we can compute its height and width
-                    $('#container-div').append(treatySpan);
+					// Make the span invisible before appending it
+					treatySpan.hide();
+					// Append it so we can compute its height and width
+					$('#container-div').append(treatySpan);
 
-                    // Use the bar position, and the span's height and width to position the treaty info span
-                    treatySpan.css({
-                        left: barPos.left - treatySpan.width() - SCREEN_WIDTH*0.2 - 20,
-                        top: barPos.top - treatySpan.height() - 20,
-                        position: 'absolute'
-                    });
-                    treatySpan.append('<span class="arrow">&#8600;</span>');
+					// Use the bar position, and the span's height and width to position the treaty info span
+					treatySpan.css({
+						left: barPos.left - treatySpan.width() - SCREEN_WIDTH*0.2 - 20,
+						top: barPos.top - treatySpan.height() - 20,
+						position: 'absolute'
+					});
+					treatySpan.append('<span class="arrow">&#8600;</span>');
 
-                    treatySpan.fadeIn(animation_time);
-                }
-            }
-        }
+					treatySpan.fadeIn(animation_time);
+				}
+			}
+		}
     }
 
     //This function is called when the slider is moved manually
