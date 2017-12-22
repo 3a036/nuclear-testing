@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <style type="text/css">
-        body {
+<style type="text/css">
+    body {
             font-family: helvetica;
             color: #222;
         }
@@ -34,8 +34,12 @@
 
         #month{
             width: 30px;
-            display: inline-block;
         }
+		
+		.valign {
+			display:inline-block;
+			vertical-align:middle;
+		}
 
         #slider{
             position: fixed;
@@ -92,10 +96,15 @@
 			margin: 1%;
             background-color: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
-            text-align:center;
-            line-height: 50px;
-            display:block;
+			text-align:center;
         }
+		
+		#dateContainer:before {
+			content: '';
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+		} 
         
         #tooltip{
             margin: 20px;
@@ -260,7 +269,7 @@
 
         }
 
-    </style>
+	</style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
@@ -277,8 +286,8 @@
         <span id='tooltip'></span>
         <div id='panel'>
 			<div id='dateContainer'>
-				<span id='month'></span>
-				<span id='year'></span>
+				<span id='month' class='valign'></span>
+				<span id='year' class='valign'></span>
 			</div>
             <i id='historyButton' class="fa fa-history" aria-hidden="true" title='Show history'></i>
             <i id='infoButton' class="fa fa-info-circle" aria-hidden="true"></i>
@@ -304,6 +313,7 @@
     
 </body>
 <script type="text/javascript">
+	console.log("Hey")
     // Generate the world map from topojson file
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
