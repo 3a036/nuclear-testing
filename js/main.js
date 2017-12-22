@@ -66,9 +66,12 @@
         });
         
         
-    d3.select('#infoButton').on("click", showInfoTooltip);
+    d3.select('#infoButton').on("click", function(d){
+		showInfoTooltip();
+		event.stopPropagation(); 
+	});
 
-    d3.select("#infotooltip").select('.close a').on('click', hideInfoTooltip);
+    container.on('click', hideInfoTooltip);
 
     d3.select('#githubButton')
         .on('mouseover', function(d){
