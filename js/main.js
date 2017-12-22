@@ -64,24 +64,11 @@
             showHideContext();
         });
         
-    var infotooltip = d3.select("#infotooltip");
         
-    d3.select('#infoButton')
-        .on("mouseover", function(d) {
-            d3.select(this).style('color', 'white');
-                infotooltip.style('visibility', 'visible')
-                .transition()        
-                .duration(200)      
-                .style("opacity", 1);      
-        })                  
-        .on("mouseout", function(d) {  
-            d3.select(this).style('color', MAP_COLOR);        
-            infotooltip.style('visibility', 'hidden')
-                .transition()        
-                .duration(500)      
-                .style("opacity", 0);   
-        });
-        
+    d3.select('#infoButton').on("click", showInfoTooltip);
+
+    d3.select("#infotooltip").select('.close a').on('click', hideInfoTooltip);
+
     d3.select('#githubButton')
         .on('mouseover', function(d){
             d3.select(this).style('color', 'white');

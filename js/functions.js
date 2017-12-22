@@ -23,10 +23,7 @@
         return MONTH_NAMES[date.getMonth()] + " " + date.getFullYear();
     }
     
-    // print infos in the info panel
-    function vizInfoToString(){
-        return ""
-    }
+
 
     // prints a marker on the map at the location of the input event
     function printEvent(event){
@@ -204,6 +201,22 @@
     function removeInstantShownCircles() {
         d3.selectAll(".event")
         .remove();
+    }
+
+    function showInfoTooltip(d) {
+        d3.select(this).style('color', 'white');
+            d3.select("#infotooltip").style('visibility', 'visible')
+            .transition()        
+            .duration(200)      
+            .style("opacity", 1);      
+    }
+
+    function hideInfoTooltip(d) {
+        d3.select(this).style('color', MAP_COLOR);        
+        d3.select("#infotooltip").style('visibility', 'hidden')
+            .transition()        
+            .duration(500)      
+            .style("opacity", 0);   
     }
 
     // called at each tick of the timer
