@@ -61,6 +61,7 @@
             height: 20%;
             opacity: 0.6;
             z-index: 3;
+            pointer-events: none;
         }
         
         #svg-button {
@@ -233,6 +234,23 @@
             width: 30px;
         }
 
+        #infobox{
+            position: absolute;
+            height: 20%;
+            width: 86%;
+            top: 10%;
+            left: 5%;
+
+            padding: 2%;
+
+            border-style: solid;
+            border-color: #707779;
+            border-width: 2px;
+            color: rgb(200, 200, 200);
+            font-size: 14px;
+
+        }
+
     </style>
     <script src="https://d3js.org/d3.v4.min.js"> </script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
@@ -251,14 +269,15 @@
         <div id='panel'>
             <i id='historyButton' class="fa fa-history" aria-hidden="true" title='Show history'></i>
             <i id='infoButton' class="fa fa-info-circle" aria-hidden="true"></i>
-            <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" title='Show context informations of nuclear tests on the map'></i>        
+            <i id='showContextButton' class="fa fa-comment-o" aria-hidden="true" title='Show context informations of nuclear tests on the map'></i>
+            <div id='infobox'>This is the infobox</div>     
+            <div id='ranking'></div>
         </div>
         <div id='dateContainer'>
             <span id='month'></span>
             <span id='year'></span>
         </div>
             
-        <div id='ranking'></div>
         <button class="button play-button">
             <svg viewBox="0 0 36 36" id="svg-button" >
                 <defs>
@@ -345,14 +364,16 @@
     d3.select('#infoButton')
         .on("mouseover", function(d) {
             d3.select(this).style('color', 'white');
-            div.transition()        
+                div.style('visibility', 'visible')
+                .transition()        
                 .duration(200)      
                 .style("opacity", 1);      
             div.html(vizInfoToString()); 
         })                  
         .on("mouseout", function(d) {  
             d3.select(this).style('color', MAP_COLOR);        
-            div.transition()        
+            div.style('visibility', 'hidden')
+                .transition()        
                 .duration(500)      
                 .style("opacity", 0);   
         });
@@ -589,6 +610,10 @@
         d3.select('#month').html(MONTH_NAMES[date.getMonth()]);
         d3.select('#year').html(date.getFullYear());
     }
+
+    function dateToString(date){
+        return MONTH_NAMES[date.getMonth()] + " " + date.getFullYear();
+    }
     
     // print infos in the info panel
     function vizInfoToString(){
@@ -598,6 +623,8 @@
     // prints a marker on the map at the location of the input event
     function printEvent(event){
         svg.append("circle")
+            .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
+            .on('mouseout', x => d3.select('#infobox').html(''))
             .attr("class", "event")
             .attr("cx", event.x)
             .attr("cy", event.y)
@@ -615,6 +642,8 @@
     // prints a marker on the map at the location of the input event
     function printClickEvent(event){
         svg.append("circle")
+            .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
+            .on('mouseout', x => d3.select('#infobox').html(''))
             .attr("class", "event")
             .attr("cx", event.x)
             .attr("cy", event.y)
@@ -628,6 +657,8 @@
     // prints instant marker on the map for the history
     function printInstantEvent(event){
         svg.append("circle")
+                .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
+                .on('mouseout', x => d3.select('#infobox').html(''))
                 .attr("class", "event instant_event")
                 .attr("cx", event.x)
                 .attr("cy", event.y)
@@ -960,6 +991,19 @@
                 elem.style('width', d[1]+'px');
             }
         });
+    }
+
+    function testToString(id){
+        let test = window.site_data[id];
+        let name = test.name == '' ? '-' : test.name;
+        let site = test.site == '' ? '-' : test.site;
+        let result = "";
+        result += "<div>Name: " + name + "</div><br/>";
+        result += "<div>Country: " + COUNTRY_NAMES[test.country] + "</div><br/>";
+        result += "<div>Site: " + site + "</div><br/>";
+        result += "<div>Magnitude [Richter scale]: " + test.magnitude + "</div><br/>";
+        result += "<div>Date: " + dateToString(test.date) + "</div><br/>";
+        return result;
     }
     
     
