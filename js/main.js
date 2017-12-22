@@ -64,20 +64,19 @@
             showHideContext();
         });
         
-    var div = d3.select("#tooltip");
+    var infotooltip = d3.select("#infotooltip");
         
     d3.select('#infoButton')
         .on("mouseover", function(d) {
             d3.select(this).style('color', 'white');
-                div.style('visibility', 'visible')
+                infotooltip.style('visibility', 'visible')
                 .transition()        
                 .duration(200)      
                 .style("opacity", 1);      
-            div.html(vizInfoToString()); 
         })                  
         .on("mouseout", function(d) {  
             d3.select(this).style('color', MAP_COLOR);        
-            div.style('visibility', 'hidden')
+            infotooltip.style('visibility', 'hidden')
                 .transition()        
                 .duration(500)      
                 .style("opacity", 0);   
