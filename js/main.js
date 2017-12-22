@@ -110,7 +110,7 @@
             d3.select(this).style('color', MAP_COLOR);
         })
         .on('click', function(d){
-            openInNewTab("http://youtube.com/");
+            openInNewTab("https://youtu.be/L3tlqaDeDPM ");
         });
 
     let svg = container.append('svg')
