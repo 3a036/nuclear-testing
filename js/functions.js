@@ -204,15 +204,18 @@
     }
 
     function showInfoTooltip(d) {
+        if(d3.select("#infotooltip").style("visibility") == "visible") {
+            return hideInfoTooltip(d);
+        }
         d3.select(this).style('color', 'white');
-            d3.select("#infotooltip").style('visibility', 'visible')
+        d3.select("#infotooltip").style('visibility', 'visible')
             .transition()        
             .duration(200)      
-            .style("opacity", 1);      
+            .style("opacity", 1);  
     }
 
     function hideInfoTooltip(d) {
-        d3.select(this).style('color', MAP_COLOR);        
+        d3.select("#infoButton").style('color', MAP_COLOR);        
         d3.select("#infotooltip").style('visibility', 'hidden')
             .transition()        
             .duration(500)      

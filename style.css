@@ -156,7 +156,8 @@ a {
     left: 8.5%;
     top: 7%;
     font-size: 3vw;
-    color: #707779;
+    color: white;
+    cursor: pointer;
 }
 
 #showContextButton{
