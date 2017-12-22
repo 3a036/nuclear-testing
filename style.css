@@ -1,250 +1,266 @@
 body {
-            font-family: helvetica;
-            color: #222;
-        }
+    font-family: helvetica;
+    color: #222;
+}
 
-        a {
-            font-weight: normal;
-        }
-        #container-div{
-            position: fixed;
-            float: right;
-            left: 20%;
-            right: 0px;
-            top: 0px;
-            bottom: 0px;
-            width: 80%;
-            height: 100%;
-        }
+a {
+    font-weight: normal;
+}
+#container-div{
+    position: fixed;
+    float: right;
+    left: 20%;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 80%;
+    height: 100%;
+}
 
-        #panel{
-            position: fixed;
-            float: left;
-            left: 0px;
-            right: 0px;
-            top: 0px;
-            bottom: 0px;
-            width: 20%;
-            height: 100%;
-        }
+#panel{
+    position: fixed;
+    float: left;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 20%;
+    height: 100%;
+}
 
-        #month{
-            width: 30px;
-        }
-		
-		.valign {
-			display:inline-block;
-			vertical-align:middle;
-		}
+#month{
+    width: 30px;
+}
 
-        #slider{
-            position: fixed;
-            top:90%;
-            left:26%;
-            right: 0;
-            bottom: 0;
-            width: 73%;
-            height: 7%;
-            background-color: white;
-            opacity: 0.6;
-            z-index: 3;
-            border-radius: 10px;
-        }
-        
-        #histogram{
-            position: fixed;
-            top:70%;
-            left:26%;
-            right: 0;
-            bottom: 0;
-            width: 73%;
-            height: 20%;
-            opacity: 0.6;
-            z-index: 3;
-        }
-        
-        #svg-button {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .play-button {
-            border-style: none;
-            position: fixed;
-            top:90%;
-            left: 20.5%;
-            right: 0;
-            bottom: 0;
-            width: 5%;
-            height: 7%;
-            background-color: white;
-            border-radius: 10px;
-            opacity: 0.6;
-            z-index: 3;
-            cursor: pointer;
-        }
+.valign {
+    display:inline-block;
+    vertical-align:middle;
+}
 
-        #dateContainer{
-            position: fixed;
-            width: 18%;
-            height: 4%;
-			margin: 1%;
-            background-color: rgba(255, 255, 255, 0.6);
-            border-radius: 10px;
-			text-align:center;
-        }
-		
-		#dateContainer:before {
-			content: '';
-			display: inline-block;
-			height: 100%;
-			vertical-align: middle;
-		} 
-        
-        #tooltip{
-            margin: 20px;
-            margin-right: 40%;
-            padding: 40px;
-            position: absolute;
-            opacity: 0;
-            z-index: 4;
-            color: black;
-            border-radius: 10px;
-            background-color: rgba(255,255,255,0.8);
-            font-size: 13px;
-        }
-        
-        #historyButton{
-            position: fixed;
-            left: 4%;
-            top: 7%;
-            font-size: 3vw;
-            color: #707779;
-			cursor: pointer;
-        }
+#slider{
+    position: fixed;
+    top:91%;
+    left:26.5%;
+    right: 0;
+    bottom: 0;
+    width: 72.5%;
+    height: 7%;
+    background-color: white;
+    opacity: 0.6;
+    z-index: 3;
+    border-radius: 10px;
+}
 
-        #infoButton{
-            position: fixed;
-            left: 8.5%;
-            top: 7%;
-            font-size: 3vw;
-            color: #707779;
-        }
-        
-        #showContextButton{
-            position: fixed;
-            left: 13%;
-            top: 7%;
-            font-size: 3vw;
-            color: #707779;
-			cursor: pointer;
-        }
-		
-		#githubButton{
-            position: fixed;
-            left: 7%;
-            top: 95%;
-            font-size: 2.5vw;
-            color: #707779;
-			cursor: pointer;
-        }
-        
-        #processBookButton{
-            position: fixed;
-            left: 10%;
-            top: 95%;
-            font-size: 2.5vw;
-            color: #707779;
-			cursor: pointer;
-        }
+#histogram{
+    position: fixed;
+    top:71%;
+    left:26.5%;
+    right: 0;
+    bottom: 0;
+    width: 72.5%;
+    height: 20%;
+    opacity: 0.6;
+    z-index: 3;
+    pointer-events: none;
+}
 
-        .timeline {
-            stroke: grey;
-            stroke-linecap: round;
-            stroke-width: 10px;
-        }
+#svg-button {
+    width: 100%;
+    height: 100%;
+}
 
-        .event{
-            opacity: 1;
-            stroke: white;
-            stroke-width: 1px;
-        }
+.play-button {
+    border-style: none;
+    position: fixed;
+    top:91%;
+    left: 21%;
+    right: 0;
+    bottom: 0;
+    width: 5%;
+    height: 7%;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.6;
+    z-index: 3;
+    cursor: pointer;
+}
 
-        .context {
-            padding: 0.5em;
-            max-width: 500px;
-            min-width: 0;
-            border-radius: 10px;
-            font-weight: lighter;
-            background-color: rgba(235, 235, 235, 0.8);
-        }
-        .context .leftarrow {
-            color: rgba(235, 235, 235, 0.8);
-            font-size: 150%;
-            position: absolute;
-            top: -30px;
-            left: -30px;
-        }
-        
-        .context .rightarrow {
-            color: rgba(235, 235, 235, 0.8);
-            font-size: 150%;
-            position: absolute;
-            top: -30px;
-            right: -30px;
-        }
-        
-        .context p {
-            margin-top: 0;
-        }
+#dateContainer{
+    position: fixed;
+    width: 18%;
+    height: 4%;
+    margin: 1%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    text-align:center;
+}
 
-        .treaty {
-            z-index: 42;
-            padding: 0;
-            border-radius: 10px;
-            font-size: 80%;
-            line-height: 80%;
-            font-weight: lighter;
-            background-color: rgba(235, 235, 235, 0.8);
-			cursor: pointer;
-        }
+#dateContainer:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+} 
 
-        .treaty p {
-            margin: 0.5em;
-        }
+#tooltip{
+    margin: 20px;
+    margin-right: 40%;
+    padding: 40px;
+    position: absolute;
+    opacity: 0;
+    z-index: 4;
+    color: black;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.8);
+    font-size: 13px;
+}
 
-        .treaty .arrow {
-            color: rgba(235, 235, 235, 0.8);
-            font-size: 80%;
-            position: absolute;
-            bottom: -15px;
-            right: -15px;
-        }
+#historyButton{
+    position: fixed;
+    left: 4%;
+    top: 7%;
+    font-size: 3vw;
+    color: #707779;
+    cursor: pointer;
+}
 
-        #ranking{
-            position: fixed;
-            left: 5px;
-        }
+#infoButton{
+    position: fixed;
+    left: 8.5%;
+    top: 7%;
+    font-size: 3vw;
+    color: #707779;
+}
 
-        .ranks{
-            position: fixed;
-            margin-bottom: 200px;
-            display: table;
-            padding: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+#showContextButton{
+    position: fixed;
+    left: 13%;
+    top: 7%;
+    font-size: 3vw;
+    color: #707779;
+    cursor: pointer;
+}
 
-        }
-        .rankspan{
-            display:table-cell;
-            vertical-align: middle;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 20px;
-            text-align: right;
-            color: rgb(200, 200, 200);
-        }
+#githubButton{
+    position: fixed;
+    left: 7%;
+    top: 95%;
+    font-size: 2.5vw;
+    color: #707779;
+    cursor: pointer;
+}
 
-        img{
-            width: 30px;
-        }
+#processBookButton{
+    position: fixed;
+    left: 10%;
+    top: 95%;
+    font-size: 2.5vw;
+    color: #707779;
+    cursor: pointer;
+}
+
+.timeline {
+    stroke: grey;
+    stroke-linecap: round;
+    stroke-width: 10px;
+}
+
+.event{
+    opacity: 1;
+    stroke: white;
+    stroke-width: 1px;
+}
+
+.context {
+    padding: 0.5em;
+    max-width: 500px;
+    min-width: 0;
+    border-radius: 10px;
+    font-weight: lighter;
+    background-color: rgba(235, 235, 235, 0.8);
+}
+.context .leftarrow {
+    color: rgba(235, 235, 235, 0.8);
+    font-size: 150%;
+    position: absolute;
+    top: -30px;
+    left: -30px;
+}
+
+.context .rightarrow {
+    color: rgba(235, 235, 235, 0.8);
+    font-size: 150%;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+}
+
+.context p {
+    margin-top: 0;
+}
+
+.treaty {
+    z-index: 42;
+    padding: 0;
+    border-radius: 10px;
+    font-size: 80%;
+    line-height: 80%;
+    font-weight: lighter;
+    background-color: rgba(235, 235, 235, 0.8);
+    cursor: pointer;
+}
+
+.treaty p {
+    margin: 0.5em;
+}
+
+.treaty .arrow {
+    color: rgba(235, 235, 235, 0.8);
+    font-size: 80%;
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+}
+
+#ranking{
+    position: fixed;
+    margin-left: 1%;
+}
+
+.ranks{
+    position: fixed;
+    margin-bottom: 200px;
+    display: table;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+}
+.rankspan{
+    display:table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    text-align: right;
+    color: rgb(200, 200, 200);
+}
+
+img{
+    width: 30px;
+}
+
+#infobox{
+    position: fixed;
+    height: 17%;
+    width: 16%;
+    top: 15%;
+    margin-left: 1%;
+
+    padding: 1%;
+
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    font-size: 14px;
+
+}
