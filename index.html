@@ -43,11 +43,11 @@
 
         #slider{
             position: fixed;
-            top:90%;
-            left:26%;
+            top:91%;
+            left:26.5%;
             right: 0;
             bottom: 0;
-            width: 73%;
+            width: 72.5%;
             height: 7%;
             background-color: white;
             opacity: 0.6;
@@ -57,11 +57,11 @@
         
         #histogram{
             position: fixed;
-            top:70%;
-            left:26%;
+            top:71%;
+            left:26.5%;
             right: 0;
             bottom: 0;
-            width: 73%;
+            width: 72.5%;
             height: 20%;
             opacity: 0.6;
             z-index: 3;
@@ -76,8 +76,8 @@
         .play-button {
             border-style: none;
             position: fixed;
-            top:90%;
-            left: 20.5%;
+            top:91%;
+            left: 21%;
             right: 0;
             bottom: 0;
             width: 5%;
@@ -281,7 +281,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
 </head>
-<body>
+<body onresize="refresh()">
     <div id='container-div'>
         <span id='tooltip'></span>
         <div id='panel'>
@@ -313,7 +313,7 @@
     
 </body>
 <script type="text/javascript">
-	console.log("Hey")
+	$(window).resize(function(){location.reload();});
     // Generate the world map from topojson file
     const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const START_DATE = new Date("1945-01-01");
