@@ -18,7 +18,35 @@
 </head>
 <body onresize="refresh()">
     <div id='container-div'>
-        <span id='tooltip'></span>
+        <div id='infotooltip'>
+          <span class="close"><a href="javascript:hideInfoTooltip()">&#215;</a></span>
+          <h3>What is the pupose of the visualization?</h3>
+          <p>
+          This map shows all the nuclear events that happened around the world and some different
+          treaties signed for this matter.<br>
+          </p>
+          <h3>How does this work?</h3>
+          <p>
+          You can simply use the date slide at the bottom of the page to navigate through time.
+          The current date is displayed in the top-left corner of your screen. Each bubble that
+          pops on the map represents a nuclear test. <br>
+          </p>
+          <h3>The histogram</h3>
+          <p>
+          The histogram above the slider displays the amount of nuclear events for each year. It
+          gives an insight about the most active years in the nuclear's history.<br>
+          </p>
+          <h3>The information panel (on the left)</h3>
+          <p>
+          This small animation corresponds to the total amount of nuclear events ran by each
+          country up to the current date. It shows the proportion of nuclear activity every
+          country has.<br>
+          </p>
+          <h3>The data</h3>
+          <p>
+          The data comes from the Geoscience Agency of Australia.<br>
+          </p>
+        </div>
         <div id='panel'>
 			<div id='dateContainer'>
 				<span id='month' class='valign'></span>

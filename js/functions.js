@@ -23,10 +23,7 @@
         return MONTH_NAMES[date.getMonth()] + " " + date.getFullYear();
     }
     
-    // print infos in the info panel
-    function vizInfoToString(){
-        return "<strong><i>What is the pupose of the visualization?</i></strong><br/><br/>This map shows all the nuclear events that happened around the world and some different treaties signed for this matter.<br/><br/><strong><i>How does this work?</i></strong><br/><br/>You can simply use the date slide at the bottom of the page to navigate through time. The current date is displayed in the top-left corner of your screen. Each bubble that pops on the map represents a nuclear test. The flag indicates the country that ran the test and the radius of the circle represents the magnitude of the test. Some information can be found for different events, you can enable and disable them by using the bubble button at the top left.The history button will pause the animation and show all the nuclear events that happened until the date currently displayed by the slider. <br/><br/><strong><i>The histogram</i></strong><br/><br/>The histogram above the slider displays the amount of nuclear events for each year. It gives an insight about the most active years in the nuclear's history.<br/><br/><strong><i>The information panel (on the left)</i></strong><br/><br/>This small animation corresponds to the total amount of nuclear events ran by each country up to the current date. It shows the proportion of nuclear activity every country has.<br/><br/><strong><i>The data</i></strong><br/><br/>The data comes from the Geoscience Agency of Australia.<br/><br/><strong><i>Authors</i></strong><br/><br/>This data visualization was realized by <strong>Raphaël Steinmann</strong>, <strong>Semion Sidorenko</strong> and <strong>Alain Milliet</strong> in the scope of Prof. Kirell Benzi's Data Visualisation course at EPFL.<br/><br/><strong><i>Compatible browsers</i></strong><br/><br/>This visualization was developped and tested on Google Chrome. As this project was conducted in less than two months, there is no guarantee that it runs perfectly on other browsers."
-    }
+
 
     // prints a marker on the map at the location of the input event
     function printEvent(event){
@@ -204,6 +201,25 @@
     function removeInstantShownCircles() {
         d3.selectAll(".event")
         .remove();
+    }
+
+    function showInfoTooltip(d) {
+        if(d3.select("#infotooltip").style("visibility") == "visible") {
+            return hideInfoTooltip(d);
+        }
+        d3.select(this).style('color', 'white');
+        d3.select("#infotooltip").style('visibility', 'visible')
+            .transition()        
+            .duration(200)      
+            .style("opacity", 1);  
+    }
+
+    function hideInfoTooltip(d) {
+        d3.select("#infoButton").style('color', MAP_COLOR);        
+        d3.select("#infotooltip").style('visibility', 'hidden')
+            .transition()        
+            .duration(500)      
+            .style("opacity", 0);   
     }
 
     // called at each tick of the timer
@@ -430,12 +446,15 @@
     // called when mouseover a circle
     // fills the infobox on the left and highlights the circle
     function fillInfobox(circle, event_id, over, highlight){
+        let infobox = d3.select('#infobox');
         if(over){
-            d3.select('#infobox').html(testToString(event_id));
+            infobox.style('opacity', 0).style('opacity', 1);
+            infobox.html(testToString(event_id));
             if(highlight) circle.style('stroke-width', '3px');
         }
         else {
-            d3.select('#infobox').html('');
+            infobox.style('opacity', 1).style('opacity', 0);
+            infobox.html('');
             if(highlight) circle.style('stroke-width', '1px');
         }
     }
