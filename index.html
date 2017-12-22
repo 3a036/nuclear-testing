@@ -661,8 +661,12 @@
     // prints a marker on the map at the location of the input event
     function printEvent(event){
         svg.append("circle")
-            .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
-            .on('mouseout', x => d3.select('#infobox').html(''))
+            .on('mouseover', function(d){
+                fillInfobox(d3.select(this), event.id, true, true);
+            })
+            .on('mouseout', function(d){
+                fillInfobox(d3.select(this), event.id, false, true);
+            })
             .attr("class", "event")
             .attr("cx", event.x)
             .attr("cy", event.y)
@@ -680,8 +684,12 @@
     // prints a marker on the map at the location of the input event
     function printClickEvent(event){
         svg.append("circle")
-            .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
-            .on('mouseout', x => d3.select('#infobox').html(''))
+            .on('mouseover', function(d){
+                fillInfobox(d3.select(this), event.id, true, true);
+            })
+            .on('mouseout', function(d){
+                fillInfobox(d3.select(this), event.id, false, true);
+            })
             .attr("class", "event")
             .attr("cx", event.x)
             .attr("cy", event.y)
@@ -695,8 +703,12 @@
     // prints instant marker on the map for the history
     function printInstantEvent(event){
         svg.append("circle")
-                .on('mouseover', x => d3.select('#infobox').html(testToString(event.id)))
-                .on('mouseout', x => d3.select('#infobox').html(''))
+                .on('mouseover', function(d){
+                    fillInfobox(d3.select(this), event.id, true, false);
+                })
+                .on('mouseout', function(d){
+                    fillInfobox(d3.select(this), event.id, false, false);
+                })
                 .attr("class", "event instant_event")
                 .attr("cx", event.x)
                 .attr("cy", event.y)
@@ -1032,6 +1044,8 @@
         });
     }
 
+    // returns the html code that will fill the 
+    // infobox on the left when mouseover an explosion
     function testToString(id){
         let test = window.site_data[id];
         let name = test.name == '' ? '-' : test.name;
@@ -1043,6 +1057,19 @@
         result += "<div>Magnitude [Richter scale]: " + test.magnitude + "</div><br/>";
         result += "<div>Date: " + dateToString(test.date) + "</div><br/>";
         return result;
+    }
+
+    // called when mouseover a circle
+    // fills the infobox on the left and highlights the circle
+    function fillInfobox(circle, event_id, over, highlight){
+        if(over){
+            d3.select('#infobox').html(testToString(event_id));
+            if(highlight) circle.style('stroke-width', '3px');
+        }
+        else {
+            d3.select('#infobox').html('');
+            if(highlight) circle.style('stroke-width', '1px');
+        }
     }
     
     
