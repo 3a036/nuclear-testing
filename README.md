@@ -5,7 +5,7 @@ This project was realized in 2017 in the scope of the [COM-480 course at EPFL](h
 
 * [Visualization](https://rbsteinm.github.io/nuclear-testing/)
 * [Screencast demo](https://www.youtube.com/watch?v=L3tlqaDeDPM&ab_channel=AlainMilliet)
-* [COM-480 Process book](http://rbsteinm.github.io/nuclear-testing/process-book.pd)
+* [COM-480 Process book](http://rbsteinm.github.io/nuclear-testing/process-book.pdf)
 
 ## Team members
 * Raphaël Steinmann
