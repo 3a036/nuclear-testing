@@ -88,7 +88,7 @@
             d3.select(this).style('color', MAP_COLOR);
         })
         .on('click', function(d){
-            openInNewTab("https://github.com/rbsteinm/DataVisualizationProject");
+            openInNewTab("https://github.com/rbsteinm/nuclear-testing");
         });
     
     d3.select('#processBookButton')
@@ -99,7 +99,7 @@
             d3.select(this).style('color', MAP_COLOR);
         })
         .on('click', function(d){
-            openInNewTab("https://rbsteinm.github.io/DataVisualizationProject/process-book.pdf");
+            openInNewTab("https://rbsteinm.github.io/nuclear-testing/process-book.pdf");
         });
 		
 	d3.select('#screencastButton')
